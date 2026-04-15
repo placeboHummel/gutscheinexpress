@@ -1,5 +1,15 @@
 // Shared header/footer rendering and utilities
 
+// ── Theme icons ───────────────────────────────────────────────────────────────
+var THEME_TOGGLE_ICONS = '\
+  <svg class="icon-moon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">\
+    <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>\
+  </svg>\
+  <svg class="icon-sun" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">\
+    <circle cx="12" cy="12" r="5"/>\
+    <path stroke-linecap="round" stroke-linejoin="round" d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>\
+  </svg>';
+
 function renderNavbar(activePage) {
   return `
   <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 navbar-scrolled">
@@ -20,6 +30,7 @@ function renderNavbar(activePage) {
           <a href="index.html#faq" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">FAQ</a>
         </div>
         <div class="flex items-center gap-3">
+          <button onclick="toggleTheme()" class="theme-toggle-btn" aria-label="Nacht-/Tagmodus umschalten">${THEME_TOGGLE_ICONS}</button>
           <a href="katalog.html" class="hidden sm:inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all btn-press shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40">
             Jetzt sparen
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
@@ -40,6 +51,22 @@ function renderNavbar(activePage) {
       </div>
     </div>
   </nav>`;
+}
+
+// ── Theme helpers ─────────────────────────────────────────────────────────────
+function initTheme() {
+  var saved = localStorage.getItem('theme');
+  var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (saved === 'dark' || (!saved && prefersDark)) {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+}
+
+function toggleTheme() {
+  var isDark = document.documentElement.classList.toggle('dark');
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
 }
 
 function renderFooter() {

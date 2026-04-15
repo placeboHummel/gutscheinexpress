@@ -20,6 +20,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="theme.css">
+  <!-- Prevent flash of wrong theme -->
+  <script>
+    (function() {
+      var s = localStorage.getItem('theme');
+      var p = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (s === 'dark' || (!s && p)) document.documentElement.classList.add('dark');
+    })();
+  </script>
   <style>
     * { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
     .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -170,6 +179,7 @@
     document.getElementById('footer-container').innerHTML = renderFooter();
     initMobileMenu();
     initRevealAnimations();
+    initTheme();
 
     // State
     var currentBrand = 'all';
