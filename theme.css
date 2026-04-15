@@ -27,6 +27,17 @@ html.dark .bg-white {
   background-color: #1a1a1a !important;
 }
 
+/* ── Dark sections stay dark in both modes ────────── */
+html.dark .bg-gray-950,
+html.dark .bg-gray-900 {
+  /* already dark — keep as-is, but unset any inherited text overrides */
+  background-color: revert;
+}
+html.dark .bg-gray-950 .text-white { color: #ffffff !important; }
+html.dark .bg-gray-950 .text-gray-400 { color: #9ca3af !important; }
+html.dark .bg-gray-950 .text-gray-500 { color: #6b7280 !important; }
+html.dark .bg-gray-950 .text-gray-600 { color: #4b5563 !important; }
+
 /* ── Gray-50 / Gray-50 variants ───────────────────── */
 html.dark .bg-gray-50 {
   background-color: #1f1f1f !important;
