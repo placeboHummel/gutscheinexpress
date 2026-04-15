@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alle Gutscheine | Gutschein.Express</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50:'#f0fdf4',100:'#dcfce7',200:'#bbf7d0',300:'#86efac',400:'#4ade80',500:'#22c55e',600:'#16a34a',700:'#15803d',800:'#166534',900:'#14532d' },
+          },
+          fontFamily: { sans: ['Inter','system-ui','-apple-system','sans-serif'] },
+        },
+      },
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.05s; }
+    .reveal-delay-2 { transition-delay: 0.1s; }
+    .reveal-delay-3 { transition-delay: 0.15s; }
+    .reveal-delay-4 { transition-delay: 0.2s; }
+    /* Product cards */
+    .product-card {
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
+    }
+    .product-card:hover {
+      transform: translateY(-12px) scale(1.03);
+      box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.3);
+    }
+    .gift-card { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+    .gift-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.15); }
+    .navbar-scrolled { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); }
+    .btn-press:active { transform: scale(0.97); }
+    .star { color: #fbbf24; }
+    .filter-btn { transition: all 0.2s ease; }
+    .filter-btn.active { background: #111827; color: white; }
+
+    /* Staggered grid entrance */
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(40px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .card-animate {
+      animation: cardIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 antialiased overflow-x-hidden">
+
+  <div id="navbar-container"></div>
+
+  <!-- Page Header -->
+  <section class="pt-28 sm:pt-36 pb-12 bg-gray-50/50 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav class="mb-6 text-sm text-gray-400">
+        <a href="index.html" class="hover:text-gray-600 transition-colors">Startseite</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-700 font-medium">Alle Gutscheine</span>
+      </nav>
+
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-2">Alle Gutscheine</h1>
+          <p class="text-gray-500 text-lg">Entdecke <span id="product-count" class="font-semibold text-gray-700">18</span> Gutscheine zu reduzierten Preisen.</p>
+        </div>
+        <div class="flex items-center gap-2 text-sm text-gray-500">
+          <svg class="w-5 h-5 text-brand-500" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+          Alle Gutscheine 100% g&uuml;ltig
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filters + Products -->
+  <section class="py-10 sm:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Brand Filter -->
+      <div class="mb-10">
+        <div class="flex flex-wrap gap-2" id="brand-filters">
+          <button onclick="filterBrand('all')" class="filter-btn active px-4 py-2 rounded-full text-sm font-semibold border border-gray-200 bg-gray-900 text-white" data-brand="all">
+            Alle Marken
+          </button>
+        </div>
+      </div>
+
+      <!-- Sort -->
+      <div class="flex items-center justify-between mb-8">
+        <p class="text-sm text-gray-500"><span id="filtered-count">18</span> Gutscheine</p>
+        <select id="sort-select" onchange="sortProducts()" class="text-sm border border-gray-200 rounded-xl px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500">
+          <option value="popular">Beliebteste zuerst</option>
+          <option value="price-low">Preis: Niedrig &rarr; Hoch</option>
+          <option value="price-high">Preis: Hoch &rarr; Niedrig</option>
+          <option value="discount">Gr&ouml;&szlig;te Ersparnis</option>
+        </select>
+      </div>
+
+      <!-- Product Grid -->
+      <div id="product-grid" class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Empty state -->
+      <div id="empty-state" class="hidden text-center py-20">
+        <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <h3 class="text-xl font-bold text-gray-400 mb-2">Keine Gutscheine gefunden</h3>
+        <p class="text-gray-400">Versuche eine andere Marke auszuw&auml;hlen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Banner -->
+  <section class="py-16 bg-gray-50/80 border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        <div class="reveal">
+          <div class="w-12 h-12 bg-brand-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+          </div>
+          <h3 class="font-bold mb-1">Blitzschnell</h3>
+          <p class="text-sm text-gray-500">Gutschein in 2-5 Minuten per E-Mail</p>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <div class="w-12 h-12 bg-brand-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+          </div>
+          <h3 class="font-bold mb-1">100% g&uuml;ltig</h3>
+          <p class="text-sm text-gray-500">Garantiert funktionierender Code</p>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <div class="w-12 h-12 bg-brand-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+          </div>
+          <h3 class="font-bold mb-1">Sicher bezahlen</h3>
+          <p class="text-sm text-gray-500">SSL-verschl&uuml;sselt &uuml;ber Shopify</p>
+        </div>
+        <div class="reveal reveal-delay-3">
+          <div class="w-12 h-12 bg-brand-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          </div>
+          <h3 class="font-bold mb-1">Bis 15% sparen</h3>
+          <p class="text-sm text-gray-500">Echte Ersparnisse auf Top-Marken</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-container"></div>
+
+  <script src="data.js"></script>
+  <script src="shared.js"></script>
+  <script>
+    // Render shared components
+    document.getElementById('navbar-container').innerHTML = renderNavbar('katalog');
+    document.getElementById('footer-container').innerHTML = renderFooter();
+    initMobileMenu();
+    initRevealAnimations();
+
+    // State
+    var currentBrand = 'all';
+    var currentSort = 'popular';
+
+    // Check URL params
+    var urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('brand')) {
+      currentBrand = urlParams.get('brand');
+    }
+
+    // Render brand filter buttons
+    function renderFilters() {
+      var container = document.getElementById('brand-filters');
+      var html = '<button onclick="filterBrand(\'all\')" class="filter-btn ' + (currentBrand === 'all' ? 'active' : '') + ' px-4 py-2 rounded-full text-sm font-semibold border border-gray-200" data-brand="all">Alle Marken</button>';
+      BRANDS.forEach(function(brand) {
+        var count = getProductsByBrand(brand.slug).length;
+        if (count === 0 && brand.slug !== 'douglas') return;
+        html += '<button onclick="filterBrand(\'' + brand.slug + '\')" class="filter-btn ' + (currentBrand === brand.slug ? 'active' : '') + ' px-4 py-2 rounded-full text-sm font-semibold border border-gray-200" data-brand="' + brand.slug + '">' + brand.name + ' <span class="text-xs opacity-60">(' + count + ')</span></button>';
+      });
+      container.innerHTML = html;
+    }
+
+    // Filter products
+    function filterBrand(brand) {
+      currentBrand = brand;
+      // Update URL
+      var url = new URL(window.location);
+      if (brand === 'all') {
+        url.searchParams.delete('brand');
+      } else {
+        url.searchParams.set('brand', brand);
+      }
+      window.history.replaceState({}, '', url);
+      renderFilters();
+      renderProducts();
+    }
+
+    // Sort products
+    function sortProducts() {
+      currentSort = document.getElementById('sort-select').value;
+      renderProducts();
+    }
+
+    // Render product grid
+    function renderProducts() {
+      var products = currentBrand === 'all' ? PRODUCTS : PRODUCTS.filter(function(p) { return p.brandSlug === currentBrand; });
+
+      // Sort
+      switch (currentSort) {
+        case 'price-low':
+          products.sort(function(a, b) { return a.price - b.price; });
+          break;
+        case 'price-high':
+          products.sort(function(a, b) { return b.price - a.price; });
+          break;
+        case 'discount':
+          products.sort(function(a, b) { return (b.value - b.price) - (a.value - a.price); });
+          break;
+        default: // popular - available first, then by value desc
+          products.sort(function(a, b) {
+            if (a.available !== b.available) return b.available - a.available;
+            return b.value - a.value;
+          });
+      }
+
+      var grid = document.getElementById('product-grid');
+      var emptyState = document.getElementById('empty-state');
+
+      if (products.length === 0) {
+        grid.innerHTML = '';
+        emptyState.classList.remove('hidden');
+      } else {
+        emptyState.classList.add('hidden');
+        var html = '';
+        products.forEach(function(product, i) {
+          html += '<div class="card-animate" style="animation-delay:' + (i * 0.07) + 's">' + renderProductCard(product) + '</div>';
+        });
+        grid.innerHTML = html;
+      }
+
+      document.getElementById('filtered-count').textContent = products.filter(function(p) { return p.available; }).length;
+      document.getElementById('product-count').textContent = getAvailableProducts().length;
+    }
+
+    // Init
+    renderFilters();
+    renderProducts();
+  </script>
+</body>
+</html>
