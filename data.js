@@ -584,45 +584,47 @@ const BRAND_LOGO_TEXT_CLASSES = {
 
 const BRAND_LOGO_STYLES = {
   card: {
+    // All card logos: height-based sizing so they scale on mobile without overflowing.
+    // The logo container in renderProductCard uses flex-1/min-w-0, so logos stay within bounds.
     default: {
-      wrapper: "h-9 sm:h-10 max-w-[calc(100%-4rem)] min-w-0 flex-shrink",
-      image: "max-h-full w-auto max-w-full object-contain object-left"
+      wrapper: "h-6 sm:h-9 max-w-full",
+      image: "h-full w-auto max-w-full object-contain object-left"
     },
     amazon: {
-      wrapper: "h-9 sm:h-10 w-[130px] sm:w-[146px] max-w-[calc(100%-4rem)] flex-shrink-0",
-      image: "w-full h-auto object-contain object-left"
+      wrapper: "h-6 sm:h-9 max-w-full",
+      image: "h-full w-auto max-w-full object-contain object-left"
     },
     mediamarkt: {
-      wrapper: "h-9 sm:h-10 w-[142px] sm:w-[163px] max-w-[calc(100%-4rem)] flex-shrink-0",
-      image: "w-full h-auto object-contain object-left"
+      wrapper: "h-6 sm:h-9 max-w-full",
+      image: "h-full w-auto max-w-full object-contain object-left"
     },
     rossmann: {
-      wrapper: "h-9 sm:h-10 w-[166px] sm:w-[187px] max-w-[calc(100%-4rem)] flex-shrink-0",
-      image: "w-full h-auto object-contain object-left"
+      wrapper: "h-6 sm:h-9 max-w-full",
+      image: "h-full w-auto max-w-full object-contain object-left"
     },
     kaufland: {
-      wrapper: "h-9 sm:h-10 w-[156px] sm:w-[178px] max-w-[calc(100%-4rem)] flex-shrink-0",
-      image: "w-full h-auto object-contain object-left"
+      wrapper: "h-6 sm:h-9 max-w-full",
+      image: "h-full w-auto max-w-full object-contain object-left"
     },
     otto: {
-      wrapper: "h-9 sm:h-10 w-[132px] sm:w-[152px] max-w-[calc(100%-4rem)] flex-shrink-0",
-      image: "w-full h-auto object-contain object-left"
+      wrapper: "h-6 sm:h-9 max-w-full",
+      image: "h-full w-auto max-w-full object-contain object-left"
     },
     ikea: {
-      wrapper: "h-9 sm:h-10 w-[134px] sm:w-[154px] max-w-[calc(100%-4rem)] flex-shrink-0",
-      image: "w-full h-auto object-contain object-left"
+      wrapper: "h-6 sm:h-9 max-w-full",
+      image: "h-full w-auto max-w-full object-contain object-left"
     },
     airbnb: {
-      wrapper: "h-9 sm:h-10 w-[120px] sm:w-[139px] max-w-[calc(100%-4rem)] flex-shrink-0",
-      image: "w-full h-auto object-contain object-left"
+      wrapper: "h-6 sm:h-9 max-w-full",
+      image: "h-full w-auto max-w-full object-contain object-left"
     },
     playstation: {
-      wrapper: "h-9 sm:h-10 w-[163px] sm:w-[187px] max-w-[calc(100%-4rem)] flex-shrink-0",
-      image: "w-full h-auto object-contain object-left"
+      wrapper: "h-6 sm:h-9 max-w-full",
+      image: "h-full w-auto max-w-full object-contain object-left"
     },
     douglas: {
-      wrapper: "h-9 sm:h-10 w-[142px] sm:w-[161px] max-w-[calc(100%-4rem)] flex-shrink-0",
-      image: "w-full h-auto object-contain object-left"
+      wrapper: "h-6 sm:h-9 max-w-full",
+      image: "h-full w-auto max-w-full object-contain object-left"
     }
   },
   detail: {
@@ -728,15 +730,14 @@ function renderProductCard(product) {
     return `
       <a href="${getProductUrl(product.slug)}" class="product-card block relative rounded-[1.5rem] overflow-hidden opacity-50 cursor-not-allowed" style="aspect-ratio:3/4;">
         <div class="absolute inset-0 bg-gradient-to-br ${product.color}"></div>
-        <!-- Watermark logo -->
         ${logo ? `<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] opacity-[0.08] pointer-events-none"><img src="${logo}" alt="" class="w-full"></div>` : ''}
-        <div class="absolute inset-0 flex flex-col justify-between p-6 z-10">
-          <div class="flex justify-between items-center">
-            <div class="flex items-center">${logoImg}</div>
-            <span class="bg-white/15 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Coming Soon</span>
+        <div class="absolute inset-0 flex flex-col justify-between p-3 sm:p-6 z-10">
+          <div class="flex items-start gap-2">
+            <div class="flex-1 min-w-0 overflow-hidden">${logoImg}</div>
+            <span class="flex-shrink-0 bg-white/15 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Soon</span>
           </div>
-          <div class="bg-black/20 backdrop-blur-md rounded-2xl p-4 text-center">
-            <p class="text-white/70 text-sm font-medium">Bald verf\u00fcgbar</p>
+          <div class="bg-black/20 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-4 text-center">
+            <p class="text-white/70 text-xs sm:text-sm font-medium">Bald verf\u00fcgbar</p>
           </div>
         </div>
       </a>`;
@@ -745,50 +746,47 @@ function renderProductCard(product) {
   const savings = getSavings(product);
   return `
     <a href="${getProductUrl(product.slug)}" class="product-card group block relative rounded-[1.5rem] overflow-hidden cursor-pointer" style="aspect-ratio:3/4;">
-      <!-- Gradient background -->
       <div class="absolute inset-0 bg-gradient-to-br ${product.color} transition-transform duration-700 group-hover:scale-110"></div>
-      <!-- Watermark logo -->
       ${logo ? `<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] opacity-[0.08] group-hover:opacity-[0.12] transition-opacity duration-700 pointer-events-none"><img src="${logo}" alt="" class="w-full"></div>` : ''}
-      <!-- Decorative circles -->
       <div class="absolute -top-12 -right-12 w-40 h-40 bg-white/5 rounded-full"></div>
       <div class="absolute -bottom-8 -left-8 w-32 h-32 bg-white/5 rounded-full"></div>
-      <!-- Shimmer on hover -->
       <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-tr from-transparent via-white/10 to-transparent"></div>
 
-      <div class="absolute inset-0 flex flex-col justify-between p-5 sm:p-6 z-10">
+      <div class="absolute inset-0 flex flex-col justify-between p-3 sm:p-6 z-10">
         <!-- Top: Logo + discount badge -->
-        <div class="flex justify-between items-center">
-          <div class="flex items-center">${logoImg}</div>
-          <span class="bg-white text-gray-900 text-xs font-black px-3 py-1.5 rounded-full shadow-lg shadow-black/10 group-hover:scale-110 transition-transform">-${product.discount}%</span>
+        <!-- flex-1/min-w-0 on logo lets it shrink; flex-shrink-0 on badge keeps it fully visible -->
+        <div class="flex items-start gap-2">
+          <div class="flex-1 min-w-0 overflow-hidden">${logoImg}</div>
+          <span class="flex-shrink-0 bg-white text-gray-900 text-[10px] sm:text-xs font-black px-2 sm:px-3 py-1 sm:py-1.5 rounded-full shadow-lg shadow-black/10 group-hover:scale-110 transition-transform">-${product.discount}%</span>
         </div>
 
         <!-- Bottom: Price + meta -->
         <div>
-          <!-- Glass panel -->
-          <div class="bg-black/20 backdrop-blur-md rounded-2xl p-4 border border-white/10 group-hover:bg-black/30 transition-colors">
-            <div class="flex items-end justify-between mb-2">
-              <div>
-                <div class="text-white/50 text-xs font-medium mb-1">Dein Preis</div>
-                <div class="text-white text-3xl sm:text-4xl font-black leading-none">${formatPrice(product.price)}</div>
-              </div>
-              <div class="text-right">
-                <div class="text-white/40 text-sm line-through">${formatPrice(product.value)}</div>
-                <div class="text-green-300 text-sm font-bold">${savings}\u20ac gespart</div>
-              </div>
+          <div class="bg-black/20 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-white/10 group-hover:bg-black/30 transition-colors">
+            <!-- Label + original price in same row (saves vertical space on mobile) -->
+            <div class="flex items-center justify-between mb-1">
+              <div class="text-white/50 text-[10px] sm:text-xs font-medium">Dein Preis</div>
+              <div class="text-white/40 text-[10px] sm:text-sm line-through">${formatPrice(product.value)}</div>
             </div>
-            <div class="flex items-center gap-3 mt-3 pt-3 border-t border-white/10">
-              <div class="flex items-center gap-1.5 text-white/50 text-xs">
-                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                Sofort per E-Mail
+            <!-- Main price + savings -->
+            <div class="flex items-baseline justify-between gap-1 mb-2 sm:mb-3">
+              <div class="text-white text-2xl sm:text-4xl font-black leading-none">${formatPrice(product.price)}</div>
+              <div class="text-green-300 text-[10px] sm:text-sm font-bold flex-shrink-0">${savings}\u20ac gespart</div>
+            </div>
+            <!-- Meta row: truncated text prevents wrapping -->
+            <div class="flex items-center gap-2 pt-2 border-t border-white/10">
+              <div class="flex items-center gap-1 text-white/50 text-[10px] sm:text-xs min-w-0 flex-1">
+                <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                <span class="truncate">Per E-Mail</span>
               </div>
-              <div class="flex items-center gap-1.5 text-white/50 text-xs">
-                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-                ${product.validityYears}
+              <div class="flex items-center gap-1 text-white/50 text-[10px] sm:text-xs min-w-0 flex-1">
+                <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                <span class="truncate">${product.validityYears}</span>
               </div>
             </div>
           </div>
           <!-- CTA hint on hover -->
-          <div class="mt-3 overflow-hidden h-0 group-hover:h-10 transition-all duration-300">
+          <div class="mt-2 sm:mt-3 overflow-hidden h-0 group-hover:h-10 transition-all duration-300">
             <div class="bg-white text-gray-900 text-sm font-bold py-2.5 rounded-xl text-center shadow-lg">
               Jetzt kaufen &rarr;
             </div>
