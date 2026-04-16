@@ -438,8 +438,8 @@
     <div class="bg-white/95 backdrop-blur-lg border-t border-gray-200 px-4 py-3 shadow-2xl">
       <div class="flex items-center justify-between gap-3">
         <div>
-          <span id="sticky-price" class="text-xl font-bold"></span>
-          <span id="sticky-original" class="text-sm text-gray-400 line-through ml-1"></span>
+          <span class="text-xs text-gray-400">Gutscheinwert</span>
+          <div><span id="sticky-price" class="text-xl font-bold"></span> <span class="text-xs text-gray-500">– Nur <span id="sticky-original" class="font-bold text-gray-800"></span></span></div>
         </div>
         <button class="flex-1 max-w-[200px] bg-brand-500 hover:bg-brand-600 text-white text-sm font-bold py-3 rounded-xl btn-press shadow-lg shadow-brand-500/25">
           Jetzt kaufen
@@ -531,12 +531,12 @@
               <span class="bg-white/15 backdrop-blur-sm text-white text-[10px] sm:text-xs font-black px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border border-white/20">-' + p.discount + '%</span>\
             </div>\
             <div class="bg-black/25 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-5 border border-white/10">\
-              <div class="flex items-center justify-between mb-1">\
+              <div class="mb-2">\
                 <span class="text-white/50 text-[10px] sm:text-xs">Gutscheinwert</span>\
-                <span class="text-white/40 text-[10px] sm:text-sm line-through">' + val + '</span>\
+                <div class="text-white text-3xl sm:text-5xl font-black leading-none">' + val + '</div>\
               </div>\
-              <div class="flex items-end justify-between">\
-                <span class="text-white text-3xl sm:text-5xl font-black leading-none">' + price + '</span>\
+              <div class="flex items-center justify-between pt-2 border-t border-white/10">\
+                <span class="text-white/70 text-[10px] sm:text-sm">Nur <span class="text-white font-bold">' + price + '</span></span>\
                 <span class="text-[#FF9900] text-xs sm:text-sm font-bold">' + savings + '&euro; gespart</span>\
               </div>\
             </div>\
@@ -561,15 +561,13 @@
             <div>\
               <p class="text-white font-black text-lg sm:text-2xl tracking-wide uppercase mb-3 sm:mb-4 drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]" style="letter-spacing:0.15em">Gutschein</p>\
               <div class="bg-black/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-5 border border-white/10">\
-                <div class="flex items-center justify-between mb-1">\
+                <div class="mb-2">\
                   <span class="text-white/50 text-[10px] sm:text-xs">Gutscheinwert</span>\
-                  <span class="text-white/40 text-[10px] sm:text-sm line-through">' + val + '</span>\
+                  <div class="text-white text-3xl sm:text-5xl font-black leading-none drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)]">' + val + '</div>\
                 </div>\
-                <div class="flex items-end justify-between">\
-                  <span class="text-white text-3xl sm:text-5xl font-black leading-none drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)]">' + price + '</span>\
-                  <div class="text-right">\
-                    <span class="text-green-300 text-xs sm:text-sm font-bold">' + savings + '&euro; gespart</span>\
-                  </div>\
+                <div class="flex items-center justify-between pt-2 border-t border-white/10">\
+                  <span class="text-white/70 text-[10px] sm:text-sm">Nur <span class="text-white font-bold">' + price + '</span></span>\
+                  <span class="text-green-300 text-xs sm:text-sm font-bold">' + savings + '&euro; gespart</span>\
                 </div>\
               </div>\
             </div>\
@@ -604,8 +602,8 @@
               <span class="text-[#e4003a] text-3xl sm:text-5xl font-black leading-none block">' + p.discount + '%</span>\
               <span class="text-gray-500 text-[10px] sm:text-xs font-semibold uppercase tracking-wider block mt-1">Rabatt</span>\
               <div class="w-12 h-0.5 bg-[#e4003a]/20 mx-auto my-2 sm:my-3"></div>\
-              <div class="bg-[#e4003a] text-white text-sm sm:text-lg font-bold px-4 sm:px-5 py-1.5 sm:py-2 rounded-lg">' + price + '</div>\
-              <span class="text-gray-400 text-xs sm:text-sm line-through mt-1 block">' + val + '</span>\
+              <span class="text-[#e4003a] text-3xl sm:text-5xl font-black leading-none block">' + val + '</span>\
+              <span class="text-gray-500 text-[10px] sm:text-xs mt-1 block">Nur <span class="font-bold">' + price + '</span></span>\
             </div>\
           </div>\
         </div>';
@@ -627,7 +625,7 @@
               <div class="receipt-line pb-3 mb-3">\
                 <div class="flex justify-between text-gray-500 text-xs sm:text-sm">\
                   <span>Gutschein Nennwert</span>\
-                  <span class="line-through">' + val + '</span>\
+                  <span class="font-semibold text-gray-700">' + val + '</span>\
                 </div>\
               </div>\
               <div class="receipt-line pb-3 mb-3">\
@@ -698,8 +696,9 @@
                 </div>\
               </div>\
               <div class="text-right">\
-                <span class="text-gray-400 text-xs sm:text-sm line-through block">' + val + '</span>\
-                <span class="text-4xl sm:text-6xl font-black text-gray-900 leading-none tracking-tight">' + price + '</span>\
+                <span class="text-gray-400 text-[10px] sm:text-xs block">Gutscheinwert</span>\
+                <span class="text-4xl sm:text-6xl font-black text-gray-900 leading-none tracking-tight">' + val + '</span>\
+                <span class="text-gray-500 text-xs sm:text-sm mt-0.5 block">Nur <span class="font-bold text-gray-900">' + price + '</span></span>\
                 <p class="text-[#d4213d] text-xs sm:text-sm font-bold mt-1">' + savings + '&euro; sparen</p>\
               </div>\
             </div>\
@@ -751,9 +750,9 @@
             <div>\
               <p class="text-[#FF385C] text-[10px] sm:text-xs font-semibold mb-0.5">Dein Reise-Gutschein</p>\
               <div class="flex items-end gap-2">\
-                <span class="text-2xl sm:text-4xl font-black text-gray-800 leading-none">' + price + '</span>\
-                <span class="text-gray-400 text-xs sm:text-sm line-through">' + val + '</span>\
+                <span class="text-2xl sm:text-4xl font-black text-gray-800 leading-none">' + val + '</span>\
               </div>\
+              <div class="text-gray-500 text-xs sm:text-sm mt-0.5">Nur <span class="font-bold text-gray-800">' + price + '</span></div>\
             </div>\
             <div class="text-right">\
               <span class="text-[#FF385C] text-sm sm:text-lg font-bold">' + savings + '&euro;</span>\
@@ -806,8 +805,9 @@
               </div>\
             </div>\
             <div class="text-right">\
-              <span class="text-white/50 text-[10px] sm:text-xs line-through block">' + val + '</span>\
-              <span class="text-white text-3xl sm:text-5xl font-black leading-none" style="text-shadow:0 0 20px rgba(255,255,255,0.3)">' + price + '</span>\
+              <span class="text-white/50 text-[10px] sm:text-xs block">Gutscheinwert</span>\
+              <span class="text-white text-3xl sm:text-5xl font-black leading-none" style="text-shadow:0 0 20px rgba(255,255,255,0.3)">' + val + '</span>\
+              <span class="text-white/70 text-[10px] sm:text-xs mt-0.5 block">Nur <span class="font-bold text-white">' + price + '</span></span>\
               <p class="text-[#90caf9] text-[10px] sm:text-xs font-bold mt-0.5">' + savings + '&euro; gespart</p>\
             </div>\
           </div>\
@@ -833,7 +833,7 @@
               <span class="text-4xl sm:text-7xl font-black text-white leading-none block tracking-tight">' + val + '</span>\
               <div class="w-16 h-px bg-gradient-to-r from-transparent via-[#d4af37]/60 to-transparent mx-auto my-4"></div>\
               <span class="text-[#d4af37] text-base sm:text-xl font-bold">Nur ' + price + '</span>\
-              <p class="text-white/40 text-xs line-through mt-1">' + val + '</p>\
+              <p class="text-green-400 text-xs font-semibold mt-1">' + savings + '&euro; gespart</p>\
             </div>\
             <div class="flex items-center gap-4 text-white/30 text-[10px] sm:text-xs">\
               <span>Beauty</span>\
@@ -874,8 +874,8 @@
       document.getElementById('breadcrumb-current').textContent = p.name;
 
       // Sticky CTA
-      document.getElementById('sticky-price').textContent = formatPrice(p.price);
-      document.getElementById('sticky-original').textContent = formatPrice(p.value);
+      document.getElementById('sticky-price').textContent = formatPrice(p.value);
+      document.getElementById('sticky-original').textContent = formatPrice(p.price);
 
       // Product Visual — brand-specific
       document.getElementById('product-visual').innerHTML = renderBrandVisual(p);
@@ -921,10 +921,15 @@
           \
           <!-- Price Box -->\
           <div class="bg-gray-50 rounded-2xl p-6 mb-6">\
-            <div class="flex items-baseline gap-3 mb-2">\
-              <span class="text-4xl font-extrabold">' + formatPrice(p.price) + '</span>\
-              <span class="text-xl text-gray-400 line-through">' + formatPrice(p.value) + '</span>\
+            <div class="text-xs text-gray-500 font-medium mb-1">Gutscheinwert</div>\
+            <div class="flex items-baseline gap-3 mb-3">\
+              <span class="text-4xl font-extrabold">' + formatPrice(p.value) + '</span>\
               <span class="bg-brand-100 text-brand-700 text-sm font-bold px-3 py-1 rounded-full">-' + p.discount + '%</span>\
+            </div>\
+            <div class="flex items-center gap-2 pt-3 border-t border-gray-200 mb-2">\
+              <span class="text-sm text-gray-500">Dein Preis:</span>\
+              <span class="text-2xl font-extrabold">' + formatPrice(p.price) + '</span>\
+              <span class="text-sm text-gray-400 line-through">' + formatPrice(p.value) + '</span>\
             </div>\
             <p class="text-sm text-brand-600 font-medium">Du sparst ' + savings + '&euro; gegen&uuml;ber dem Originalpreis</p>\
           </div>\
