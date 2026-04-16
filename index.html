@@ -230,57 +230,146 @@
       }
     }
 
-    /* Favorites showcase cards */
+    /* ── Favorites showcase — each card a different visual object ── */
     .fav-card {
       position: relative;
-      border-radius: 1.5rem;
       overflow: hidden;
       cursor: pointer;
       transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
     }
     .fav-card:hover {
       transform: translateY(-6px) scale(1.02);
-      box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.5);
     }
-    .fav-card .fav-bg {
+
+    /* — Magazine / editorial hero card — */
+    .fav-magazine {
+      border-radius: 1.5rem;
+      background: #fffbf0;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .fav-magazine .mag-accent {
+      position: absolute;
+      top: 0; right: 0;
+      width: 40%;
+      height: 100%;
+      clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
+      transition: clip-path 0.5s ease;
+    }
+    .fav-magazine:hover .mag-accent {
+      clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    /* — Physical gift card mockup — */
+    .fav-giftcard {
+      border-radius: 1rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.3);
+    }
+    .fav-giftcard .gc-chip {
+      width: 32px; height: 24px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, #d4af37, #f5d76e, #d4af37);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      position: relative;
+    }
+    .fav-giftcard .gc-chip::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      border: 1px solid rgba(0,0,0,0.15);
+      border-radius: 2px;
+    }
+    .fav-giftcard .gc-stripe {
+      position: absolute;
+      left: 0; right: 0;
+      height: 36px;
+      background: linear-gradient(90deg, #111, #333, #111);
+    }
+
+    /* — Polaroid / photo style — */
+    .fav-polaroid {
+      border-radius: 0.5rem;
+      background: #fff;
+      padding: 10px 10px 0 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.05);
+      transform: rotate(-1.5deg);
+    }
+    .fav-polaroid:hover {
+      transform: rotate(0deg) translateY(-6px) scale(1.02);
+    }
+    .fav-polaroid .pol-photo {
+      border-radius: 0.25rem;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* — Price tag / hanging label — */
+    .fav-pricetag {
+      border-radius: 1.25rem;
+      background: #fafaf5;
+      border: 2px solid #e8e4d9;
+      position: relative;
+    }
+    .fav-pricetag::before {
+      content: '';
+      position: absolute;
+      top: 12px; left: 50%;
+      transform: translateX(-50%);
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      border: 3px solid #ccc;
+      background: transparent;
+      z-index: 10;
+    }
+    .fav-pricetag::after {
+      content: '';
+      position: absolute;
+      top: -20px; left: 50%;
+      transform: translateX(-50%);
+      width: 2px; height: 22px;
+      background: #bbb;
+    }
+
+    /* — Game UI / achievement popup — */
+    .fav-gameui {
+      border-radius: 1rem;
+      background: linear-gradient(170deg, #0d0d1a 0%, #141428 50%, #1a0a2e 100%);
+      border: 1px solid rgba(100, 100, 255, 0.15);
+      box-shadow: inset 0 0 40px rgba(100, 100, 255, 0.05);
+    }
+    .fav-gameui .gui-scanline {
       position: absolute;
       inset: 0;
-      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .fav-card:hover .fav-bg {
-      transform: scale(1.08);
-    }
-    .fav-card .fav-shine {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.15) 50%, transparent 70%);
-      transition: opacity 0.5s ease;
-    }
-    .fav-card:hover .fav-shine {
-      opacity: 1;
-    }
-    .fav-card .fav-illo {
-      position: absolute;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(100,100,255,0.02) 2px,
+        rgba(100,100,255,0.02) 4px
+      );
       pointer-events: none;
-      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
-      opacity: 0.18;
     }
-    .fav-card:hover .fav-illo {
-      opacity: 0.3;
-      transform: scale(1.1) rotate(3deg);
+
+    /* — Classic coupon with perforated edge — */
+    .fav-coupon {
+      border-radius: 1.25rem;
+      background: linear-gradient(135deg, #fff5f5 0%, #fff 50%, #fff5f0 100%);
+      border: 2px dashed #e0c5b5;
+      position: relative;
     }
-    .fav-card .fav-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.375rem;
-      font-size: 0.6875rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 0.375rem 0.75rem;
-      border-radius: 9999px;
-      backdrop-filter: blur(8px);
+    .fav-coupon .coupon-cut {
+      position: absolute;
+      top: 50%; right: -1px;
+      transform: translateY(-50%);
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: #0a0a0a;
+      border: 2px dashed #e0c5b5;
+    }
+    .fav-coupon .coupon-cut-left {
+      right: auto; left: -1px;
     }
 
     /* Sticky CTA for mobile */
@@ -754,8 +843,8 @@
         <p class="text-gray-500 mt-3 text-base">Handverlesen, top bewertet und am meisten geliebt</p>
       </div>
 
-      <div id="favorites-showcase" class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 auto-rows-[200px] sm:auto-rows-[240px]">
-        <!-- Populated by JS: each card has a unique visual identity -->
+      <div id="favorites-showcase" class="grid grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 auto-rows-[210px] sm:auto-rows-[250px]">
+        <!-- Populated by JS: magazine, gift card, polaroid, price tag, game UI, coupon -->
       </div>
     </div>
   </section>
@@ -1146,212 +1235,207 @@
       track.scrollBy({ left: dir * scrollAmount, behavior: 'smooth' });
     }
 
-    // === RENDER FAVORITES SHOWCASE (Unique card designs per brand) ===
+    // === RENDER FAVORITES SHOWCASE — 6 unique visual metaphors ===
     (function() {
       var container = document.getElementById('favorites-showcase');
       if (!container) return;
 
-      // Thematic SVG illustrations per brand
-      var ILLOS = {
-        // Shopping bags & boxes
-        amazon: '<svg class="fav-illo" style="right:-10%;bottom:-5%;width:65%;height:auto" viewBox="0 0 200 200" fill="none"><rect x="45" y="60" width="70" height="80" rx="6" fill="white"/><rect x="55" y="45" width="50" height="20" rx="10" fill="none" stroke="white" stroke-width="4"/><rect x="85" y="60" width="45" height="55" rx="4" fill="white" opacity="0.5" transform="rotate(12 107 87)"/><circle cx="155" cy="55" r="18" fill="white" opacity="0.4"/><rect x="140" y="110" width="35" height="45" rx="3" fill="white" opacity="0.3" transform="rotate(-8 157 132)"/><path d="M60 100h40" stroke="rgba(0,0,0,0.1)" stroke-width="3" stroke-linecap="round"/><path d="M60 110h25" stroke="rgba(0,0,0,0.1)" stroke-width="3" stroke-linecap="round"/></svg>',
-        // Laptop, phone, headphones
-        mediamarkt: '<svg class="fav-illo" style="right:-8%;bottom:-8%;width:55%" viewBox="0 0 180 180" fill="none"><rect x="20" y="50" width="90" height="60" rx="6" fill="white"/><rect x="30" y="115" width="70" height="5" rx="2.5" fill="white" opacity="0.6"/><rect x="125" y="35" width="40" height="70" rx="8" fill="white" opacity="0.7"/><circle cx="145" cy="100" r="3" fill="white" opacity="0.4"/><ellipse cx="80" cy="155" rx="28" ry="28" fill="none" stroke="white" stroke-width="5" opacity="0.5"/><rect x="73" y="148" width="14" height="14" rx="2" fill="white" opacity="0.5"/></svg>',
-        // Globe, plane, house
-        airbnb: '<svg class="fav-illo" style="right:-5%;top:-5%;width:60%" viewBox="0 0 200 200" fill="none"><circle cx="100" cy="90" r="55" fill="none" stroke="white" stroke-width="3"/><ellipse cx="100" cy="90" rx="25" ry="55" fill="none" stroke="white" stroke-width="2.5"/><path d="M45 90h110" stroke="white" stroke-width="2"/><path d="M55 65h90" stroke="white" stroke-width="1.5" opacity="0.6"/><path d="M55 115h90" stroke="white" stroke-width="1.5" opacity="0.6"/><path d="M130 30l35-5-10 20 35 10-15 8" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/><polygon points="130,30 165,25 155,45" fill="white" opacity="0.4"/></svg>',
-        // House, sofa, lamp
-        ikea: '<svg class="fav-illo" style="left:-5%;bottom:-10%;width:60%" viewBox="0 0 200 200" fill="none"><path d="M30 120L100 60l70 60" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><rect x="50" y="120" width="100" height="55" fill="white" opacity="0.3"/><rect x="78" y="140" width="25" height="35" rx="2" fill="white" opacity="0.5"/><rect x="55" y="130" width="18" height="18" rx="2" fill="white" opacity="0.4"/><rect x="128" y="130" width="18" height="18" rx="2" fill="white" opacity="0.4"/><path d="M155 50v40" stroke="white" stroke-width="3" opacity="0.6"/><ellipse cx="155" cy="42" rx="14" ry="10" fill="white" opacity="0.4"/></svg>',
-        // Controller, stars
-        playstation: '<svg class="fav-illo" style="right:-8%;bottom:-5%;width:60%" viewBox="0 0 200 180" fill="none"><ellipse cx="100" cy="100" rx="65" ry="40" fill="white" opacity="0.15"/><rect x="50" y="80" width="20" height="40" rx="10" fill="white" opacity="0.5"/><rect x="130" y="80" width="20" height="40" rx="10" fill="white" opacity="0.5"/><circle cx="145" cy="88" r="4" fill="white" opacity="0.7"/><circle cx="155" cy="98" r="4" fill="white" opacity="0.7"/><circle cx="135" cy="98" r="4" fill="white" opacity="0.7"/><circle cx="145" cy="108" r="4" fill="white" opacity="0.7"/><rect x="57" y="90" width="6" height="20" rx="2" fill="white" opacity="0.7"/><rect x="50" y="97" width="20" height="6" rx="2" fill="white" opacity="0.7"/><path d="M30 35l4-12 4 12-11-8h14z" fill="white" opacity="0.4"/><path d="M165 25l3-9 3 9-8-6h10z" fill="white" opacity="0.3"/><path d="M45 145l2-7 2 7-6-4h8z" fill="white" opacity="0.25"/></svg>',
-        // Flower, heart, sparkle
-        rossmann: '<svg class="fav-illo" style="right:-5%;top:-8%;width:55%" viewBox="0 0 180 180" fill="none"><circle cx="90" cy="65" r="12" fill="white" opacity="0.35"/><circle cx="75" cy="52" r="12" fill="white" opacity="0.3"/><circle cx="105" cy="52" r="12" fill="white" opacity="0.3"/><circle cx="75" cy="78" r="12" fill="white" opacity="0.3"/><circle cx="105" cy="78" r="12" fill="white" opacity="0.3"/><circle cx="90" cy="65" r="6" fill="white" opacity="0.5"/><path d="M88 85v50" stroke="white" stroke-width="3" opacity="0.4"/><path d="M88 105c-15-5-25-2-30 8" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity="0.3"/><path d="M140 120l3-10 3 10-9-6h12z" fill="white" opacity="0.35"/><path d="M35 110l2-7 2 7-6-4h8z" fill="white" opacity="0.3"/><path d="M150 50c5-10 15-10 20 0-5 12-20 20-20 20s-15-8-20-20c5-10 15-10 20 0z" fill="white" opacity="0.2"/></svg>'
-      };
+      var cards = '';
 
-      // Each card has a unique visual layout
-      var favorites = [
-        // === HERO: Amazon 500€ — large 2x2 card, centered showcase ===
-        {
-          slug: 'amazon-500',
-          span: 'col-span-2 row-span-2',
-          render: function(p) {
-            var logo = BRAND_LOGOS[p.brandSlug] || '';
-            return '<a href="' + getProductUrl(p.slug) + '" class="col-span-2 row-span-2 fav-card group block reveal reveal-delay-1">'
-              + '<div class="fav-bg bg-gradient-to-br from-[#FF9900] via-[#f59e0b] to-[#d97706]"></div>'
-              + ILLOS.amazon
-              + '<div class="fav-shine"></div>'
-              + '<div class="relative h-full flex flex-col justify-between p-5 sm:p-8 z-10">'
-                + '<div class="flex items-start justify-between">'
-                  + (logo ? '<img src="' + logo + '" alt="Amazon" class="h-8 sm:h-12 w-auto object-contain">' : '')
-                  + '<span class="fav-label bg-black/20 text-white">Bestseller</span>'
-                + '</div>'
-                + '<div>'
-                  + '<p class="text-white/60 text-xs sm:text-sm font-medium mb-1">Premium Gutschein</p>'
-                  + '<div class="flex items-end gap-3 sm:gap-4 mb-3">'
-                    + '<span class="text-5xl sm:text-7xl font-black text-white leading-none tracking-tight">' + formatPrice(p.price) + '</span>'
-                    + '<div class="flex flex-col pb-1">'
-                      + '<span class="text-white/40 text-sm sm:text-lg line-through">' + formatPrice(p.value) + '</span>'
-                      + '<span class="text-green-300 text-sm sm:text-base font-bold">' + getSavings(p) + '\u20ac gespart</span>'
-                    + '</div>'
-                  + '</div>'
-                  + '<div class="flex flex-wrap gap-2">'
-                    + '<span class="fav-label bg-white/15 text-white"><svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>Sofort-Versand</span>'
-                    + '<span class="fav-label bg-white/15 text-white"><svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>' + p.validityYears + '</span>'
-                  + '</div>'
+      // ────────────────────────────────────────────────
+      // 1. AMAZON 500€ — "Magazine editorial" style
+      //    Cream/paper bg, huge brand-color typography,
+      //    diagonal accent block, clean minimal layout
+      // ────────────────────────────────────────────────
+      var am = getProduct('amazon-500');
+      if (am) {
+        var amLogo = BRAND_LOGOS[am.brandSlug] || '';
+        cards += '<a href="' + getProductUrl(am.slug) + '" class="col-span-2 row-span-2 fav-card fav-magazine group block reveal reveal-delay-1">'
+          + '<div class="mag-accent bg-gradient-to-br from-[#FF9900] to-[#e88b00]"></div>'
+          // Decorative circles
+          + '<div class="absolute top-6 right-[42%] w-20 h-20 rounded-full border-2 border-[#FF9900]/15"></div>'
+          + '<div class="absolute bottom-10 right-[45%] w-10 h-10 rounded-full bg-[#FF9900]/8"></div>'
+          + '<div class="relative h-full flex flex-col justify-between p-6 sm:p-8 z-10">'
+            + '<div>'
+              + '<div class="inline-block bg-[#FF9900] text-white text-[10px] font-black px-3 py-1 rounded-md uppercase tracking-widest mb-3">Bestseller</div>'
+              + (amLogo ? '<img src="' + amLogo + '" alt="Amazon" class="h-7 sm:h-9 w-auto object-contain brightness-0" style="filter:brightness(0) opacity(0.7)">' : '')
+            + '</div>'
+            + '<div>'
+              + '<p class="text-[#FF9900] text-xs sm:text-sm font-semibold uppercase tracking-wider mb-1">Premium Gutschein</p>'
+              + '<div class="flex items-end gap-3 mb-3">'
+                + '<span class="text-5xl sm:text-7xl font-black text-gray-900 leading-none tracking-tighter" style="font-feature-settings:\'tnum\'">' + formatPrice(am.price) + '</span>'
+                + '<div class="pb-2">'
+                  + '<span class="text-gray-400 text-sm sm:text-lg line-through block">' + formatPrice(am.value) + '</span>'
+                  + '<span class="text-[#FF9900] text-sm font-bold">' + getSavings(am) + '\u20ac sparen</span>'
                 + '</div>'
               + '</div>'
-            + '</a>';
-          }
-        },
-        // === MediaMarkt 100€ — tech-themed with diagonal stripe ===
-        {
-          slug: 'mediamarkt-100',
-          span: 'col-span-1 row-span-1',
-          render: function(p) {
-            var logo = BRAND_LOGOS[p.brandSlug] || '';
-            return '<a href="' + getProductUrl(p.slug) + '" class="col-span-1 row-span-1 fav-card group block reveal reveal-delay-2">'
-              + '<div class="fav-bg bg-gradient-to-br from-[#df0000] via-[#c62828] to-[#8e0000]"></div>'
-              + '<div class="absolute inset-0 opacity-[0.06]" style="background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(255,255,255,0.3) 10px,rgba(255,255,255,0.3) 12px)"></div>'
-              + ILLOS.mediamarkt
-              + '<div class="fav-shine"></div>'
-              + '<div class="relative h-full flex flex-col justify-between p-4 sm:p-5 z-10">'
-                + '<div class="flex items-center justify-between">'
-                  + (logo ? '<img src="' + logo + '" alt="MediaMarkt" class="h-5 sm:h-7 w-auto object-contain">' : '')
-                  + '<span class="bg-white text-gray-900 text-[10px] sm:text-xs font-black px-2 py-1 rounded-full">-' + p.discount + '%</span>'
-                + '</div>'
-                + '<div>'
-                  + '<span class="text-2xl sm:text-3xl font-black text-white leading-none">' + formatPrice(p.price) + '</span>'
-                  + '<div class="flex items-center gap-2 mt-1.5">'
-                    + '<span class="text-white/40 text-xs line-through">' + formatPrice(p.value) + '</span>'
-                    + '<span class="fav-label bg-white/15 text-white text-[9px] px-2 py-0.5">Technik</span>'
-                  + '</div>'
-                + '</div>'
+              + '<div class="flex items-center gap-3 text-gray-500 text-[10px] sm:text-xs">'
+                + '<span class="flex items-center gap-1"><svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>Sofort per E-Mail</span>'
+                + '<span class="w-1 h-1 rounded-full bg-gray-300"></span>'
+                + '<span>' + am.validityYears + '</span>'
               + '</div>'
-            + '</a>';
-          }
-        },
-        // === Airbnb 100€ — travel card with globe ===
-        {
-          slug: 'airbnb-100',
-          span: 'col-span-1 row-span-1',
-          render: function(p) {
-            var logo = BRAND_LOGOS[p.brandSlug] || '';
-            return '<a href="' + getProductUrl(p.slug) + '" class="col-span-1 row-span-1 fav-card group block reveal reveal-delay-3">'
-              + '<div class="fav-bg bg-gradient-to-br from-[#FF385C] via-[#e91e63] to-[#ad1457]"></div>'
-              + ILLOS.airbnb
-              + '<div class="fav-shine"></div>'
-              + '<div class="relative h-full flex flex-col justify-between p-4 sm:p-5 z-10">'
-                + '<div class="flex items-center justify-between">'
-                  + (logo ? '<img src="' + logo + '" alt="Airbnb" class="h-5 sm:h-7 w-auto object-contain">' : '')
-                  + '<span class="fav-label bg-white/20 text-white text-[9px] px-2 py-0.5">Reisen</span>'
-                + '</div>'
-                + '<div>'
-                  + '<p class="text-white/50 text-[10px] sm:text-xs font-medium mb-0.5">Unbegrenzt g\u00fcltig</p>'
-                  + '<div class="flex items-baseline gap-2">'
-                    + '<span class="text-2xl sm:text-3xl font-black text-white leading-none">' + formatPrice(p.price) + '</span>'
-                    + '<span class="text-white/40 text-xs line-through">' + formatPrice(p.value) + '</span>'
-                  + '</div>'
-                + '</div>'
-              + '</div>'
-            + '</a>';
-          }
-        },
-        // === IKEA 100€ — tall home/living card ===
-        {
-          slug: 'ikea-100',
-          span: 'col-span-1 row-span-2',
-          render: function(p) {
-            var logo = BRAND_LOGOS[p.brandSlug] || '';
-            return '<a href="' + getProductUrl(p.slug) + '" class="col-span-1 row-span-2 fav-card group block reveal reveal-delay-4">'
-              + '<div class="fav-bg bg-gradient-to-b from-[#0051ba] via-[#1565c0] to-[#003d8f]"></div>'
-              + ILLOS.ikea
-              + '<div class="fav-shine"></div>'
-              + '<div class="relative h-full flex flex-col justify-between p-4 sm:p-6 z-10">'
-                + '<div>'
-                  + (logo ? '<img src="' + logo + '" alt="IKEA" class="h-7 sm:h-10 w-auto object-contain mb-3">' : '')
-                  + '<span class="fav-label bg-[#ffda1a]/20 text-[#ffda1a]">Wohnen & Einrichten</span>'
-                + '</div>'
-                + '<div class="text-center">'
-                  + '<p class="text-white/50 text-xs font-medium mb-2">Gutscheinwert</p>'
-                  + '<span class="text-4xl sm:text-5xl font-black text-white leading-none block">' + formatPrice(p.price) + '</span>'
-                  + '<span class="text-white/40 text-sm line-through block mt-1">' + formatPrice(p.value) + '</span>'
-                  + '<div class="mt-4 bg-white/10 rounded-xl p-3 border border-white/10">'
-                    + '<div class="text-green-300 text-lg sm:text-xl font-black">' + getSavings(p) + '\u20ac</div>'
-                    + '<div class="text-white/50 text-[10px] uppercase tracking-wider font-semibold">Ersparnis</div>'
-                  + '</div>'
-                + '</div>'
-                + '<div class="flex items-center gap-1.5 text-white/40 text-[10px] sm:text-xs">'
-                  + '<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>'
-                  + 'Online & in IKEA-H\u00e4usern'
-                + '</div>'
-              + '</div>'
-            + '</a>';
-          }
-        },
-        // === PlayStation 100€ — neon gaming vibe ===
-        {
-          slug: 'playstation-100',
-          span: 'col-span-1 row-span-1',
-          render: function(p) {
-            var logo = BRAND_LOGOS[p.brandSlug] || '';
-            return '<a href="' + getProductUrl(p.slug) + '" class="col-span-1 row-span-1 fav-card group block reveal reveal-delay-1">'
-              + '<div class="fav-bg bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f3460]"></div>'
-              + '<div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(0,111,205,0.4),transparent_60%)]"></div>'
-              + ILLOS.playstation
-              + '<div class="fav-shine"></div>'
-              + '<div class="relative h-full flex flex-col justify-between p-4 sm:p-5 z-10">'
-                + '<div class="flex items-center justify-between">'
-                  + (logo ? '<img src="' + logo + '" alt="PlayStation" class="h-4 sm:h-6 w-auto object-contain">' : '')
-                  + '<span class="fav-label bg-[#006FCD]/30 text-[#4fc3f7] border border-[#006FCD]/30">Gaming</span>'
-                + '</div>'
-                + '<div>'
-                  + '<div class="flex items-baseline gap-2">'
-                    + '<span class="text-2xl sm:text-3xl font-black text-white leading-none">' + formatPrice(p.price) + '</span>'
-                    + '<span class="text-[#4fc3f7] text-xs font-bold">-' + p.discount + '%</span>'
-                  + '</div>'
-                  + '<p class="text-gray-400 text-[10px] sm:text-xs mt-1">PS Store \u2022 Unbegrenzt g\u00fcltig</p>'
-                + '</div>'
-              + '</div>'
-            + '</a>';
-          }
-        },
-        // === Rossmann 100€ — wide beauty/wellness card ===
-        {
-          slug: 'rossmann-100',
-          span: 'col-span-2 row-span-1',
-          render: function(p) {
-            var logo = BRAND_LOGOS[p.brandSlug] || '';
-            return '<a href="' + getProductUrl(p.slug) + '" class="col-span-2 row-span-1 fav-card group block reveal reveal-delay-2">'
-              + '<div class="fav-bg bg-gradient-to-r from-[#e4003a] via-[#d81b60] to-[#ad1457]"></div>'
-              + ILLOS.rossmann
-              + '<div class="fav-shine"></div>'
-              + '<div class="relative h-full flex items-center p-4 sm:p-6 z-10">'
-                + '<div class="flex-1">'
-                  + (logo ? '<img src="' + logo + '" alt="Rossmann" class="h-5 sm:h-7 w-auto object-contain mb-2 sm:mb-3">' : '')
-                  + '<p class="text-white/60 text-[10px] sm:text-xs font-medium">Pflege, Kosmetik & mehr</p>'
-                + '</div>'
-                + '<div class="flex items-center gap-3 sm:gap-5">'
-                  + '<div class="text-right">'
-                    + '<span class="text-white/40 text-xs sm:text-sm line-through block">' + formatPrice(p.value) + '</span>'
-                    + '<span class="text-2xl sm:text-4xl font-black text-white leading-none">' + formatPrice(p.price) + '</span>'
-                  + '</div>'
-                  + '<div class="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-white/15 backdrop-blur-sm flex items-center justify-center border border-white/10">'
-                    + '<div class="text-center">'
-                      + '<div class="text-green-300 text-base sm:text-xl font-black leading-none">' + getSavings(p) + '\u20ac</div>'
-                      + '<div class="text-white/40 text-[7px] sm:text-[8px] uppercase tracking-wider font-bold mt-0.5">Rabatt</div>'
-                    + '</div>'
-                  + '</div>'
-                + '</div>'
-              + '</div>'
-            + '</a>';
-          }
-        }
-      ];
+            + '</div>'
+          + '</div>'
+        + '</a>';
+      }
 
-      container.innerHTML = favorites.map(function(fav) {
-        var p = getProduct(fav.slug);
-        if (!p) return '';
-        return fav.render(p);
-      }).join('');
+      // ────────────────────────────────────────────────
+      // 2. MEDIAMARKT 100€ — "Physical gift card" mockup
+      //    Dark metallic, gold chip, mag stripe, card dots
+      // ────────────────────────────────────────────────
+      var mm = getProduct('mediamarkt-100');
+      if (mm) {
+        var mmLogo = BRAND_LOGOS[mm.brandSlug] || '';
+        cards += '<a href="' + getProductUrl(mm.slug) + '" class="col-span-1 row-span-1 fav-card fav-giftcard group block reveal reveal-delay-2">'
+          // Subtle red glow
+          + '<div class="absolute -top-10 -right-10 w-32 h-32 bg-[#df0000]/20 rounded-full blur-2xl"></div>'
+          + '<div class="gc-stripe" style="top:40%"></div>'
+          + '<div class="relative h-full flex flex-col justify-between p-4 sm:p-5 z-10">'
+            + '<div class="flex items-start justify-between">'
+              + (mmLogo ? '<img src="' + mmLogo + '" alt="MediaMarkt" class="h-4 sm:h-6 w-auto object-contain">' : '')
+              + '<div class="gc-chip"></div>'
+            + '</div>'
+            + '<div>'
+              + '<div class="flex items-center gap-2 mb-2">'
+                + '<span class="text-gray-500 text-[10px] tracking-[0.25em] font-mono">\u2022\u2022\u2022\u2022 \u2022\u2022\u2022\u2022 \u2022\u2022\u2022\u2022</span>'
+              + '</div>'
+              + '<div class="flex items-end justify-between">'
+                + '<div>'
+                  + '<span class="text-2xl sm:text-3xl font-black text-white leading-none">' + formatPrice(mm.price) + '</span>'
+                  + '<span class="text-gray-500 text-xs ml-2 line-through">' + formatPrice(mm.value) + '</span>'
+                + '</div>'
+                + '<span class="text-[#df0000] text-xs font-black bg-[#df0000]/10 px-2 py-1 rounded">-' + mm.discount + '%</span>'
+              + '</div>'
+            + '</div>'
+          + '</div>'
+        + '</a>';
+      }
+
+      // ────────────────────────────────────────────────
+      // 3. AIRBNB 100€ — "Polaroid" / instant photo
+      //    White frame, gradient "photo" inside,
+      //    slightly rotated, handwritten-feel caption
+      // ────────────────────────────────────────────────
+      var ab = getProduct('airbnb-100');
+      if (ab) {
+        var abLogo = BRAND_LOGOS[ab.brandSlug] || '';
+        cards += '<a href="' + getProductUrl(ab.slug) + '" class="col-span-1 row-span-1 fav-card fav-polaroid group block reveal reveal-delay-3">'
+          + '<div class="pol-photo" style="height:60%">'
+            + '<div class="absolute inset-0 bg-gradient-to-br from-[#FF385C] via-[#ff6b81] to-[#ffa07a]"></div>'
+            // Decorative travel elements inside "photo"
+            + '<svg class="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 200 120" fill="none"><circle cx="140" cy="30" r="20" fill="white"/><path d="M20 100 Q60 40 100 70 Q140 100 180 60" stroke="white" stroke-width="2" fill="none"/><path d="M60 90 L75 50 L90 90" fill="white" opacity="0.4"/><path d="M120 85 L145 35 L170 85" fill="white" opacity="0.3"/></svg>'
+            + (abLogo ? '<img src="' + abLogo + '" alt="Airbnb" class="absolute top-3 left-3 h-5 sm:h-6 w-auto object-contain z-10">' : '')
+            + '<span class="absolute top-3 right-3 bg-white/25 backdrop-blur-sm text-white text-[9px] font-bold px-2 py-0.5 rounded-full z-10">Reisen</span>'
+          + '</div>'
+          + '<div class="p-2.5 sm:p-3 flex items-end justify-between">'
+            + '<div>'
+              + '<span class="text-xl sm:text-2xl font-black text-gray-800 leading-none">' + formatPrice(ab.price) + '</span>'
+              + '<span class="text-gray-400 text-xs ml-1.5 line-through">' + formatPrice(ab.value) + '</span>'
+            + '</div>'
+            + '<span class="text-[#FF385C] text-[10px] sm:text-xs font-bold">' + getSavings(ab) + '\u20ac sparen</span>'
+          + '</div>'
+        + '</a>';
+      }
+
+      // ────────────────────────────────────────────────
+      // 4. IKEA 100€ — "Price tag / hanging label"
+      //    Cream paper, hole + string at top, Scandinavian
+      //    clean typography, blue accent line
+      // ────────────────────────────────────────────────
+      var ik = getProduct('ikea-100');
+      if (ik) {
+        var ikLogo = BRAND_LOGOS[ik.brandSlug] || '';
+        cards += '<a href="' + getProductUrl(ik.slug) + '" class="col-span-1 row-span-2 fav-card fav-pricetag group block reveal reveal-delay-4">'
+          + '<div class="relative h-full flex flex-col items-center justify-between pt-12 pb-5 px-4 sm:px-5 z-10">'
+            // Blue top accent bar
+            + '<div class="absolute top-0 left-0 right-0 h-2 bg-[#0051ba] rounded-t-xl"></div>'
+            + '<div class="text-center mt-2">'
+              + (ikLogo ? '<img src="logos/ikea-color.svg" alt="IKEA" class="h-8 sm:h-10 w-auto object-contain mx-auto mb-2">' : '')
+              + '<p class="text-gray-400 text-[10px] sm:text-xs uppercase tracking-widest font-semibold">Gutschein</p>'
+            + '</div>'
+            + '<div class="text-center">'
+              + '<span class="text-4xl sm:text-6xl font-black text-gray-800 leading-none block tracking-tighter" style="font-feature-settings:\'tnum\'">' + formatPrice(ik.value) + '</span>'
+              + '<div class="w-12 h-0.5 bg-[#0051ba] mx-auto my-3 sm:my-4"></div>'
+              + '<div class="bg-[#0051ba] text-white text-sm sm:text-base font-black px-5 py-2 rounded-lg">'
+                + 'Nur ' + formatPrice(ik.price)
+              + '</div>'
+              + '<p class="text-green-600 text-xs sm:text-sm font-bold mt-2">' + getSavings(ik) + '\u20ac sparen</p>'
+            + '</div>'
+            + '<div class="text-center">'
+              + '<p class="text-gray-400 text-[10px] leading-relaxed">Online & in IKEA-H\u00e4usern<br>einl\u00f6sbar</p>'
+            + '</div>'
+          + '</div>'
+        + '</a>';
+      }
+
+      // ────────────────────────────────────────────────
+      // 5. PLAYSTATION 100€ — "Game UI / Achievement"
+      //    Dark screen, scanlines, XP bar, neon accents,
+      //    looks like an in-game store item
+      // ────────────────────────────────────────────────
+      var ps = getProduct('playstation-100');
+      if (ps) {
+        var psLogo = BRAND_LOGOS[ps.brandSlug] || '';
+        cards += '<a href="' + getProductUrl(ps.slug) + '" class="col-span-1 row-span-1 fav-card fav-gameui group block reveal reveal-delay-1">'
+          + '<div class="gui-scanline"></div>'
+          // Neon glow
+          + '<div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[2px] bg-gradient-to-r from-transparent via-[#4fc3f7] to-transparent opacity-60"></div>'
+          + '<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-[#7c4dff] to-transparent opacity-40"></div>'
+          + '<div class="relative h-full flex flex-col justify-between p-4 sm:p-5 z-10">'
+            + '<div class="flex items-center justify-between">'
+              + (psLogo ? '<img src="' + psLogo + '" alt="PlayStation" class="h-3.5 sm:h-5 w-auto object-contain opacity-70">' : '')
+              + '<div class="flex items-center gap-1.5">'
+                + '<div class="w-2 h-2 rounded-full bg-[#4fc3f7] shadow-[0_0_6px_rgba(79,195,247,0.6)]"></div>'
+                + '<span class="text-[#4fc3f7] text-[9px] font-bold uppercase tracking-wider">Store</span>'
+              + '</div>'
+            + '</div>'
+            + '<div>'
+              // XP-style progress bar
+              + '<div class="w-full h-1.5 bg-white/5 rounded-full mb-3 overflow-hidden">'
+                + '<div class="h-full rounded-full bg-gradient-to-r from-[#7c4dff] to-[#4fc3f7]" style="width:' + ps.discount + '0%"></div>'
+              + '</div>'
+              + '<div class="flex items-end justify-between">'
+                + '<div>'
+                  + '<span class="text-2xl sm:text-3xl font-black text-white leading-none" style="text-shadow:0 0 20px rgba(79,195,247,0.3)">' + formatPrice(ps.price) + '</span>'
+                  + '<span class="text-gray-600 text-xs ml-1.5 line-through">' + formatPrice(ps.value) + '</span>'
+                + '</div>'
+                + '<span class="text-[10px] font-black text-[#7c4dff] bg-[#7c4dff]/10 px-2 py-0.5 rounded border border-[#7c4dff]/20">-' + ps.discount + '%</span>'
+              + '</div>'
+            + '</div>'
+          + '</div>'
+        + '</a>';
+      }
+
+      // ────────────────────────────────────────────────
+      // 6. ROSSMANN 100€ — "Classic coupon" style
+      //    Warm paper bg, dashed border, scissors icon,
+      //    perforated cut-out circles, old-school charm
+      // ────────────────────────────────────────────────
+      var rs = getProduct('rossmann-100');
+      if (rs) {
+        var rsLogo = BRAND_LOGOS[rs.brandSlug] || '';
+        cards += '<a href="' + getProductUrl(rs.slug) + '" class="col-span-2 row-span-1 fav-card fav-coupon group block reveal reveal-delay-2">'
+          + '<div class="coupon-cut"></div>'
+          + '<div class="coupon-cut coupon-cut-left"></div>'
+          // Scissors icon
+          + '<svg class="absolute top-3 right-8 w-5 h-5 text-[#e4003a]/40 -rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"/></svg>'
+          + '<div class="relative h-full flex items-center px-5 sm:px-8 z-10">'
+            + '<div class="flex-1 border-r-2 border-dashed border-[#e0c5b5] pr-5 sm:pr-8 mr-5 sm:mr-8 h-[60%] flex flex-col justify-center">'
+              + (rsLogo ? '<img src="logos/rossmann.svg" alt="Rossmann" class="h-5 sm:h-7 w-auto object-contain mb-2">' : '')
+              + '<p class="text-gray-500 text-[10px] sm:text-xs">Pflege, Kosmetik & Haushalt</p>'
+              + '<p class="text-gray-400 text-[9px] mt-1">In \u00fcber 2.200 Filialen einl\u00f6sbar</p>'
+            + '</div>'
+            + '<div class="text-center min-w-[90px] sm:min-w-[120px]">'
+              + '<span class="text-[#e4003a] text-3xl sm:text-4xl font-black leading-none block">' + rs.discount + '%</span>'
+              + '<span class="text-gray-500 text-[10px] sm:text-xs font-semibold uppercase tracking-wider">Rabatt</span>'
+              + '<div class="mt-2 bg-[#e4003a] text-white text-xs sm:text-sm font-bold px-3 py-1.5 rounded-lg">' + formatPrice(rs.price) + '</div>'
+              + '<span class="text-gray-400 text-[10px] line-through mt-1 block">' + formatPrice(rs.value) + '</span>'
+            + '</div>'
+          + '</div>'
+        + '</a>';
+      }
+
+      container.innerHTML = cards;
     })();
     // === HERO PARTICLES ===
     (function() {
