@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impressum | Gutschein.Express</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50:'#f0fdf4',100:'#dcfce7',200:'#bbf7d0',300:'#86efac',400:'#4ade80',500:'#22c55e',600:'#16a34a',700:'#15803d',800:'#166534',900:'#14532d' },
+          },
+          fontFamily: { sans: ['Inter','system-ui','-apple-system','sans-serif'] },
+        },
+      },
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="theme.css">
+  <script>
+    (function() {
+      var s = localStorage.getItem('theme');
+      var p = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (s === 'dark' || (!s && p)) document.documentElement.classList.add('dark');
+    })();
+  </script>
+  <style>
+    * { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .navbar-scrolled { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); }
+    .site-logo { color: #1f2937; }
+    .site-logo-footer { color: #ffffff; }
+  </style>
+</head>
+<body class="bg-white text-gray-900 antialiased overflow-x-hidden">
+  <div id="navbar-container"></div>
+
+  <main class="pt-28 sm:pt-36 pb-16 px-4 sm:px-6">
+    <div class="max-w-3xl mx-auto">
+
+      <!-- Breadcrumb -->
+      <nav class="mb-8 text-sm text-gray-500" aria-label="Breadcrumb">
+        <a href="index.html" class="hover:text-brand-600 transition-colors">Startseite</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-900 font-medium">Impressum</span>
+      </nav>
+
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-10">Impressum</h1>
+
+      <div class="space-y-8 text-gray-700 leading-relaxed">
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">Angaben gem&auml;&szlig; &sect; 5 TMG</h2>
+          <p>
+            Gutschein.Express<br>
+            Betreiber: Max Mustermann<br>
+            Musterstra&szlig;e 1<br>
+            10115 Berlin<br>
+            Deutschland
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">Kontakt</h2>
+          <p>
+            Telefon: +49 30 123456789<br>
+            E-Mail: <a href="mailto:info@gutschein.express" class="text-brand-600 hover:text-brand-700 underline">info@gutschein.express</a>
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">Umsatzsteuer-Identifikationsnummer</h2>
+          <p>
+            Umsatzsteuer-Identifikationsnummer gem&auml;&szlig; &sect; 27a Umsatzsteuergesetz:<br>
+            USt-IdNr.: DE123456789
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">Verantwortlich f&uuml;r den Inhalt nach &sect; 55 Abs. 2 RStV</h2>
+          <p>
+            Max Mustermann<br>
+            Musterstra&szlig;e 1<br>
+            10115 Berlin
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">EU-Streitschlichtung</h2>
+          <p>
+            Die Europ&auml;ische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
+            <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer" class="text-brand-600 hover:text-brand-700 underline break-all">https://ec.europa.eu/consumers/odr/</a>.
+          </p>
+          <p class="mt-3">
+            Unsere E-Mail-Adresse finden Sie oben im Impressum.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">Verbraucherstreitbeilegung / Universalschlichtungsstelle</h2>
+          <p>
+            Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer
+            Verbraucherschlichtungsstelle teilzunehmen.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">Haftung f&uuml;r Inhalte</h2>
+          <p>
+            Als Diensteanbieter sind wir gem&auml;&szlig; &sect; 7 Abs. 1 TMG f&uuml;r eigene Inhalte auf diesen Seiten
+            nach den allgemeinen Gesetzen verantwortlich. Nach &sect;&sect; 8 bis 10 TMG sind wir als Diensteanbieter
+            jedoch nicht verpflichtet, &uuml;bermittelte oder gespeicherte fremde Informationen zu &uuml;berwachen oder
+            nach Umst&auml;nden zu forschen, die auf eine rechtswidrige T&auml;tigkeit hinweisen.
+          </p>
+          <p class="mt-3">
+            Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen
+            Gesetzen bleiben hiervon unber&uuml;hrt. Eine diesbez&uuml;gliche Haftung ist jedoch erst ab dem
+            Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung m&ouml;glich. Bei Bekanntwerden von
+            entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">Haftung f&uuml;r Links</h2>
+          <p>
+            Unser Angebot enth&auml;lt Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss
+            haben. Deshalb k&ouml;nnen wir f&uuml;r diese fremden Inhalte auch keine Gew&auml;hr &uuml;bernehmen. F&uuml;r die
+            Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten
+            verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf m&ouml;gliche
+            Rechtsverst&ouml;&szlig;e &uuml;berpr&uuml;ft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht
+            erkennbar.
+          </p>
+          <p class="mt-3">
+            Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte
+            einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir
+            derartige Links umgehend entfernen.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">Urheberrecht</h2>
+          <p>
+            Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem
+            deutschen Urheberrecht. Die Vervielf&auml;ltigung, Bearbeitung, Verbreitung und jede Art der
+            Verwertung au&szlig;erhalb der Grenzen des Urheberrechtes bed&uuml;rfen der schriftlichen Zustimmung des
+            jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur f&uuml;r den privaten,
+            nicht kommerziellen Gebrauch gestattet.
+          </p>
+          <p class="mt-3">
+            Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte
+            Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie
+            trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden
+            Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.
+          </p>
+        </section>
+
+        <p class="text-sm text-gray-400 mt-12">Stand: April 2026</p>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="footer-container"></div>
+  <script src="data.js"></script>
+  <script src="shared.js"></script>
+  <script>
+    document.getElementById('navbar-container').innerHTML = renderNavbar('');
+    document.getElementById('footer-container').innerHTML = renderFooter();
+    initMobileMenu();
+    initTheme();
+    initRevealAnimations();
+  </script>
+</body>
+</html>

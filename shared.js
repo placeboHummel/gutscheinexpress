@@ -91,19 +91,19 @@ function renderFooter() {
         <div>
           <h4 class="text-white font-semibold text-sm mb-4">Information</h4>
           <ul class="space-y-2 text-sm">
-            <li><a href="index.html" class="hover:text-white transition-colors">&Uuml;ber uns</a></li>
+            <li><a href="ueber-uns.html" class="hover:text-white transition-colors">&Uuml;ber uns</a></li>
             <li><a href="index.html#how-it-works" class="hover:text-white transition-colors">So funktioniert's</a></li>
             <li><a href="index.html#faq" class="hover:text-white transition-colors">FAQ</a></li>
-            <li><a href="#" class="hover:text-white transition-colors">Kontakt</a></li>
+            <li><a href="kontakt.html" class="hover:text-white transition-colors">Kontakt</a></li>
           </ul>
         </div>
         <div>
           <h4 class="text-white font-semibold text-sm mb-4">Rechtliches</h4>
           <ul class="space-y-2 text-sm">
-            <li><a href="#" class="hover:text-white transition-colors">Impressum</a></li>
-            <li><a href="#" class="hover:text-white transition-colors">Datenschutz</a></li>
-            <li><a href="#" class="hover:text-white transition-colors">AGB</a></li>
-            <li><a href="#" class="hover:text-white transition-colors">Widerrufsbelehrung</a></li>
+            <li><a href="impressum.html" class="hover:text-white transition-colors">Impressum</a></li>
+            <li><a href="datenschutz.html" class="hover:text-white transition-colors">Datenschutz</a></li>
+            <li><a href="agb.html" class="hover:text-white transition-colors">AGB</a></li>
+            <li><a href="widerruf.html" class="hover:text-white transition-colors">Widerrufsbelehrung</a></li>
           </ul>
         </div>
       </div>

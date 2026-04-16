@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Allgemeine Gesch&auml;ftsbedingungen | Gutschein.Express</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50:'#f0fdf4',100:'#dcfce7',200:'#bbf7d0',300:'#86efac',400:'#4ade80',500:'#22c55e',600:'#16a34a',700:'#15803d',800:'#166534',900:'#14532d' },
+          },
+          fontFamily: { sans: ['Inter','system-ui','-apple-system','sans-serif'] },
+        },
+      },
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="theme.css">
+  <script>
+    (function() {
+      var s = localStorage.getItem('theme');
+      var p = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (s === 'dark' || (!s && p)) document.documentElement.classList.add('dark');
+    })();
+  </script>
+  <style>
+    * { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .navbar-scrolled { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); }
+    .site-logo { color: #1f2937; }
+    .site-logo-footer { color: #ffffff; }
+  </style>
+</head>
+<body class="bg-white text-gray-900 antialiased overflow-x-hidden">
+  <div id="navbar-container"></div>
+
+  <main class="pt-28 sm:pt-36 pb-16 px-4 sm:px-6">
+    <div class="max-w-3xl mx-auto">
+
+      <!-- Breadcrumb -->
+      <nav class="mb-8 text-sm text-gray-500" aria-label="Breadcrumb">
+        <a href="index.html" class="hover:text-brand-600 transition-colors">Startseite</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-900 font-medium">AGB</span>
+      </nav>
+
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-10">Allgemeine Gesch&auml;ftsbedingungen</h1>
+
+      <div class="space-y-8 text-gray-700 leading-relaxed">
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">&sect; 1 Geltungsbereich</h2>
+          <p>
+            (1) Diese Allgemeinen Gesch&auml;ftsbedingungen (AGB) gelten f&uuml;r alle Vertr&auml;ge zwischen
+            Gutschein.Express, betrieben von Max Mustermann, Musterstra&szlig;e 1, 10115 Berlin
+            (nachfolgend &bdquo;Anbieter&ldquo;) und dem Kunden (nachfolgend &bdquo;Kunde&ldquo;), die &uuml;ber den
+            Online-Shop <a href="https://gutschein.express" class="text-brand-600 hover:text-brand-700 underline">gutschein.express</a>
+            geschlossen werden.
+          </p>
+          <p class="mt-3">
+            (2) Abweichende Bedingungen des Kunden werden nicht anerkannt, es sei denn, der Anbieter stimmt
+            ihrer Geltung ausdr&uuml;cklich schriftlich zu.
+          </p>
+          <p class="mt-3">
+            (3) Vertragssprache ist Deutsch.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">&sect; 2 Vertragsschluss</h2>
+          <p>
+            (1) Die Darstellung der Produkte im Online-Shop stellt kein rechtlich bindendes Angebot,
+            sondern eine Aufforderung zur Bestellung (invitatio ad offerendum) dar.
+          </p>
+          <p class="mt-3">
+            (2) Durch das Absenden der Bestellung im Online-Shop gibt der Kunde ein verbindliches Angebot
+            zum Abschluss eines Kaufvertrages ab. Der Anbieter best&auml;tigt den Eingang der Bestellung
+            unverz&uuml;glich per E-Mail (Bestellbest&auml;tigung). Diese Bestellbest&auml;tigung stellt die Annahme
+            des Angebots dar. Der Vertrag kommt mit Zugang der Bestellbest&auml;tigung zustande.
+          </p>
+          <p class="mt-3">
+            (3) Der Vertragstext wird vom Anbieter gespeichert und dem Kunden nach Vertragsschluss nebst
+            den vorliegenden AGB per E-Mail zugesandt.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">&sect; 3 Preise und Zahlung</h2>
+          <p>
+            (1) Alle angegebenen Preise sind Endpreise in Euro und enthalten die gesetzliche Umsatzsteuer,
+            sofern diese anf&auml;llt. Zus&auml;tzliche Liefer- oder Versandkosten fallen bei digitalen
+            Gutscheinen nicht an.
+          </p>
+          <p class="mt-3">
+            (2) Die Zahlung erfolgt &uuml;ber die im Online-Shop angebotenen Zahlungsarten. Hierzu z&auml;hlen
+            unter anderem: Kreditkarte (Visa, Mastercard), PayPal und weitere &uuml;ber Shopify Payments
+            verf&uuml;gbare Zahlungsmethoden.
+          </p>
+          <p class="mt-3">
+            (3) Der Kaufpreis ist sofort mit Bestellung f&auml;llig.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">&sect; 4 Lieferung</h2>
+          <p>
+            (1) Alle Gutscheine werden ausschlie&szlig;lich digital per E-Mail an die vom Kunden angegebene
+            E-Mail-Adresse geliefert.
+          </p>
+          <p class="mt-3">
+            (2) Die Lieferung erfolgt in der Regel unmittelbar nach Zahlungseingang, sp&auml;testens jedoch
+            innerhalb von 24 Stunden. In Ausnahmef&auml;llen (z.&nbsp;B. bei technischen St&ouml;rungen) kann die
+            Lieferung bis zu 48 Stunden dauern.
+          </p>
+          <p class="mt-3">
+            (3) Der Kunde ist verpflichtet, die Richtigkeit seiner angegebenen E-Mail-Adresse
+            sicherzustellen. F&uuml;r Verz&ouml;gerungen oder Nichtlieferung aufgrund fehlerhaft angegebener
+            E-Mail-Adressen &uuml;bernimmt der Anbieter keine Haftung.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">&sect; 5 Gutscheinbedingungen</h2>
+          <p>
+            (1) Die &uuml;ber den Online-Shop erworbenen Gutscheine sind Gutscheincodes von Drittanbietern
+            (z.&nbsp;B. Amazon, MediaMarkt, IKEA). Der Anbieter fungiert als Vermittler bzw. Verk&auml;ufer
+            dieser Gutscheincodes.
+          </p>
+          <p class="mt-3">
+            (2) Die Einl&ouml;sebedingungen der Gutscheine richten sich nach den Gesch&auml;ftsbedingungen des
+            jeweiligen Drittanbieters. Der Anbieter hat keinen Einfluss auf diese Bedingungen.
+          </p>
+          <p class="mt-3">
+            (3) Gutscheine k&ouml;nnen nicht bar ausgezahlt werden. Eine R&uuml;ckgabe oder ein Umtausch von
+            bereits zugestellten und eingl&ouml;sten Gutscheincodes ist ausgeschlossen.
+          </p>
+          <p class="mt-3">
+            (4) Die G&uuml;ltigkeit der Gutscheine richtet sich nach den Angaben des jeweiligen
+            Drittanbieters. Der Anbieter &uuml;bernimmt keine Gew&auml;hr f&uuml;r die G&uuml;ltigkeitsdauer der
+            Gutscheine &uuml;ber den Zeitpunkt des Verkaufs hinaus.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">&sect; 6 Haftung</h2>
+          <p>
+            (1) Der Anbieter haftet unbeschr&auml;nkt f&uuml;r Sch&auml;den aus der Verletzung des Lebens, des K&ouml;rpers
+            oder der Gesundheit, die auf einer Pflichtverletzung des Anbieters oder einer vors&auml;tzlichen
+            oder fahrl&auml;ssigen Pflichtverletzung eines gesetzlichen Vertreters oder Erf&uuml;llungsgehilfen
+            beruhen.
+          </p>
+          <p class="mt-3">
+            (2) F&uuml;r sonstige Sch&auml;den haftet der Anbieter nur bei Verletzung einer wesentlichen
+            Vertragspflicht (Kardinalpflicht) und beschr&auml;nkt auf den vorhersehbaren, vertragstypischen
+            Schaden. Wesentliche Vertragspflichten sind solche, deren Erf&uuml;llung die ordnungsgem&auml;&szlig;e
+            Durchf&uuml;hrung des Vertrages &uuml;berhaupt erst erm&ouml;glicht und auf deren Einhaltung der Kunde
+            regelm&auml;&szlig;ig vertrauen darf.
+          </p>
+          <p class="mt-3">
+            (3) Die vorstehenden Haftungsbeschr&auml;nkungen gelten nicht bei Vorsatz und grober
+            Fahrl&auml;ssigkeit sowie bei Anspr&uuml;chen nach dem Produkthaftungsgesetz.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">&sect; 7 Anwendbares Recht und Gerichtsstand</h2>
+          <p>
+            (1) Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts.
+            Gegen&uuml;ber Verbrauchern gilt diese Rechtswahl nur insoweit, als nicht der durch zwingende
+            Bestimmungen des Rechts des Staates, in dem der Verbraucher seinen gew&ouml;hnlichen Aufenthalt
+            hat, gew&auml;hrte Schutz entzogen wird.
+          </p>
+          <p class="mt-3">
+            (2) Ist der Kunde Kaufmann, juristische Person des &ouml;ffentlichen Rechts oder
+            &ouml;ffentlich-rechtliches Sonderverm&ouml;gen, ist Gerichtsstand f&uuml;r alle Streitigkeiten aus
+            diesem Vertrag Berlin.
+          </p>
+          <p class="mt-3">
+            (3) Die Europ&auml;ische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
+            <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer" class="text-brand-600 hover:text-brand-700 underline break-all">https://ec.europa.eu/consumers/odr/</a>.
+            Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer
+            Verbraucherschlichtungsstelle teilzunehmen.
+          </p>
+        </section>
+
+        <p class="text-sm text-gray-400 mt-12">Stand: April 2026</p>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="footer-container"></div>
+  <script src="data.js"></script>
+  <script src="shared.js"></script>
+  <script>
+    document.getElementById('navbar-container').innerHTML = renderNavbar('');
+    document.getElementById('footer-container').innerHTML = renderFooter();
+    initMobileMenu();
+    initTheme();
+    initRevealAnimations();
+  </script>
+</body>
+</html>
