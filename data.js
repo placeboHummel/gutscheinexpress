@@ -763,15 +763,18 @@ function renderProductCard(product) {
         <!-- Bottom: Price + meta -->
         <div>
           <div class="bg-black/20 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-white/10 group-hover:bg-black/30 transition-colors">
-            <!-- Label + original price in same row (saves vertical space on mobile) -->
-            <div class="flex items-center justify-between mb-1">
-              <div class="text-white/50 text-[10px] sm:text-xs font-medium">Dein Preis</div>
-              <div class="text-white/40 text-[10px] sm:text-sm line-through">${formatPrice(product.value)}</div>
+            <!-- Gutscheinwert prominent -->
+            <div class="flex items-start justify-between gap-1 mb-2 sm:mb-3">
+              <div>
+                <div class="text-white/50 text-[10px] sm:text-xs font-medium mb-0.5">Gutscheinwert</div>
+                <div class="text-white text-2xl sm:text-4xl font-black leading-none">${formatPrice(product.value)}</div>
+              </div>
+              <div class="text-green-300 text-[10px] sm:text-sm font-bold flex-shrink-0 text-right mt-0.5">${savings}\u20ac<br class="hidden sm:block"> sparen</div>
             </div>
-            <!-- Main price + savings -->
-            <div class="flex items-baseline justify-between gap-1 mb-2 sm:mb-3">
-              <div class="text-white text-2xl sm:text-4xl font-black leading-none">${formatPrice(product.price)}</div>
-              <div class="text-green-300 text-[10px] sm:text-sm font-bold flex-shrink-0">${savings}\u20ac gespart</div>
+            <!-- Purchase price -->
+            <div class="flex items-center justify-between pt-2 border-t border-white/10 mb-2 sm:mb-3">
+              <div class="text-white/60 text-[10px] sm:text-sm">Dein Preis: <span class="text-white font-bold">${formatPrice(product.price)}</span></div>
+              <div class="text-white/40 text-[10px] sm:text-xs line-through">${formatPrice(product.value)}</div>
             </div>
             <!-- Meta row: truncated text prevents wrapping -->
             <div class="flex items-center gap-2 pt-2 border-t border-white/10">
