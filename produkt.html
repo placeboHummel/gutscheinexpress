@@ -94,42 +94,48 @@
     }
     .bv-amazon .mag-dots span:first-child { opacity: 1; }
 
-    /* ── MediaMarkt: Premium Gift Card ── */
+    /* ── MediaMarkt: Authentic Geschenkkarte ── */
     .bv-mediamarkt {
-      background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.3),
-                  0 20px 60px -15px rgba(0,0,0,0.5);
+      background: #df0000;
+      border: none;
+      box-shadow: 0 25px 70px -15px rgba(0,0,0,0.5);
     }
-    .bv-mediamarkt .gc-chip {
-      width: 52px; height: 38px;
-      border-radius: 6px;
-      background: linear-gradient(135deg, #d4af37, #f5d76e, #d4af37);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
-      position: relative;
-    }
-    .bv-mediamarkt .gc-chip::after {
-      content: '';
+    .bv-mediamarkt .mm-swirl {
       position: absolute;
-      inset: 4px;
-      border: 1.5px solid rgba(0,0,0,0.15);
-      border-radius: 3px;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 32% 50%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 100%),
+        conic-gradient(
+          from 0deg at 32% 50%,
+          #df0000 0deg,   #1a0000 15deg,  #df0000 30deg,  #1a0000 45deg,
+          #df0000 60deg,  #1a0000 75deg,  #df0000 90deg,  #1a0000 105deg,
+          #df0000 120deg, #1a0000 135deg, #df0000 150deg, #1a0000 165deg,
+          #df0000 180deg, #1a0000 195deg, #df0000 210deg, #1a0000 225deg,
+          #df0000 240deg, #1a0000 255deg, #df0000 270deg, #1a0000 285deg,
+          #df0000 300deg, #1a0000 315deg, #df0000 330deg, #1a0000 345deg,
+          #df0000 360deg
+        );
     }
-    .bv-mediamarkt .gc-stripe {
+    /* Curved distortion overlay to make the pinwheel feel spiral-ish */
+    .bv-mediamarkt .mm-swirl-twist {
       position: absolute;
-      left: 0; right: 0;
-      height: 44px;
-      background: linear-gradient(90deg, #111, #333, #111);
+      inset: 0;
+      background:
+        radial-gradient(ellipse 120% 120% at 32% 50%, transparent 30%, rgba(26,0,0,0.25) 80%);
+      mix-blend-mode: multiply;
     }
-    .bv-mediamarkt .gc-hologram {
+    .bv-mediamarkt .mm-vignette {
       position: absolute;
-      width: 60px; height: 60px;
-      border-radius: 50%;
-      background: conic-gradient(
-        rgba(255,0,0,0.15), rgba(0,255,0,0.15), rgba(0,0,255,0.15),
-        rgba(255,0,0,0.15), rgba(0,255,0,0.15)
-      );
-      filter: blur(8px);
+      inset: 0;
+      background: radial-gradient(ellipse 90% 90% at 32% 50%, transparent 20%, rgba(0,0,0,0.35) 100%);
+    }
+    .bv-mediamarkt .mm-shine {
+      position: absolute;
+      top: -30%; left: -10%;
+      width: 60%; height: 160%;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.06) 0%, transparent 70%);
+      transform: rotate(-25deg);
+      pointer-events: none;
     }
 
     /* ── Rossmann: Classic Coupon ── */
@@ -535,32 +541,32 @@
         </div>';
       }
 
-      // ── MediaMarkt: Premium Gift Card ──
+      // ── MediaMarkt: Authentic Geschenkkarte ──
       if (s === 'mediamarkt') {
         return '\
         <div class="brand-visual bv-mediamarkt animate-float">\
-          <div class="absolute -top-12 -right-12 w-32 h-32 bg-[#df0000]/15 rounded-full blur-3xl"></div>\
-          <div class="absolute -bottom-8 -left-8 w-24 h-24 bg-[#df0000]/10 rounded-full blur-2xl"></div>\
-          <div class="gc-stripe" style="top:42%"></div>\
-          <div class="gc-hologram" style="bottom:18%;right:12%"></div>\
-          <div class="relative h-full flex flex-col justify-between p-6 sm:p-10 z-10">\
+          <div class="mm-swirl"></div>\
+          <div class="mm-swirl-twist"></div>\
+          <div class="mm-vignette"></div>\
+          <div class="mm-shine"></div>\
+          <!-- Logo + GUTSCHEIN label like the real card -->\
+          <div class="relative h-full flex flex-col justify-between p-5 sm:p-8 z-10">\
             <div class="flex items-start justify-between">\
-              <img src="' + logo + '" alt="' + p.brand + '" class="h-6 sm:h-9 w-auto object-contain">\
-              <div class="gc-chip"></div>\
+              <img src="' + logo + '" alt="' + p.brand + '" class="h-7 sm:h-10 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">\
+              <span class="bg-white text-[#df0000] text-[10px] sm:text-xs font-black px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full shadow-lg shadow-black/20">-' + p.discount + '%</span>\
             </div>\
             <div>\
-              <div class="flex items-center gap-3 mb-3">\
-                <span class="text-gray-600 text-[10px] sm:text-xs tracking-[0.25em] font-mono">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull;</span>\
-              </div>\
-              <div class="flex items-end justify-between">\
-                <div>\
-                  <div class="text-white/40 text-[10px] sm:text-xs mb-1 uppercase tracking-wider">Gutscheinwert</div>\
-                  <span class="text-3xl sm:text-6xl font-black text-white leading-none">' + val + '</span>\
-                  <span class="text-gray-500 text-sm sm:text-lg ml-2 line-through">' + val + '</span>\
+              <p class="text-white font-black text-lg sm:text-2xl tracking-wide uppercase mb-3 sm:mb-4 drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]" style="letter-spacing:0.15em">Gutschein</p>\
+              <div class="bg-black/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-5 border border-white/10">\
+                <div class="flex items-center justify-between mb-1">\
+                  <span class="text-white/50 text-[10px] sm:text-xs">Gutscheinwert</span>\
+                  <span class="text-white/40 text-[10px] sm:text-sm line-through">' + val + '</span>\
                 </div>\
-                <div class="text-right">\
-                  <span class="text-[#df0000] text-sm sm:text-lg font-black bg-[#df0000]/10 px-3 py-1.5 rounded-lg">-' + p.discount + '%</span>\
-                  <p class="text-gray-500 text-[10px] mt-1">Du sparst ' + savings + '&euro;</p>\
+                <div class="flex items-end justify-between">\
+                  <span class="text-white text-3xl sm:text-5xl font-black leading-none drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)]">' + price + '</span>\
+                  <div class="text-right">\
+                    <span class="text-green-300 text-xs sm:text-sm font-bold">' + savings + '&euro; gespart</span>\
+                  </div>\
                 </div>\
               </div>\
             </div>\
