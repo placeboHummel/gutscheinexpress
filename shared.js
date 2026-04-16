@@ -10,13 +10,50 @@ var THEME_TOGGLE_ICONS = '\
     <path stroke-linecap="round" stroke-linejoin="round" d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>\
   </svg>';
 
+// ── Inline brand logo (uses currentColor so the "Gutschein" word adapts to context) ──
+function brandLogoSVG(extraClass) {
+  var cls = 'h-8 sm:h-9 w-auto site-logo transition-transform group-hover:scale-105 ' + (extraClass || '');
+  return '\
+  <svg class="' + cls + '" viewBox="0 0 348 56" fill="none" aria-label="Gutschein Express" role="img">\
+    <defs>\
+      <linearGradient id="ge-grad" x1="0" y1="0" x2="1" y2="0">\
+        <stop offset="0%" stop-color="#5ee7a8"/>\
+        <stop offset="50%" stop-color="#38bdf8"/>\
+        <stop offset="100%" stop-color="#6366f1"/>\
+      </linearGradient>\
+      <linearGradient id="ge-grad-streak" x1="0" y1="0" x2="1" y2="0">\
+        <stop offset="0%" stop-color="#5ee7a8" stop-opacity="0.15"/>\
+        <stop offset="40%" stop-color="#5ee7a8" stop-opacity="0.6"/>\
+        <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.9"/>\
+      </linearGradient>\
+    </defs>\
+    <text x="0" y="41" font-family="Inter, system-ui, -apple-system, sans-serif" font-weight="800" font-style="italic" font-size="36" fill="currentColor" letter-spacing="-0.5">Gutschein</text>\
+    <g opacity="0.55">\
+      <rect x="188" y="12" width="22" height="3.2" rx="1.6" fill="url(#ge-grad-streak)"/>\
+      <rect x="181" y="18" width="30" height="3.2" rx="1.6" fill="url(#ge-grad-streak)"/>\
+      <rect x="186" y="24" width="26" height="3.2" rx="1.6" fill="url(#ge-grad-streak)"/>\
+      <rect x="178" y="30" width="34" height="3.2" rx="1.6" fill="url(#ge-grad-streak)"/>\
+      <rect x="184" y="36" width="24" height="3.2" rx="1.6" fill="url(#ge-grad-streak)"/>\
+      <rect x="190" y="42" width="18" height="3.2" rx="1.6" fill="url(#ge-grad-streak)"/>\
+    </g>\
+    <g opacity="0.3">\
+      <rect x="172" y="15" width="12" height="2.4" rx="1.2" fill="url(#ge-grad-streak)"/>\
+      <rect x="168" y="21" width="16" height="2.4" rx="1.2" fill="url(#ge-grad-streak)"/>\
+      <rect x="174" y="33" width="10" height="2.4" rx="1.2" fill="url(#ge-grad-streak)"/>\
+      <rect x="170" y="39" width="14" height="2.4" rx="1.2" fill="url(#ge-grad-streak)"/>\
+    </g>\
+    <rect x="204" y="8" width="138" height="42" rx="10" fill="url(#ge-grad)"/>\
+    <text x="224" y="38" font-family="Inter, system-ui, -apple-system, sans-serif" font-weight="800" font-style="italic" font-size="30" fill="white" letter-spacing="-0.3">Express</text>\
+  </svg>';
+}
+
 function renderNavbar(activePage) {
   return `
   <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 navbar-scrolled">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16 sm:h-20">
-        <a href="index.html" class="flex items-center group">
-          <img src="logos/gutschein-express.svg" alt="Gutschein Express" class="h-8 sm:h-9 w-auto site-logo transition-transform group-hover:scale-105">
+        <a href="index.html" class="flex items-center group" aria-label="Gutschein Express — Startseite">
+          ${brandLogoSVG()}
         </a>
         <div class="hidden md:flex items-center gap-8">
           <a href="katalog.html" class="text-sm font-medium ${activePage === 'katalog' ? 'text-brand-600' : 'text-gray-600 hover:text-gray-900'} transition-colors">Alle Gutscheine</a>
@@ -26,7 +63,7 @@ function renderNavbar(activePage) {
         </div>
         <div class="flex items-center gap-3">
           <button onclick="toggleTheme()" class="theme-toggle-btn" aria-label="Nacht-/Tagmodus umschalten">${THEME_TOGGLE_ICONS}</button>
-          <a href="katalog.html" class="hidden sm:inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all btn-press shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40">
+          <a href="katalog.html" class="hidden sm:inline-flex items-center gap-2 btn-ge text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all btn-press">
             Jetzt sparen
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
           </a>
@@ -42,7 +79,7 @@ function renderNavbar(activePage) {
         <a href="index.html#how-it-works" class="block px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">So funktioniert's</a>
         <a href="index.html#reviews" class="block px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Bewertungen</a>
         <a href="index.html#faq" class="block px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">FAQ</a>
-        <a href="katalog.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-white bg-brand-500 text-center mt-2">Jetzt sparen</a>
+        <a href="katalog.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-white btn-ge text-center mt-2">Jetzt sparen</a>
       </div>
     </div>
   </nav>`;
@@ -70,8 +107,8 @@ function renderFooter() {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
         <div class="lg:col-span-1">
-          <a href="index.html" class="flex items-center mb-4">
-            <img src="logos/gutschein-express.svg" alt="Gutschein Express" class="h-8 w-auto site-logo-footer">
+          <a href="index.html" class="flex items-center mb-4 site-logo-footer" aria-label="Gutschein Express — Startseite">
+            ${brandLogoSVG('site-logo-footer-svg')}
           </a>
           <p class="text-sm leading-relaxed mb-4">Digitale Gutscheine zu Top-Preisen. Sofort per E-Mail &mdash; 100% sicher.</p>
           <div class="flex gap-0.5">
