@@ -14,7 +14,7 @@ var THEME_TOGGLE_ICONS = '\
 function brandLogoSVG(extraClass) {
   var cls = 'h-8 sm:h-9 w-auto site-logo transition-transform group-hover:scale-105 ' + (extraClass || '');
   return '\
-  <svg class="' + cls + '" viewBox="0 0 320 56" fill="none" aria-label="Gutschein Express" role="img">\
+  <svg class="' + cls + '" viewBox="0 0 348 56" fill="none" aria-label="Gutschein Express" role="img">\
     <defs>\
       <linearGradient id="ge-grad" x1="0" y1="0" x2="1" y2="0">\
         <stop offset="0%" stop-color="#5ee7a8"/>\
@@ -29,21 +29,21 @@ function brandLogoSVG(extraClass) {
     </defs>\
     <text x="0" y="41" font-family="Inter, system-ui, -apple-system, sans-serif" font-weight="800" font-style="italic" font-size="36" fill="currentColor" letter-spacing="-0.5">Gutschein</text>\
     <g opacity="0.55">\
-      <rect x="162" y="12" width="22" height="3.2" rx="1.6" fill="url(#ge-grad-streak)"/>\
-      <rect x="155" y="18" width="30" height="3.2" rx="1.6" fill="url(#ge-grad-streak)"/>\
-      <rect x="160" y="24" width="26" height="3.2" rx="1.6" fill="url(#ge-grad-streak)"/>\
-      <rect x="152" y="30" width="34" height="3.2" rx="1.6" fill="url(#ge-grad-streak)"/>\
-      <rect x="158" y="36" width="24" height="3.2" rx="1.6" fill="url(#ge-grad-streak)"/>\
-      <rect x="164" y="42" width="18" height="3.2" rx="1.6" fill="url(#ge-grad-streak)"/>\
+      <rect x="188" y="12" width="22" height="3.2" rx="1.6" fill="url(#ge-grad-streak)"/>\
+      <rect x="181" y="18" width="30" height="3.2" rx="1.6" fill="url(#ge-grad-streak)"/>\
+      <rect x="186" y="24" width="26" height="3.2" rx="1.6" fill="url(#ge-grad-streak)"/>\
+      <rect x="178" y="30" width="34" height="3.2" rx="1.6" fill="url(#ge-grad-streak)"/>\
+      <rect x="184" y="36" width="24" height="3.2" rx="1.6" fill="url(#ge-grad-streak)"/>\
+      <rect x="190" y="42" width="18" height="3.2" rx="1.6" fill="url(#ge-grad-streak)"/>\
     </g>\
     <g opacity="0.3">\
-      <rect x="146" y="15" width="12" height="2.4" rx="1.2" fill="url(#ge-grad-streak)"/>\
-      <rect x="142" y="21" width="16" height="2.4" rx="1.2" fill="url(#ge-grad-streak)"/>\
-      <rect x="148" y="33" width="10" height="2.4" rx="1.2" fill="url(#ge-grad-streak)"/>\
-      <rect x="144" y="39" width="14" height="2.4" rx="1.2" fill="url(#ge-grad-streak)"/>\
+      <rect x="172" y="15" width="12" height="2.4" rx="1.2" fill="url(#ge-grad-streak)"/>\
+      <rect x="168" y="21" width="16" height="2.4" rx="1.2" fill="url(#ge-grad-streak)"/>\
+      <rect x="174" y="33" width="10" height="2.4" rx="1.2" fill="url(#ge-grad-streak)"/>\
+      <rect x="170" y="39" width="14" height="2.4" rx="1.2" fill="url(#ge-grad-streak)"/>\
     </g>\
-    <rect x="178" y="8" width="138" height="42" rx="10" fill="url(#ge-grad)"/>\
-    <text x="198" y="38" font-family="Inter, system-ui, -apple-system, sans-serif" font-weight="800" font-style="italic" font-size="30" fill="white" letter-spacing="-0.3">Express</text>\
+    <rect x="204" y="8" width="138" height="42" rx="10" fill="url(#ge-grad)"/>\
+    <text x="224" y="38" font-family="Inter, system-ui, -apple-system, sans-serif" font-weight="800" font-style="italic" font-size="30" fill="white" letter-spacing="-0.3">Express</text>\
   </svg>';
 }
 
