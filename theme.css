@@ -179,6 +179,127 @@ html.dark ::-webkit-scrollbar-thumb:hover {
   background: #4b5563;
 }
 
+/* ── Site logo — dark mode ────────────────────────── */
+html.dark .site-logo {
+  color: #f0f0f0 !important;
+}
+
+/* ── Carousel dots + progress ────────────────────── */
+html.dark .carousel-dot {
+  background: #374151 !important;
+}
+html.dark .carousel-dot.active {
+  background: #22c55e !important;
+}
+html.dark .carousel-progress-bar {
+  background: rgba(34, 197, 94, 0.08) !important;
+}
+
+/* ── Favorites showcase — dark overrides for light cards ── */
+html.dark .fav-magazine {
+  background: #1a1a1a !important;
+  border-color: rgba(255,255,255,0.06) !important;
+}
+html.dark .fav-magazine .text-gray-900 { color: #f0f0f0 !important; }
+html.dark .fav-magazine .text-gray-400 { color: #6b7280 !important; }
+html.dark .fav-magazine .text-gray-500 { color: #6b7280 !important; }
+html.dark .fav-magazine img[style*="brightness(0)"] {
+  filter: brightness(10) opacity(0.7) !important;
+}
+
+html.dark .fav-polaroid {
+  background: #1e1e1e !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05) !important;
+}
+html.dark .fav-polaroid .text-gray-800 { color: #f0f0f0 !important; }
+html.dark .fav-polaroid .text-gray-400 { color: #6b7280 !important; }
+
+html.dark .fav-pricetag {
+  background: #1a1a1a !important;
+  border-color: #2f2f2f !important;
+}
+html.dark .fav-pricetag::before {
+  border-color: #444 !important;
+}
+html.dark .fav-pricetag::after {
+  background: #444 !important;
+}
+html.dark .fav-pricetag .text-gray-800 { color: #f0f0f0 !important; }
+html.dark .fav-pricetag .text-gray-400 { color: #6b7280 !important; }
+
+html.dark .fav-coupon {
+  background: linear-gradient(135deg, #1f1a1a 0%, #1a1a1a 50%, #1f1a18 100%) !important;
+  border-color: #3d2f2a !important;
+}
+html.dark .fav-coupon .coupon-cut {
+  background: #0a0a0a !important;
+  border-color: #3d2f2a !important;
+}
+html.dark .fav-coupon .text-gray-500 { color: #9ca3af !important; }
+html.dark .fav-coupon .text-gray-400 { color: #6b7280 !important; }
+html.dark .fav-coupon .border-dashed { border-color: #3d2f2a !important; }
+
+/* ── Brand visuals on product page — dark overrides ── */
+/* Amazon: already dark charcoal — no bg change needed */
+html.dark .bv-amazon { border-color: transparent !important; }
+
+html.dark .bv-rossmann {
+  background: linear-gradient(135deg, #1f1a1a 0%, #1a1a1a 50%, #1f1a18 100%) !important;
+  border-color: #3d2f2a !important;
+}
+html.dark .bv-rossmann .coupon-cut {
+  background: #111 !important;
+  border-color: #3d2f2a !important;
+}
+html.dark .bv-rossmann .coupon-divider { border-left-color: #3d2f2a !important; }
+html.dark .bv-rossmann .text-gray-500 { color: #9ca3af !important; }
+html.dark .bv-rossmann .text-gray-400 { color: #6b7280 !important; }
+
+html.dark .bv-kaufland {
+  background: #1a1a1a !important;
+  border-color: #2a2a2a !important;
+}
+html.dark .bv-kaufland::after {
+  background: linear-gradient(135deg, #1a1a1a 33.33%, transparent 33.33%) -12px 0,
+              linear-gradient(225deg, #1a1a1a 33.33%, transparent 33.33%) -12px 0;
+  background-size: 24px 16px;
+}
+html.dark .bv-kaufland .receipt-line { border-bottom-color: #2a2a2a !important; }
+html.dark .bv-kaufland .receipt-stamp { border-color: #e60a14 !important; }
+html.dark .bv-kaufland .text-gray-900 { color: #f0f0f0 !important; }
+html.dark .bv-kaufland .text-gray-500 { color: #9ca3af !important; }
+html.dark .bv-kaufland .text-gray-400 { color: #6b7280 !important; }
+
+html.dark .bv-otto {
+  background: #1a1a1a !important;
+  border-color: #2a2a2a !important;
+}
+html.dark .bv-otto .text-gray-900 { color: #f0f0f0 !important; }
+html.dark .bv-otto .text-gray-400 { color: #6b7280 !important; }
+
+html.dark .bv-ikea {
+  background: #1a1a1a !important;
+  border-color: #2f2f2f !important;
+}
+html.dark .bv-ikea::before { border-color: #444 !important; }
+html.dark .bv-ikea::after { background: #444 !important; }
+html.dark .bv-ikea .tag-stripe { border-radius: 1.25rem 1.25rem 0 0; }
+html.dark .bv-ikea .text-gray-800 { color: #f0f0f0 !important; }
+html.dark .bv-ikea .text-gray-400 { color: #6b7280 !important; }
+
+html.dark .bv-airbnb {
+  background: #1e1e1e !important;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05) !important;
+}
+html.dark .bv-airbnb .text-gray-800 { color: #f0f0f0 !important; }
+html.dark .bv-airbnb .text-gray-400 { color: #6b7280 !important; }
+html.dark .bv-airbnb .postcard-lines span { background: #333; }
+
+/* MediaMarkt, PlayStation, Douglas are already dark — minimal overrides */
+html.dark .bv-mediamarkt { border-color: rgba(255,255,255,0.06) !important; }
+html.dark .bv-playstation { border-color: rgba(100,100,255,0.1) !important; }
+html.dark .bv-douglas { border-color: rgba(212,175,55,0.15) !important; }
+
 /* ── Theme toggle button ──────────────────────────── */
 .theme-toggle-btn {
   display: flex;

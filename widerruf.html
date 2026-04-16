@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Widerrufsbelehrung | Gutschein.Express</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50:'#f0fdf4',100:'#dcfce7',200:'#bbf7d0',300:'#86efac',400:'#4ade80',500:'#22c55e',600:'#16a34a',700:'#15803d',800:'#166534',900:'#14532d' },
+          },
+          fontFamily: { sans: ['Inter','system-ui','-apple-system','sans-serif'] },
+        },
+      },
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="theme.css">
+  <script>
+    (function() {
+      var s = localStorage.getItem('theme');
+      var p = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (s === 'dark' || (!s && p)) document.documentElement.classList.add('dark');
+    })();
+  </script>
+  <style>
+    * { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .navbar-scrolled { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); }
+    .site-logo { color: #1f2937; }
+    .site-logo-footer { color: #ffffff; }
+  </style>
+</head>
+<body class="bg-white text-gray-900 antialiased overflow-x-hidden">
+  <div id="navbar-container"></div>
+
+  <main class="pt-28 sm:pt-36 pb-16 px-4 sm:px-6">
+    <div class="max-w-3xl mx-auto">
+
+      <!-- Breadcrumb -->
+      <nav class="mb-8 text-sm text-gray-500" aria-label="Breadcrumb">
+        <a href="index.html" class="hover:text-brand-600 transition-colors">Startseite</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-900 font-medium">Widerrufsbelehrung</span>
+      </nav>
+
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-10">Widerrufsbelehrung</h1>
+
+      <div class="space-y-8 text-gray-700 leading-relaxed">
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">Widerrufsrecht</h2>
+          <p>
+            Sie haben das Recht, binnen vierzehn Tagen ohne Angabe von Gr&uuml;nden diesen Vertrag zu
+            widerrufen. Die Widerrufsfrist betr&auml;gt vierzehn Tage ab dem Tag des Vertragsschlusses.
+          </p>
+          <p class="mt-3">
+            Um Ihr Widerrufsrecht auszu&uuml;ben, m&uuml;ssen Sie uns
+          </p>
+          <p class="mt-3 pl-4 border-l-2 border-gray-200">
+            Gutschein.Express<br>
+            Max Mustermann<br>
+            Musterstra&szlig;e 1<br>
+            10115 Berlin<br>
+            E-Mail: <a href="mailto:info@gutschein.express" class="text-brand-600 hover:text-brand-700 underline">info@gutschein.express</a><br>
+            Telefon: +49 30 123456789
+          </p>
+          <p class="mt-3">
+            mittels einer eindeutigen Erkl&auml;rung (z.&nbsp;B. ein mit der Post versandter Brief oder eine
+            E-Mail) &uuml;ber Ihren Entschluss, diesen Vertrag zu widerrufen, informieren. Sie k&ouml;nnen daf&uuml;r
+            das beigef&uuml;gte Muster-Widerrufsformular verwenden, das jedoch nicht vorgeschrieben ist.
+          </p>
+          <p class="mt-3">
+            Zur Wahrung der Widerrufsfrist reicht es aus, dass Sie die Mitteilung &uuml;ber die Aus&uuml;bung des
+            Widerrufsrechts vor Ablauf der Widerrufsfrist absenden.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">Folgen des Widerrufs</h2>
+          <p>
+            Wenn Sie diesen Vertrag widerrufen, haben wir Ihnen alle Zahlungen, die wir von Ihnen
+            erhalten haben, unverz&uuml;glich und sp&auml;testens binnen vierzehn Tagen ab dem Tag
+            zur&uuml;ckzuzahlen, an dem die Mitteilung &uuml;ber Ihren Widerruf dieses Vertrages bei uns
+            eingegangen ist. F&uuml;r diese R&uuml;ckzahlung verwenden wir dasselbe Zahlungsmittel, das Sie bei
+            der urspr&uuml;nglichen Transaktion eingesetzt haben, es sei denn, mit Ihnen wurde ausdr&uuml;cklich
+            etwas anderes vereinbart; in keinem Fall werden Ihnen wegen dieser R&uuml;ckzahlung Entgelte
+            berechnet.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">Vorzeitiges Erl&ouml;schen des Widerrufsrechts bei digitalen Inhalten</h2>
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-4">
+            <p class="text-amber-800 font-medium">
+              Wichtiger Hinweis f&uuml;r digitale Gutscheincodes
+            </p>
+          </div>
+          <p>
+            Das Widerrufsrecht erlischt vorzeitig gem&auml;&szlig; <strong>&sect; 356 Abs. 5 BGB</strong>, wenn
+            der Unternehmer mit der Ausf&uuml;hrung des Vertrages begonnen hat, nachdem der Verbraucher
+          </p>
+          <ul class="list-disc list-inside mt-3 space-y-2">
+            <li>ausdr&uuml;cklich zugestimmt hat, dass der Unternehmer mit der Ausf&uuml;hrung des Vertrages vor
+              Ablauf der Widerrufsfrist beginnt, und</li>
+            <li>seine Kenntnis davon best&auml;tigt hat, dass er durch seine Zustimmung mit Beginn der
+              Ausf&uuml;hrung des Vertrages sein Widerrufsrecht verliert.</li>
+          </ul>
+          <p class="mt-3">
+            <strong>Bei digitalen Gutscheincodes bedeutet dies konkret:</strong> Sobald der Gutscheincode
+            per E-Mail an Sie &uuml;bermittelt und/oder von Ihnen eingel&ouml;st wurde, erlischt Ihr
+            Widerrufsrecht. Sie stimmen beim Kauf ausdr&uuml;cklich zu, dass die Lieferung des digitalen
+            Gutscheincodes sofort nach Zahlungseingang erfolgt, und best&auml;tigen Ihre Kenntnis dar&uuml;ber,
+            dass Ihr Widerrufsrecht mit der Zustellung des Gutscheincodes erlischt.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">Muster-Widerrufsformular</h2>
+          <p class="mb-3">
+            (Wenn Sie den Vertrag widerrufen wollen, dann f&uuml;llen Sie bitte dieses Formular aus und
+            senden Sie es zur&uuml;ck.)
+          </p>
+          <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-3">
+            <p>
+              An:<br>
+              Gutschein.Express<br>
+              Max Mustermann<br>
+              Musterstra&szlig;e 1<br>
+              10115 Berlin<br>
+              E-Mail: info@gutschein.express
+            </p>
+            <p>
+              Hiermit widerrufe(n) ich/wir (*) den von mir/uns (*) abgeschlossenen Vertrag &uuml;ber den Kauf
+              der folgenden Waren (*) / die Erbringung der folgenden Dienstleistung (*):
+            </p>
+            <p>
+              _______________________________________________
+            </p>
+            <p>
+              Bestellt am (*) / erhalten am (*): _______________
+            </p>
+            <p>
+              Name des/der Verbraucher(s): _______________
+            </p>
+            <p>
+              Anschrift des/der Verbraucher(s): _______________
+            </p>
+            <p>
+              _______________________________________________
+            </p>
+            <p>
+              Unterschrift des/der Verbraucher(s) (nur bei Mitteilung auf Papier):
+            </p>
+            <p>
+              _______________________________________________
+            </p>
+            <p>
+              Datum: _______________
+            </p>
+            <p class="text-sm text-gray-500 mt-4">
+              (*) Unzutreffendes streichen.
+            </p>
+          </div>
+        </section>
+
+        <p class="text-sm text-gray-400 mt-12">Stand: April 2026</p>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="footer-container"></div>
+  <script src="data.js"></script>
+  <script src="shared.js"></script>
+  <script>
+    document.getElementById('navbar-container').innerHTML = renderNavbar('');
+    document.getElementById('footer-container').innerHTML = renderFooter();
+    initMobileMenu();
+    initTheme();
+    initRevealAnimations();
+  </script>
+</body>
+</html>

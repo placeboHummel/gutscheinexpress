@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datenschutzerkl&auml;rung | Gutschein.Express</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50:'#f0fdf4',100:'#dcfce7',200:'#bbf7d0',300:'#86efac',400:'#4ade80',500:'#22c55e',600:'#16a34a',700:'#15803d',800:'#166534',900:'#14532d' },
+          },
+          fontFamily: { sans: ['Inter','system-ui','-apple-system','sans-serif'] },
+        },
+      },
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="theme.css">
+  <script>
+    (function() {
+      var s = localStorage.getItem('theme');
+      var p = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (s === 'dark' || (!s && p)) document.documentElement.classList.add('dark');
+    })();
+  </script>
+  <style>
+    * { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .navbar-scrolled { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); }
+    .site-logo { color: #1f2937; }
+    .site-logo-footer { color: #ffffff; }
+  </style>
+</head>
+<body class="bg-white text-gray-900 antialiased overflow-x-hidden">
+  <div id="navbar-container"></div>
+
+  <main class="pt-28 sm:pt-36 pb-16 px-4 sm:px-6">
+    <div class="max-w-3xl mx-auto">
+
+      <!-- Breadcrumb -->
+      <nav class="mb-8 text-sm text-gray-500" aria-label="Breadcrumb">
+        <a href="index.html" class="hover:text-brand-600 transition-colors">Startseite</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-900 font-medium">Datenschutz</span>
+      </nav>
+
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-10">Datenschutzerkl&auml;rung</h1>
+
+      <div class="space-y-8 text-gray-700 leading-relaxed">
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">1. Verantwortliche Stelle</h2>
+          <p>
+            Verantwortlich f&uuml;r die Datenverarbeitung auf dieser Website ist:
+          </p>
+          <p class="mt-3">
+            Gutschein.Express<br>
+            Max Mustermann<br>
+            Musterstra&szlig;e 1<br>
+            10115 Berlin<br>
+            E-Mail: <a href="mailto:info@gutschein.express" class="text-brand-600 hover:text-brand-700 underline">info@gutschein.express</a><br>
+            Telefon: +49 30 123456789
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">2. Erhebung und Speicherung personenbezogener Daten</h2>
+          <p>
+            Beim Besuch unserer Website werden automatisch Informationen durch den Browser &uuml;bermittelt und
+            in sogenannten Server-Log-Dateien gespeichert. Dies umfasst:
+          </p>
+          <ul class="list-disc list-inside mt-3 space-y-1">
+            <li>Browsertyp und Browserversion</li>
+            <li>Verwendetes Betriebssystem</li>
+            <li>Referrer URL (die zuvor besuchte Seite)</li>
+            <li>Hostname des zugreifenden Rechners</li>
+            <li>IP-Adresse</li>
+            <li>Uhrzeit der Serveranfrage</li>
+          </ul>
+          <p class="mt-3">
+            Diese Daten sind nicht bestimmten Personen zuordenbar. Eine Zusammenf&uuml;hrung dieser Daten mit
+            anderen Datenquellen wird nicht vorgenommen. Rechtsgrundlage f&uuml;r die vor&uuml;bergehende Speicherung
+            der Daten ist Art. 6 Abs. 1 lit. f DSGVO.
+          </p>
+          <h3 class="text-lg font-medium text-gray-900 mt-6 mb-2">Bestellung und Kundenkonto</h3>
+          <p>
+            Bei einer Bestellung erheben wir folgende personenbezogene Daten:
+          </p>
+          <ul class="list-disc list-inside mt-3 space-y-1">
+            <li>Name</li>
+            <li>E-Mail-Adresse</li>
+            <li>Rechnungsadresse</li>
+            <li>Zahlungsinformationen</li>
+          </ul>
+          <p class="mt-3">
+            Die Erhebung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO zur
+            Vertragserf&uuml;llung bzw. zur Durchf&uuml;hrung vorvertraglicher Ma&szlig;nahmen.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">3. Cookies</h2>
+          <p>
+            Unsere Website verwendet Cookies. Cookies sind kleine Textdateien, die auf Ihrem Endger&auml;t
+            gespeichert werden und die Ihr Browser speichert. Die meisten der von uns verwendeten Cookies
+            sind sogenannte &bdquo;Session-Cookies&ldquo;. Sie werden nach Ende Ihres Besuchs automatisch gel&ouml;scht.
+            Andere Cookies bleiben auf Ihrem Endger&auml;t gespeichert, bis Sie diese l&ouml;schen. Diese Cookies
+            erm&ouml;glichen es uns, Ihren Browser beim n&auml;chsten Besuch wiederzuerkennen.
+          </p>
+          <p class="mt-3">
+            Sie k&ouml;nnen Ihren Browser so einstellen, dass Sie &uuml;ber das Setzen von Cookies informiert werden
+            und Cookies nur im Einzelfall erlauben, die Annahme von Cookies f&uuml;r bestimmte F&auml;lle oder
+            generell ausschlie&szlig;en sowie das automatische L&ouml;schen der Cookies beim Schlie&szlig;en des Browsers
+            aktivieren.
+          </p>
+          <p class="mt-3">
+            Die Rechtsgrundlage f&uuml;r die Verarbeitung personenbezogener Daten unter Verwendung technisch
+            notwendiger Cookies ist Art. 6 Abs. 1 lit. f DSGVO.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">4. Kontaktformular</h2>
+          <p>
+            Wenn Sie uns per Kontaktformular oder E-Mail Anfragen zukommen lassen, werden Ihre Angaben
+            einschlie&szlig;lich der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und
+            f&uuml;r den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre
+            Einwilligung weiter.
+          </p>
+          <p class="mt-3">
+            Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern
+            Ihre Anfrage mit der Erf&uuml;llung eines Vertrags zusammenh&auml;ngt oder zur Durchf&uuml;hrung
+            vorvertraglicher Ma&szlig;nahmen erforderlich ist. In allen &uuml;brigen F&auml;llen beruht die Verarbeitung
+            auf unserem berechtigten Interesse (Art. 6 Abs. 1 lit. f DSGVO).
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">5. Zahlungsabwicklung</h2>
+          <p>
+            F&uuml;r die Zahlungsabwicklung nutzen wir den Dienst <strong>Shopify Payments</strong>. Bei der
+            Bezahlung werden Ihre Zahlungsdaten (z.&nbsp;B. Kreditkartennummer, PayPal-Kontoinformationen)
+            direkt an Shopify Payments &uuml;bermittelt und dort verarbeitet. Wir selbst speichern keine
+            vollst&auml;ndigen Zahlungsdaten auf unseren Servern.
+          </p>
+          <p class="mt-3">
+            Anbieter ist Shopify International Limited, Victoria Buildings, 2nd Floor, 1-2 Haddington Road,
+            Dublin 4, D04 XN32, Irland. Die Datenschutzerkl&auml;rung von Shopify finden Sie unter:
+            <a href="https://www.shopify.com/legal/privacy" target="_blank" rel="noopener noreferrer" class="text-brand-600 hover:text-brand-700 underline break-all">https://www.shopify.com/legal/privacy</a>.
+          </p>
+          <p class="mt-3">
+            Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (Vertragserf&uuml;llung).
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">6. SSL-Verschl&uuml;sselung</h2>
+          <p>
+            Diese Seite nutzt aus Sicherheitsgr&uuml;nden und zum Schutz der &Uuml;bertragung vertraulicher Inhalte,
+            wie zum Beispiel Bestellungen oder Anfragen, die Sie an uns als Seitenbetreiber senden, eine
+            SSL-Verschl&uuml;sselung. Eine verschl&uuml;sselte Verbindung erkennen Sie daran, dass die Adresszeile
+            des Browsers von &bdquo;http://&ldquo; auf &bdquo;https://&ldquo; wechselt und an dem Schloss-Symbol in Ihrer
+            Browserzeile.
+          </p>
+          <p class="mt-3">
+            Wenn die SSL-Verschl&uuml;sselung aktiviert ist, k&ouml;nnen die Daten, die Sie an uns &uuml;bermitteln,
+            nicht von Dritten mitgelesen werden.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">7. Rechte der betroffenen Person</h2>
+          <p>
+            Sie haben gegen&uuml;ber uns folgende Rechte hinsichtlich der Sie betreffenden personenbezogenen Daten:
+          </p>
+          <ul class="list-disc list-inside mt-3 space-y-2">
+            <li><strong>Recht auf Auskunft</strong> (&sect; 15 DSGVO) &mdash; Sie haben das Recht, Auskunft &uuml;ber Ihre
+              von uns verarbeiteten personenbezogenen Daten zu verlangen.</li>
+            <li><strong>Recht auf Berichtigung</strong> (&sect; 16 DSGVO) &mdash; Sie haben das Recht, die Berichtigung
+              unrichtiger oder die Vervollst&auml;ndigung Ihrer bei uns gespeicherten personenbezogenen Daten zu verlangen.</li>
+            <li><strong>Recht auf L&ouml;schung</strong> (&sect; 17 DSGVO) &mdash; Sie haben das Recht, die L&ouml;schung Ihrer
+              bei uns gespeicherten personenbezogenen Daten zu verlangen, soweit nicht die Verarbeitung zur Aus&uuml;bung des
+              Rechts auf freie Meinungs&auml;u&szlig;erung, zur Erf&uuml;llung einer rechtlichen Verpflichtung oder aus Gr&uuml;nden
+              des &ouml;ffentlichen Interesses erforderlich ist.</li>
+            <li><strong>Recht auf Einschr&auml;nkung der Verarbeitung</strong> (&sect; 18 DSGVO) &mdash; Sie haben das Recht,
+              die Einschr&auml;nkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.</li>
+            <li><strong>Recht auf Daten&uuml;bertragbarkeit</strong> (&sect; 20 DSGVO) &mdash; Sie haben das Recht, Ihre
+              personenbezogenen Daten in einem strukturierten, g&auml;ngigen und maschinenlesbaren Format zu erhalten.</li>
+            <li><strong>Recht auf Widerspruch</strong> (&sect; 21 DSGVO) &mdash; Sie haben das Recht, jederzeit gegen die
+              Verarbeitung Ihrer personenbezogenen Daten Widerspruch einzulegen.</li>
+          </ul>
+          <p class="mt-3">
+            Dar&uuml;ber hinaus haben Sie das Recht, sich bei einer Datenschutz-Aufsichtsbeh&ouml;rde &uuml;ber die
+            Verarbeitung Ihrer personenbezogenen Daten durch uns zu beschweren.
+          </p>
+        </section>
+
+        <p class="text-sm text-gray-400 mt-12">Stand: April 2026</p>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="footer-container"></div>
+  <script src="data.js"></script>
+  <script src="shared.js"></script>
+  <script>
+    document.getElementById('navbar-container').innerHTML = renderNavbar('');
+    document.getElementById('footer-container').innerHTML = renderFooter();
+    initMobileMenu();
+    initTheme();
+    initRevealAnimations();
+  </script>
+</body>
+</html>

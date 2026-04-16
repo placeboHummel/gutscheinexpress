@@ -198,11 +198,257 @@
       background-size: 200% 100%;
     }
 
+    /* Site logo — currentColor in SVG adapts to context */
+    .site-logo { color: #1f2937; }
+    .site-logo-footer { color: #ffffff; }
+
     /* Custom scrollbar */
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: #f1f1f1; }
     ::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #a1a1a1; }
+
+    /* Carousel horizontal scroll */
+    .carousel-track {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .carousel-track::-webkit-scrollbar {
+      display: none;
+    }
+    .carousel-track > .carousel-item {
+      flex: 0 0 45%;
+      max-width: 45%;
+      snap-align: center;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.5s ease,
+                  filter 0.5s ease;
+      opacity: 0.5;
+      filter: saturate(0.4);
+      transform: scale(0.92);
+    }
+    .carousel-track > .carousel-item.is-active {
+      opacity: 1;
+      filter: saturate(1);
+      transform: scale(1);
+    }
+    .carousel-track > .carousel-item.is-near {
+      opacity: 0.75;
+      filter: saturate(0.7);
+      transform: scale(0.96);
+    }
+    @media (min-width: 640px) {
+      .carousel-track > .carousel-item {
+        flex: 0 0 32%;
+        max-width: 32%;
+      }
+    }
+    @media (min-width: 1024px) {
+      .carousel-track > .carousel-item {
+        flex: 0 0 23%;
+        max-width: 23%;
+      }
+    }
+
+    /* Active card glow ring */
+    .carousel-item.is-active .product-card {
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.4), 0 20px 50px -10px rgba(0,0,0,0.2);
+    }
+
+    /* Progress bar + dots */
+    .carousel-progress-bar {
+      height: 3px;
+      border-radius: 3px;
+      background: rgba(34, 197, 94, 0.15);
+      overflow: hidden;
+    }
+    .carousel-progress-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #22c55e, #4ade80);
+      width: 0%;
+      transition: none;
+    }
+    .carousel-progress-fill.animating {
+      width: 100%;
+      transition: width linear;
+    }
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #d1d5db;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      padding: 0;
+    }
+    .carousel-dot.active {
+      background: #22c55e;
+      width: 24px;
+      border-radius: 4px;
+    }
+
+    /* ── Favorites showcase — each card a different visual object ── */
+    .fav-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+    }
+    .fav-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.5);
+    }
+
+    /* — Magazine / editorial hero card — */
+    .fav-magazine {
+      border-radius: 1.5rem;
+      background: #fffbf0;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .fav-magazine .mag-accent {
+      position: absolute;
+      top: 0; right: 0;
+      width: 40%;
+      height: 100%;
+      clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
+      transition: clip-path 0.5s ease;
+    }
+    .fav-magazine:hover .mag-accent {
+      clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    /* — Physical gift card mockup — */
+    .fav-giftcard {
+      border-radius: 1rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.3);
+    }
+    .fav-giftcard .gc-chip {
+      width: 32px; height: 24px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, #d4af37, #f5d76e, #d4af37);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      position: relative;
+    }
+    .fav-giftcard .gc-chip::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      border: 1px solid rgba(0,0,0,0.15);
+      border-radius: 2px;
+    }
+    .fav-giftcard .gc-stripe {
+      position: absolute;
+      left: 0; right: 0;
+      height: 24px;
+      background: linear-gradient(90deg, #111, #333, #111);
+    }
+    @media (min-width: 640px) {
+      .fav-giftcard .gc-stripe { height: 32px; }
+    }
+
+    /* — Polaroid / photo style — */
+    .fav-polaroid {
+      border-radius: 0.5rem;
+      background: #fff;
+      padding: 6px 6px 0 6px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.05);
+    }
+    @media (min-width: 640px) {
+      .fav-polaroid {
+        padding: 10px 10px 0 10px;
+        transform: rotate(-1.5deg);
+      }
+    }
+    .fav-polaroid:hover {
+      transform: rotate(0deg) translateY(-6px) scale(1.02);
+    }
+    .fav-polaroid .pol-photo {
+      border-radius: 0.25rem;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* — Price tag / hanging label — */
+    .fav-pricetag {
+      border-radius: 1.25rem;
+      background: #fafaf5;
+      border: 2px solid #e8e4d9;
+      position: relative;
+    }
+    .fav-pricetag::before {
+      content: '';
+      position: absolute;
+      top: 8px; left: 50%;
+      transform: translateX(-50%);
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      background: transparent;
+      z-index: 10;
+    }
+    .fav-pricetag::after {
+      content: '';
+      position: absolute;
+      top: -14px; left: 50%;
+      transform: translateX(-50%);
+      width: 1.5px; height: 16px;
+      background: #bbb;
+    }
+    @media (min-width: 640px) {
+      .fav-pricetag::before {
+        top: 12px;
+        width: 20px; height: 20px;
+        border-width: 3px;
+      }
+      .fav-pricetag::after {
+        top: -20px;
+        width: 2px; height: 22px;
+      }
+    }
+
+    /* — Game UI / achievement popup — */
+    .fav-gameui {
+      border-radius: 1rem;
+      background: linear-gradient(170deg, #0d0d1a 0%, #141428 50%, #1a0a2e 100%);
+      border: 1px solid rgba(100, 100, 255, 0.15);
+      box-shadow: inset 0 0 40px rgba(100, 100, 255, 0.05);
+    }
+    .fav-gameui .gui-scanline {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(100,100,255,0.02) 2px,
+        rgba(100,100,255,0.02) 4px
+      );
+      pointer-events: none;
+    }
+
+    /* — Classic coupon with perforated edge — */
+    .fav-coupon {
+      border-radius: 1.25rem;
+      background: linear-gradient(135deg, #fff5f5 0%, #fff 50%, #fff5f0 100%);
+      border: 2px dashed #e0c5b5;
+      position: relative;
+    }
+    .fav-coupon .coupon-cut {
+      position: absolute;
+      top: 50%; right: -1px;
+      transform: translateY(-50%);
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: #0a0a0a;
+      border: 2px dashed #e0c5b5;
+    }
+    .fav-coupon .coupon-cut-left {
+      right: auto; left: -1px;
+    }
 
     /* Sticky CTA for mobile */
     .sticky-cta {
@@ -270,13 +516,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16 sm:h-20">
         <!-- Logo -->
-        <a href="#" class="flex items-center gap-2 group">
-          <div class="w-9 h-9 bg-brand-500 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110">
-            <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-          </div>
-          <span class="text-lg font-bold tracking-tight">Gutschein<span class="text-brand-500">.Express</span></span>
+        <a href="#" class="flex items-center group">
+          <img src="logos/gutschein-express.svg" alt="Gutschein Express" class="h-8 sm:h-9 w-auto site-logo transition-transform group-hover:scale-105">
         </a>
 
         <!-- Desktop Nav -->
@@ -452,7 +693,7 @@
       <!-- Badge -->
       <div class="hero-badge inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-5 py-2 mb-8">
         <span class="w-2 h-2 bg-brand-400 rounded-full animate-pulse-soft"></span>
-        <span class="text-sm font-medium text-white/80">Bis zu 15% sparen auf Top-Marken</span>
+        <span class="text-sm font-medium text-white/80">Bis zu 15% sparen auf Top-Marken.</span>
       </div>
 
       <!-- Main headline -->
@@ -522,51 +763,6 @@
           <img src="logos/douglas.svg" alt="Douglas" class="h-7 sm:h-8 w-auto object-contain">
         </a>
       </div>
-    </div>
-  </section>
-
-  <!-- ============================================ -->
-  <!-- NEU EINGETROFFEN -->
-  <!-- ============================================ -->
-  <section class="py-20 sm:py-28 bg-gray-950 relative overflow-hidden">
-    <!-- Subtle ambient glows -->
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_15%_50%,rgba(34,197,94,0.09),transparent_55%)] pointer-events-none"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_85%_30%,rgba(99,102,241,0.08),transparent_55%)] pointer-events-none"></div>
-
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-      <!-- Header row -->
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 sm:mb-14 reveal">
-        <div>
-          <!-- Animated badge -->
-          <span class="inline-flex items-center gap-2 bg-brand-500/15 border border-brand-500/30 text-brand-400 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-4">
-            <span class="relative flex h-2 w-2">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
-              <span class="relative inline-flex h-2 w-2 rounded-full bg-brand-500"></span>
-            </span>
-            Neu eingetroffen
-          </span>
-          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Brandneu &amp; frisch verfügbar</h2>
-          <p class="text-gray-500 mt-2 text-base">Sei der Erste &mdash; jetzt noch mehr Marken zum Sparpreis</p>
-        </div>
-        <a href="katalog.html" class="mt-6 sm:mt-0 inline-flex items-center gap-1.5 text-brand-400 hover:text-brand-300 font-semibold text-sm transition-colors">
-          Alle Gutscheine
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
-        </a>
-      </div>
-
-      <!-- Cards — 2 cols mobile / 3 tablet / 6 desktop (single showcase row) -->
-      <div id="new-arrivals-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5">
-        <!-- Populated by JS -->
-      </div>
-
-      <!-- Bottom hint row -->
-      <div class="mt-10 flex items-center justify-center gap-3 reveal">
-        <div class="h-px flex-1 bg-gradient-to-r from-transparent to-white/10 max-w-xs"></div>
-        <span class="text-xs text-gray-600 font-medium uppercase tracking-wider">Täglich neue Angebote</span>
-        <div class="h-px flex-1 bg-gradient-to-l from-transparent to-white/10 max-w-xs"></div>
-      </div>
-
     </div>
   </section>
 
@@ -642,19 +838,20 @@
   </section>
 
   <!-- ============================================ -->
-  <!-- FEATURED DEALS -->
+  <!-- NEU EINGETROFFEN — Auto-Spotlight Carousel -->
   <!-- ============================================ -->
   <section id="deals" class="py-20 sm:py-28 bg-gray-50/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 reveal">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 reveal">
         <div>
           <span class="inline-flex items-center gap-2 text-brand-600 text-sm font-semibold uppercase tracking-wider mb-4">
-            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
-            </svg>
-            Aktuelle Top-Deals
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-500 opacity-75"></span>
+              <span class="relative inline-flex h-2 w-2 rounded-full bg-brand-500"></span>
+            </span>
+            Gerade eingetroffen
           </span>
-          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Beliebteste Gutscheine</h2>
+          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Neu eingetroffen</h2>
         </div>
         <a href="katalog.html" class="text-brand-600 font-semibold text-sm hover:text-brand-700 transition-colors mt-4 sm:mt-0 flex items-center gap-1">
           Alle anzeigen
@@ -664,12 +861,23 @@
         </a>
       </div>
 
-      <div id="featured-deals" class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+      <!-- Progress bar -->
+      <div class="carousel-progress-bar mb-6 reveal">
+        <div id="carousel-progress" class="carousel-progress-fill"></div>
+      </div>
+
+      <!-- Carousel track -->
+      <div id="featured-deals" class="carousel-track flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth pb-4 -mb-4 snap-x snap-mandatory">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Dot navigation -->
+      <div id="carousel-dots" class="flex items-center justify-center gap-2 mt-8 reveal">
         <!-- Populated by JS -->
       </div>
 
       <!-- Urgency bar -->
-      <div class="mt-10 reveal">
+      <div class="mt-8 reveal">
         <div class="bg-white border border-brand-100 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 bg-brand-500 rounded-full animate-pulse-soft"></span>
@@ -685,6 +893,32 @@
           <div class="h-4 w-px bg-gray-200 hidden sm:block"></div>
           <span class="text-sm font-medium text-brand-600">Heute schon <strong>127 Gutscheine</strong> verkauft</span>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- AKTUELLE LIEBLINGS-GUTSCHEINE — Showcase -->
+  <!-- ============================================ -->
+  <section class="py-20 sm:py-28 bg-gray-950 relative overflow-hidden">
+    <!-- Ambient glows -->
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_40%,rgba(34,197,94,0.07),transparent_50%)] pointer-events-none"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_60%,rgba(99,102,241,0.06),transparent_50%)] pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+        <span class="inline-flex items-center gap-2 bg-brand-500/15 border border-brand-500/30 text-brand-400 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-4">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+          Unsere Empfehlungen
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Aktuelle Lieblings-Gutscheine</h2>
+        <p class="text-gray-500 mt-3 text-base">Handverlesen, top bewertet und am meisten geliebt</p>
+      </div>
+
+      <div id="favorites-showcase" class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 lg:gap-6 auto-rows-[180px] sm:auto-rows-[210px] lg:auto-rows-[240px]">
+        <!-- Populated by JS: magazine, gift card, polaroid, price tag, game UI, coupon -->
       </div>
     </div>
   </section>
@@ -969,13 +1203,8 @@
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
         <!-- Brand -->
         <div class="lg:col-span-1">
-          <a href="#" class="flex items-center gap-2 mb-4">
-            <div class="w-9 h-9 bg-brand-500 rounded-xl flex items-center justify-center">
-              <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <span class="text-lg font-bold text-white">Gutschein<span class="text-brand-400">.Express</span></span>
+          <a href="#" class="flex items-center mb-4">
+            <img src="logos/gutschein-express.svg" alt="Gutschein Express" class="h-8 w-auto site-logo-footer">
           </a>
           <p class="text-sm leading-relaxed mb-4">Digitale Gutscheine zu Top-Preisen. Sofort per E-Mail &mdash; 100% sicher.</p>
           <div class="flex gap-0.5">
@@ -1052,35 +1281,326 @@
   <!-- ============================================ -->
   <script src="data.js"></script>
   <script>
-    // === RENDER NEW ARRIVALS ===
+    // === AUTO-SPOTLIGHT CAROUSEL ===
     (function() {
-      var newSlugs = ['playstation-100', 'kaufland-100', 'rossmann-100', 'otto-50', 'airbnb-50', 'amazon-500'];
-      var container = document.getElementById('new-arrivals-grid');
-      if (container) {
-        container.innerHTML = newSlugs.map(function(slug, i) {
-          var p = getProduct(slug);
-          if (!p || !p.available) return '';
-          return '<div class="reveal reveal-delay-' + ((i % 3) + 1) + ' relative">'
-            + '<div class="absolute -top-2.5 -left-2.5 z-20 flex items-center gap-1.5 bg-brand-500 text-white text-[10px] font-black px-2.5 py-1 rounded-full shadow-lg shadow-brand-500/40 uppercase tracking-wide">'
-            + '<span class="relative flex h-1.5 w-1.5"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span><span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-white"></span></span>'
-            + 'Neu</div>'
-            + renderProductCard(p)
-            + '</div>';
+      var INTERVAL = 3500; // ms between auto-advances
+      var slugs = ['amazon-100', 'airbnb-100', 'mediamarkt-100', 'ikea-100', 'playstation-100', 'rossmann-50', 'kaufland-100', 'otto-50'];
+      var track = document.getElementById('featured-deals');
+      var dotsContainer = document.getElementById('carousel-dots');
+      var progressBar = document.getElementById('carousel-progress');
+      if (!track) return;
+
+      // Render cards
+      track.innerHTML = slugs.map(function(slug, i) {
+        var p = getProduct(slug);
+        if (!p) return '';
+        return '<div class="carousel-item snap-start" data-index="' + i + '">' + renderProductCard(p) + '</div>';
+      }).join('');
+
+      // Render dots
+      if (dotsContainer) {
+        dotsContainer.innerHTML = slugs.map(function(_, i) {
+          return '<button class="carousel-dot" data-index="' + i + '" aria-label="Gutschein ' + (i+1) + '"></button>';
         }).join('');
       }
+
+      var items = track.querySelectorAll('.carousel-item');
+      var dots = dotsContainer ? dotsContainer.querySelectorAll('.carousel-dot') : [];
+      var current = 0;
+      var timer = null;
+      var paused = false;
+
+      function updateSpotlight(index) {
+        current = index;
+        items.forEach(function(item, i) {
+          item.classList.remove('is-active', 'is-near');
+          if (i === index) {
+            item.classList.add('is-active');
+          } else if (Math.abs(i - index) === 1) {
+            item.classList.add('is-near');
+          }
+        });
+        dots.forEach(function(dot, i) {
+          dot.classList.toggle('active', i === index);
+        });
+
+        // Scroll active card into view (centered)
+        var activeItem = items[index];
+        if (activeItem) {
+          var trackRect = track.getBoundingClientRect();
+          var itemRect = activeItem.getBoundingClientRect();
+          var scrollTarget = activeItem.offsetLeft - (trackRect.width / 2) + (itemRect.width / 2);
+          track.scrollTo({ left: scrollTarget, behavior: 'smooth' });
+        }
+      }
+
+      function startProgress() {
+        if (!progressBar) return;
+        // Reset
+        progressBar.classList.remove('animating');
+        progressBar.style.width = '0%';
+        // Force reflow
+        void progressBar.offsetWidth;
+        // Animate
+        progressBar.style.transitionDuration = INTERVAL + 'ms';
+        progressBar.classList.add('animating');
+      }
+
+      function advance() {
+        var next = (current + 1) % items.length;
+        updateSpotlight(next);
+        startProgress();
+      }
+
+      function startAutoPlay() {
+        stopAutoPlay();
+        timer = setInterval(function() {
+          if (!paused) advance();
+        }, INTERVAL);
+        startProgress();
+      }
+
+      function stopAutoPlay() {
+        if (timer) { clearInterval(timer); timer = null; }
+        if (progressBar) {
+          progressBar.classList.remove('animating');
+          progressBar.style.width = '0%';
+        }
+      }
+
+      // Dot clicks
+      dots.forEach(function(dot) {
+        dot.addEventListener('click', function() {
+          var idx = parseInt(this.getAttribute('data-index'));
+          updateSpotlight(idx);
+          startAutoPlay(); // restart timer
+        });
+      });
+
+      // Card clicks to focus (not navigate — the <a> inside handles nav)
+      items.forEach(function(item) {
+        item.addEventListener('mouseenter', function() {
+          var idx = parseInt(this.getAttribute('data-index'));
+          updateSpotlight(idx);
+        });
+      });
+
+      // Pause on hover
+      track.addEventListener('mouseenter', function() { paused = true; });
+      track.addEventListener('mouseleave', function() {
+        paused = false;
+        startAutoPlay();
+      });
+
+      // Initial state
+      updateSpotlight(0);
+
+      // Start auto-play only when section is visible
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            startAutoPlay();
+          } else {
+            stopAutoPlay();
+          }
+        });
+      }, { threshold: 0.3 });
+      observer.observe(track);
     })();
 
-    // === RENDER FEATURED DEALS ===
+    // === RENDER FAVORITES SHOWCASE — 6 unique visual metaphors ===
     (function() {
-      var featuredSlugs = ['amazon-100', 'airbnb-100', 'mediamarkt-100', 'ikea-100'];
-      var container = document.getElementById('featured-deals');
-      if (container) {
-        container.innerHTML = featuredSlugs.map(function(slug, i) {
-          var p = getProduct(slug);
-          if (!p) return '';
-          return '<div class="reveal reveal-delay-' + (i + 1) + '">' + renderProductCard(p) + '</div>';
-        }).join('');
+      var container = document.getElementById('favorites-showcase');
+      if (!container) return;
+
+      var cards = '';
+
+      // ────────────────────────────────────────────────
+      // 1. AMAZON 500€ — "Magazine editorial" style
+      //    Cream/paper bg, huge brand-color typography,
+      //    diagonal accent block, clean minimal layout
+      // ────────────────────────────────────────────────
+      var am = getProduct('amazon-500');
+      if (am) {
+        var amLogo = BRAND_LOGOS[am.brandSlug] || '';
+        cards += '<a href="' + getProductUrl(am.slug) + '" class="col-span-2 row-span-1 lg:row-span-2 fav-card fav-magazine group block reveal reveal-delay-1">'
+          + '<div class="mag-accent bg-gradient-to-br from-[#FF9900] to-[#e88b00]"></div>'
+          + '<div class="absolute top-6 right-[42%] w-14 lg:w-20 h-14 lg:h-20 rounded-full border-2 border-[#FF9900]/15 hidden sm:block"></div>'
+          + '<div class="relative h-full flex flex-col justify-between p-4 sm:p-6 lg:p-8 z-10">'
+            + '<div class="flex items-center gap-3">'
+              + '<div class="inline-block bg-[#FF9900] text-white text-[9px] sm:text-[10px] font-black px-2 sm:px-3 py-1 rounded-md uppercase tracking-widest">Bestseller</div>'
+              + (amLogo ? '<img src="' + amLogo + '" alt="Amazon" class="h-5 sm:h-7 lg:h-9 w-auto object-contain" style="filter:brightness(0) opacity(0.7)">' : '')
+            + '</div>'
+            + '<div>'
+              + '<p class="text-[#FF9900] text-[10px] sm:text-xs font-semibold uppercase tracking-wider mb-0.5 sm:mb-1">Premium Gutschein</p>'
+              + '<div class="flex items-end gap-2 sm:gap-3 mb-1 sm:mb-3">'
+                + '<span class="text-3xl sm:text-5xl lg:text-7xl font-black text-gray-900 leading-none tracking-tighter" style="font-feature-settings:\'tnum\'">' + formatPrice(am.price) + '</span>'
+                + '<div class="pb-0.5 sm:pb-2">'
+                  + '<span class="text-gray-400 text-xs sm:text-lg line-through block">' + formatPrice(am.value) + '</span>'
+                  + '<span class="text-[#FF9900] text-xs sm:text-sm font-bold">' + getSavings(am) + '\u20ac sparen</span>'
+                + '</div>'
+              + '</div>'
+              + '<div class="hidden sm:flex items-center gap-3 text-gray-500 text-[10px] sm:text-xs">'
+                + '<span class="flex items-center gap-1"><svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>Sofort per E-Mail</span>'
+                + '<span class="w-1 h-1 rounded-full bg-gray-300"></span>'
+                + '<span>' + am.validityYears + '</span>'
+              + '</div>'
+            + '</div>'
+          + '</div>'
+        + '</a>';
       }
+
+      // ────────────────────────────────────────────────
+      // 2. MEDIAMARKT 100€ — "Physical gift card" mockup
+      //    Dark metallic, gold chip, mag stripe, card dots
+      // ────────────────────────────────────────────────
+      var mm = getProduct('mediamarkt-100');
+      if (mm) {
+        var mmLogo = BRAND_LOGOS[mm.brandSlug] || '';
+        cards += '<a href="' + getProductUrl(mm.slug) + '" class="col-span-1 row-span-1 fav-card fav-giftcard group block reveal reveal-delay-2">'
+          + '<div class="absolute -top-10 -right-10 w-24 h-24 bg-[#df0000]/15 rounded-full blur-2xl"></div>'
+          + '<div class="gc-stripe" style="top:48%"></div>'
+          + '<div class="relative h-full flex flex-col justify-between p-3 sm:p-5 z-10">'
+            + '<div class="flex items-start justify-between">'
+              + (mmLogo ? '<img src="' + mmLogo + '" alt="MediaMarkt" class="h-3.5 sm:h-5 w-auto object-contain">' : '')
+              + '<div class="gc-chip" style="width:28px;height:20px"></div>'
+            + '</div>'
+            + '<div>'
+              + '<div class="hidden sm:flex items-center gap-2 mb-2">'
+                + '<span class="text-gray-600 text-[9px] tracking-[0.2em] font-mono">\u2022\u2022\u2022\u2022 \u2022\u2022\u2022\u2022 \u2022\u2022\u2022\u2022</span>'
+              + '</div>'
+              + '<div class="flex items-end justify-between">'
+                + '<div>'
+                  + '<span class="text-xl sm:text-3xl font-black text-white leading-none">' + formatPrice(mm.price) + '</span>'
+                  + '<span class="text-gray-500 text-[10px] sm:text-xs ml-1.5 line-through">' + formatPrice(mm.value) + '</span>'
+                + '</div>'
+                + '<span class="text-[#df0000] text-[10px] sm:text-xs font-black bg-[#df0000]/10 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded">-' + mm.discount + '%</span>'
+              + '</div>'
+            + '</div>'
+          + '</div>'
+        + '</a>';
+      }
+
+      // ────────────────────────────────────────────────
+      // 3. AIRBNB 100€ — "Polaroid" / instant photo
+      //    White frame, gradient "photo" inside,
+      //    slightly rotated, handwritten-feel caption
+      // ────────────────────────────────────────────────
+      var ab = getProduct('airbnb-100');
+      if (ab) {
+        var abLogo = BRAND_LOGOS[ab.brandSlug] || '';
+        cards += '<a href="' + getProductUrl(ab.slug) + '" class="col-span-1 row-span-1 fav-card fav-polaroid group block reveal reveal-delay-3">'
+          + '<div class="pol-photo" style="height:58%">'
+            + '<div class="absolute inset-0 bg-gradient-to-br from-[#FF385C] via-[#ff6b81] to-[#ffa07a]"></div>'
+            + '<svg class="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 200 120" fill="none"><circle cx="140" cy="30" r="20" fill="white"/><path d="M20 100 Q60 40 100 70 Q140 100 180 60" stroke="white" stroke-width="2" fill="none"/><path d="M60 90 L75 50 L90 90" fill="white" opacity="0.4"/><path d="M120 85 L145 35 L170 85" fill="white" opacity="0.3"/></svg>'
+            + (abLogo ? '<img src="' + abLogo + '" alt="Airbnb" class="absolute top-2 left-2 sm:top-3 sm:left-3 h-4 sm:h-6 w-auto object-contain z-10">' : '')
+            + '<span class="absolute top-2 right-2 sm:top-3 sm:right-3 bg-white/25 backdrop-blur-sm text-white text-[8px] sm:text-[9px] font-bold px-1.5 sm:px-2 py-0.5 rounded-full z-10">Reisen</span>'
+          + '</div>'
+          + '<div class="px-1 py-1.5 sm:p-2.5 flex items-end justify-between">'
+            + '<div>'
+              + '<span class="text-lg sm:text-2xl font-black text-gray-800 leading-none">' + formatPrice(ab.price) + '</span>'
+              + '<span class="text-gray-400 text-[10px] sm:text-xs ml-1 line-through">' + formatPrice(ab.value) + '</span>'
+            + '</div>'
+            + '<span class="text-[#FF385C] text-[9px] sm:text-xs font-bold">' + getSavings(ab) + '\u20ac</span>'
+          + '</div>'
+        + '</a>';
+      }
+
+      // ────────────────────────────────────────────────
+      // 4. IKEA 100€ — "Price tag / hanging label"
+      //    Cream paper, hole + string at top, Scandinavian
+      //    clean typography, blue accent line
+      // ────────────────────────────────────────────────
+      var ik = getProduct('ikea-100');
+      if (ik) {
+        var ikLogo = BRAND_LOGOS[ik.brandSlug] || '';
+        cards += '<a href="' + getProductUrl(ik.slug) + '" class="col-span-1 row-span-1 lg:row-span-2 fav-card fav-pricetag group block reveal reveal-delay-4">'
+          + '<div class="relative h-full flex flex-col items-center justify-between pt-9 sm:pt-11 pb-3 sm:pb-5 px-3 sm:px-5 z-10">'
+            + '<div class="absolute top-0 left-0 right-0 h-1.5 sm:h-2 bg-[#0051ba] rounded-t-xl"></div>'
+            + '<div class="text-center">'
+              + (ikLogo ? '<img src="logos/ikea-color.svg" alt="IKEA" class="h-6 sm:h-8 lg:h-10 w-auto object-contain mx-auto mb-1">' : '')
+              + '<p class="text-gray-400 text-[9px] sm:text-[10px] uppercase tracking-widest font-semibold">Gutschein</p>'
+            + '</div>'
+            + '<div class="text-center">'
+              + '<span class="text-2xl sm:text-4xl lg:text-6xl font-black text-gray-800 leading-none block tracking-tighter" style="font-feature-settings:\'tnum\'">' + formatPrice(ik.value) + '</span>'
+              + '<div class="w-8 sm:w-12 h-0.5 bg-[#0051ba] mx-auto my-1.5 sm:my-3"></div>'
+              + '<div class="bg-[#0051ba] text-white text-xs sm:text-sm font-black px-3 sm:px-5 py-1.5 sm:py-2 rounded-lg">'
+                + 'Nur ' + formatPrice(ik.price)
+              + '</div>'
+              + '<p class="text-green-600 text-[10px] sm:text-xs font-bold mt-1 sm:mt-2">' + getSavings(ik) + '\u20ac sparen</p>'
+            + '</div>'
+            + '<div class="text-center hidden lg:block">'
+              + '<p class="text-gray-400 text-[10px] leading-relaxed">Online & in IKEA-H\u00e4usern<br>einl\u00f6sbar</p>'
+            + '</div>'
+          + '</div>'
+        + '</a>';
+      }
+
+      // ────────────────────────────────────────────────
+      // 5. PLAYSTATION 100€ — "Game UI / Achievement"
+      //    Dark screen, scanlines, XP bar, neon accents,
+      //    looks like an in-game store item
+      // ────────────────────────────────────────────────
+      var ps = getProduct('playstation-100');
+      if (ps) {
+        var psLogo = BRAND_LOGOS[ps.brandSlug] || '';
+        cards += '<a href="' + getProductUrl(ps.slug) + '" class="col-span-1 row-span-1 fav-card fav-gameui group block reveal reveal-delay-1">'
+          + '<div class="gui-scanline"></div>'
+          + '<div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[2px] bg-gradient-to-r from-transparent via-[#4fc3f7] to-transparent opacity-60"></div>'
+          + '<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-[#7c4dff] to-transparent opacity-40"></div>'
+          + '<div class="relative h-full flex flex-col justify-between p-3 sm:p-5 z-10">'
+            + '<div class="flex items-center justify-between">'
+              + (psLogo ? '<img src="' + psLogo + '" alt="PlayStation" class="h-3 sm:h-5 w-auto object-contain opacity-70">' : '')
+              + '<div class="flex items-center gap-1">'
+                + '<div class="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-[#4fc3f7] shadow-[0_0_6px_rgba(79,195,247,0.6)]"></div>'
+                + '<span class="text-[#4fc3f7] text-[8px] sm:text-[9px] font-bold uppercase tracking-wider">Store</span>'
+              + '</div>'
+            + '</div>'
+            + '<div>'
+              + '<div class="w-full h-1 sm:h-1.5 bg-white/5 rounded-full mb-2 sm:mb-3 overflow-hidden">'
+                + '<div class="h-full rounded-full bg-gradient-to-r from-[#7c4dff] to-[#4fc3f7]" style="width:' + ps.discount + '0%"></div>'
+              + '</div>'
+              + '<div class="flex items-end justify-between">'
+                + '<div>'
+                  + '<span class="text-xl sm:text-3xl font-black text-white leading-none" style="text-shadow:0 0 20px rgba(79,195,247,0.3)">' + formatPrice(ps.price) + '</span>'
+                  + '<span class="text-gray-600 text-[10px] sm:text-xs ml-1 line-through">' + formatPrice(ps.value) + '</span>'
+                + '</div>'
+                + '<span class="text-[9px] sm:text-[10px] font-black text-[#7c4dff] bg-[#7c4dff]/10 px-1.5 py-0.5 rounded border border-[#7c4dff]/20">-' + ps.discount + '%</span>'
+              + '</div>'
+            + '</div>'
+          + '</div>'
+        + '</a>';
+      }
+
+      // ────────────────────────────────────────────────
+      // 6. ROSSMANN 100€ — "Classic coupon" style
+      //    Warm paper bg, dashed border, scissors icon,
+      //    perforated cut-out circles, old-school charm
+      // ────────────────────────────────────────────────
+      var rs = getProduct('rossmann-100');
+      if (rs) {
+        var rsLogo = BRAND_LOGOS[rs.brandSlug] || '';
+        cards += '<a href="' + getProductUrl(rs.slug) + '" class="col-span-2 row-span-1 fav-card fav-coupon group block reveal reveal-delay-2">'
+          + '<div class="coupon-cut"></div>'
+          + '<div class="coupon-cut coupon-cut-left"></div>'
+          + '<svg class="absolute top-2 right-6 sm:top-3 sm:right-8 w-4 sm:w-5 h-4 sm:h-5 text-[#e4003a]/40 -rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"/></svg>'
+          + '<div class="relative h-full flex items-center px-3 sm:px-6 lg:px-8 z-10">'
+            + '<div class="flex-1 border-r-2 border-dashed border-[#e0c5b5] pr-3 sm:pr-6 mr-3 sm:mr-6 h-[60%] flex flex-col justify-center min-w-0">'
+              + (rsLogo ? '<img src="logos/rossmann.svg" alt="Rossmann" class="h-4 sm:h-6 w-auto object-contain mb-1 sm:mb-2">' : '')
+              + '<p class="text-gray-500 text-[9px] sm:text-xs truncate">Pflege, Kosmetik & Haushalt</p>'
+              + '<p class="text-gray-400 text-[8px] sm:text-[9px] mt-0.5 hidden sm:block">In \u00fcber 2.200 Filialen einl\u00f6sbar</p>'
+            + '</div>'
+            + '<div class="text-center flex-shrink-0">'
+              + '<span class="text-[#e4003a] text-2xl sm:text-4xl font-black leading-none block">' + rs.discount + '%</span>'
+              + '<span class="text-gray-500 text-[9px] sm:text-xs font-semibold uppercase tracking-wider">Rabatt</span>'
+              + '<div class="mt-1.5 sm:mt-2 bg-[#e4003a] text-white text-[10px] sm:text-sm font-bold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg">' + formatPrice(rs.price) + '</div>'
+              + '<span class="text-gray-400 text-[9px] sm:text-[10px] line-through mt-0.5 block">' + formatPrice(rs.value) + '</span>'
+            + '</div>'
+          + '</div>'
+        + '</a>';
+      }
+
+      container.innerHTML = cards;
     })();
     // === HERO PARTICLES ===
     (function() {

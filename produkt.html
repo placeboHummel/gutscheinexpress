@@ -36,8 +36,6 @@
     .reveal-delay-1 { transition-delay: 0.1s; }
     .reveal-delay-2 { transition-delay: 0.2s; }
     .reveal-delay-3 { transition-delay: 0.3s; }
-    .gift-card { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-    .gift-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.15); }
     .product-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform; }
     .product-card:hover { transform: translateY(-12px) scale(1.03); box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.3); }
     .navbar-scrolled { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); }
@@ -53,6 +51,308 @@
       50% { transform: translateY(-6px); }
     }
     .animate-float { animation: float 6s ease-in-out infinite; }
+
+    /* ── Brand Visual: shared container ── */
+    .brand-visual {
+      position: relative;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+    @media (min-width: 640px) {
+      .brand-visual { aspect-ratio: 5/4; }
+    }
+
+    /* ── Amazon: Real Gift Card — dark with icon mosaic + arrow ── */
+    .bv-amazon {
+      background: #232f3e;
+      border: none;
+      box-shadow: 0 25px 70px -15px rgba(0,0,0,0.5);
+    }
+    .bv-amazon .amz-arrow {
+      position: absolute;
+      left: 50%; top: 52%;
+      transform: translate(-50%, -50%);
+      width: 72%; opacity: 0.95;
+    }
+    .bv-amazon .amz-icons {
+      position: absolute;
+      inset: 0;
+      opacity: 0.09;
+    }
+
+    /* ── MediaMarkt: Authentic Geschenkkarte ── */
+    .bv-mediamarkt {
+      background: #df0000;
+      border: none;
+      box-shadow: 0 25px 70px -15px rgba(0,0,0,0.5);
+    }
+    .bv-mediamarkt .mm-swirl {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 32% 50%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 100%),
+        conic-gradient(
+          from 0deg at 32% 50%,
+          #df0000 0deg,   #1a0000 15deg,  #df0000 30deg,  #1a0000 45deg,
+          #df0000 60deg,  #1a0000 75deg,  #df0000 90deg,  #1a0000 105deg,
+          #df0000 120deg, #1a0000 135deg, #df0000 150deg, #1a0000 165deg,
+          #df0000 180deg, #1a0000 195deg, #df0000 210deg, #1a0000 225deg,
+          #df0000 240deg, #1a0000 255deg, #df0000 270deg, #1a0000 285deg,
+          #df0000 300deg, #1a0000 315deg, #df0000 330deg, #1a0000 345deg,
+          #df0000 360deg
+        );
+    }
+    /* Curved distortion overlay to make the pinwheel feel spiral-ish */
+    .bv-mediamarkt .mm-swirl-twist {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 120% 120% at 32% 50%, transparent 30%, rgba(26,0,0,0.25) 80%);
+      mix-blend-mode: multiply;
+    }
+    .bv-mediamarkt .mm-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 90% 90% at 32% 50%, transparent 20%, rgba(0,0,0,0.35) 100%);
+    }
+    .bv-mediamarkt .mm-shine {
+      position: absolute;
+      top: -30%; left: -10%;
+      width: 60%; height: 160%;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.06) 0%, transparent 70%);
+      transform: rotate(-25deg);
+      pointer-events: none;
+    }
+
+    /* ── Rossmann: Classic Coupon ── */
+    .bv-rossmann {
+      background: linear-gradient(135deg, #fff5f5 0%, #fff 50%, #fff5f0 100%);
+      border: 2.5px dashed #e0c5b5;
+      border-radius: 1.5rem;
+    }
+    .bv-rossmann .coupon-cut {
+      position: absolute;
+      top: 50%; right: -2px;
+      transform: translateY(-50%);
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: #f8f8f8;
+      border: 2.5px dashed #e0c5b5;
+      z-index: 5;
+    }
+    .bv-rossmann .coupon-cut-left {
+      right: auto; left: -2px;
+    }
+    .bv-rossmann .coupon-divider {
+      position: absolute;
+      top: 10%; bottom: 10%;
+      left: 62%;
+      width: 0;
+      border-left: 2.5px dashed #e0c5b5;
+    }
+    .bv-rossmann .coupon-scissors {
+      position: absolute;
+      top: 6%; left: 60%;
+      transform: translateX(-50%);
+      color: #e4003a;
+      opacity: 0.4;
+    }
+
+    /* ── Kaufland: Fresh Market Receipt ── */
+    .bv-kaufland {
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      border-radius: 0.5rem 0.5rem 0 0;
+      box-shadow: 0 8px 40px -10px rgba(0,0,0,0.1);
+    }
+    .bv-kaufland::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 16px;
+      background: linear-gradient(135deg, #fff 33.33%, transparent 33.33%) -12px 0,
+                  linear-gradient(225deg, #fff 33.33%, transparent 33.33%) -12px 0;
+      background-size: 24px 16px;
+    }
+    .bv-kaufland .receipt-line {
+      border-bottom: 1px dashed #ddd;
+    }
+    .bv-kaufland .receipt-stamp {
+      position: absolute;
+      bottom: 12%; right: 8%;
+      width: 80px; height: 80px;
+      border: 3px solid #e60a14;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: rotate(-15deg);
+      opacity: 0.2;
+    }
+
+    /* ── OTTO: Real Gift Card — white with red bow + bold logo ── */
+    .bv-otto {
+      background: #ffffff;
+      border: 1px solid #f0f0f0;
+      border-radius: 1.5rem;
+      box-shadow: 0 20px 60px -15px rgba(0,0,0,0.15);
+    }
+    .bv-otto .otto-bow {
+      position: absolute;
+      top: -6%; left: -4%;
+      width: 44%;
+    }
+    .bv-otto .otto-stripe {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 6px;
+      background: #d4213d;
+      border-radius: 0 0 1.5rem 1.5rem;
+    }
+
+    /* ── IKEA: Hanging Price Tag ── */
+    .bv-ikea {
+      background: #fafaf5;
+      border: 2.5px solid #e8e4d9;
+      border-radius: 1.5rem;
+    }
+    .bv-ikea::before {
+      content: '';
+      position: absolute;
+      top: 16px; left: 50%;
+      transform: translateX(-50%);
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      border: 3px solid #ccc;
+      background: transparent;
+      z-index: 10;
+    }
+    .bv-ikea::after {
+      content: '';
+      position: absolute;
+      top: -28px; left: 50%;
+      transform: translateX(-50%);
+      width: 2px; height: 30px;
+      background: #bbb;
+    }
+    .bv-ikea .tag-stripe {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+      background: #0051ba;
+      border-radius: 1.25rem 1.25rem 0 0;
+    }
+
+    /* ── Airbnb: Travel Postcard ── */
+    .bv-airbnb {
+      background: #fff;
+      border-radius: 0.75rem;
+      padding: 10px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04);
+    }
+    .bv-airbnb .postcard-photo {
+      border-radius: 0.5rem;
+      overflow: hidden;
+      position: relative;
+      height: 62%;
+    }
+    .bv-airbnb .postcard-stamp {
+      position: absolute;
+      top: 10px; right: 10px;
+      width: 56px; height: 64px;
+      border: 2px dashed rgba(255,255,255,0.4);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(4px);
+    }
+    .bv-airbnb .postcard-lines {
+      position: absolute;
+      bottom: 12px; right: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 40%;
+    }
+    .bv-airbnb .postcard-lines span {
+      height: 1px;
+      background: #ddd;
+      display: block;
+    }
+
+    /* ── PlayStation: Real Store Card — vibrant blue with PS logo + swoosh ── */
+    .bv-playstation {
+      background: linear-gradient(160deg, #0070cc 0%, #005aa8 35%, #003d80 100%);
+      border: none;
+      box-shadow: 0 25px 70px -15px rgba(0,60,140,0.5);
+    }
+    /* The diagonal blue wave swoosh */
+    .bv-playstation .ps-swoosh {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .bv-playstation .ps-swoosh::before {
+      content: '';
+      position: absolute;
+      top: -30%; left: -10%;
+      width: 100%; height: 80%;
+      background: linear-gradient(145deg, rgba(100,180,255,0.25) 0%, transparent 60%);
+      border-radius: 0 0 60% 0;
+      transform: rotate(-8deg);
+    }
+    .bv-playstation .ps-swoosh::after {
+      content: '';
+      position: absolute;
+      top: -15%; right: -5%;
+      width: 65%; height: 60%;
+      background: linear-gradient(200deg, rgba(150,210,255,0.15) 0%, transparent 60%);
+      border-radius: 0 0 0 50%;
+    }
+    /* Floating controller symbols */
+    .bv-playstation .ps-symbols {
+      position: absolute;
+      inset: 0;
+    }
+    /* PS logo centered */
+    .bv-playstation .ps-logo-wrap {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -52%);
+      width: 38%;
+    }
+    /* Bottom info bar */
+    .bv-playstation .ps-bottom {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 0 5% 4%;
+      display: flex; align-items: flex-end; justify-content: space-between;
+    }
+
+    /* ── DOUGLAS: Luxury Beauty ── */
+    .bv-douglas {
+      background: linear-gradient(160deg, #1a1a1a 0%, #111 40%, #1a1a1a 100%);
+      border: 1px solid rgba(212,175,55,0.2);
+      box-shadow: 0 20px 60px -15px rgba(0,0,0,0.5);
+    }
+    .bv-douglas .gold-frame {
+      position: absolute;
+      inset: 16px;
+      border: 1px solid rgba(212,175,55,0.15);
+      border-radius: 0.75rem;
+      pointer-events: none;
+    }
+    .bv-douglas .gold-corner {
+      position: absolute;
+      width: 20px; height: 20px;
+    }
+    .bv-douglas .gold-corner-tl { top: 12px; left: 12px; border-top: 2px solid #d4af37; border-left: 2px solid #d4af37; }
+    .bv-douglas .gold-corner-tr { top: 12px; right: 12px; border-top: 2px solid #d4af37; border-right: 2px solid #d4af37; }
+    .bv-douglas .gold-corner-bl { bottom: 12px; left: 12px; border-bottom: 2px solid #d4af37; border-left: 2px solid #d4af37; }
+    .bv-douglas .gold-corner-br { bottom: 12px; right: 12px; border-bottom: 2px solid #d4af37; border-right: 2px solid #d4af37; }
   </style>
 </head>
 <body class="bg-white text-gray-900 antialiased overflow-x-hidden">
@@ -168,43 +468,417 @@
       renderProductDetail(product);
     }
 
-	    function renderProductDetail(p) {
-	      var savings = getSavings(p);
-	      var detailBrandLogo = renderBrandLogo(p, 'detail');
-	      var inlineBrandLogo = BRAND_LOGOS[p.brandSlug]
-	        ? '<img src="' + BRAND_LOGOS[p.brandSlug] + '" alt="" class="h-4 w-auto max-w-[72px] object-contain" aria-hidden="true">'
-	        : '';
+    function renderBrandVisual(p) {
+      var savings = getSavings(p);
+      var s = p.brandSlug;
+      var logo = BRAND_LOGOS[s] || '';
+      var val = formatPrice(p.value);
+      var price = formatPrice(p.price);
 
-	      // Page title
-	      document.title = p.name + ' | Gutschein.Express';
-	      document.getElementById('breadcrumb-current').textContent = p.name;
+      // ── Amazon: Real Gift Card ──
+      if (s === 'amazon') {
+        return '\
+        <div class="brand-visual bv-amazon animate-float">\
+          <!-- Product icon mosaic background -->\
+          <svg class="amz-icons" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">\
+            <g stroke="#8899aa" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">\
+              <!-- bicycle -->\
+              <circle cx="50" cy="85" r="22"/><circle cx="100" cy="85" r="22"/>\
+              <path d="M50 85l18-35h22l10 35"/><path d="M68 50l10 35h22"/><path d="M75 63h25"/>\
+              <!-- sunglasses -->\
+              <rect x="18" y="155" width="28" height="18" rx="9"/><rect x="54" y="155" width="28" height="18" rx="9"/>\
+              <path d="M46 164h8"/><path d="M18 164h-8"/><path d="M82 164h8"/>\
+              <!-- camera -->\
+              <rect x="15" y="220" width="50" height="38" rx="5"/><circle cx="40" cy="239" r="12"/><rect x="28" y="215" width="16" height="8" rx="3"/>\
+              <!-- headphones -->\
+              <path d="M190 65 Q190 40 215 40 Q240 40 240 65"/><rect x="183" y="65" width="14" height="22" rx="4"/><rect x="233" y="65" width="14" height="22" rx="4"/>\
+              <!-- clock -->\
+              <circle cx="315" cy="145" r="28"/><path d="M315 125v22l14 10"/>\
+              <!-- camera top right -->\
+              <rect x="395" y="125" width="50" height="38" rx="5"/><circle cx="420" cy="144" r="12"/><rect x="408" y="120" width="16" height="8" rx="3"/>\
+              <!-- book -->\
+              <rect x="400" y="58" width="42" height="52" rx="3"/><path d="M418 58v52"/>\
+              <!-- cloud upload -->\
+              <path d="M215 185 Q200 185 200 170 Q200 150 220 148 Q222 132 240 132 Q258 132 260 148 Q280 150 280 168 Q280 185 265 185"/>\
+              <path d="M240 185v-30m-12 12l12-12 12 12"/>\
+              <!-- shopping cart -->\
+              <path d="M395 215l-8-35h-45"/><path d="M348 200h40l-5 25H355z"/><circle cx="360" cy="235" r="5"/><circle cx="383" cy="235" r="5"/>\
+              <!-- music note -->\
+              <path d="M455 65v40"/><path d="M455 65l22-8v15l-22 8"/><circle cx="455" cy="107" r="7"/>\
+              <!-- star -->\
+              <path d="M240 290l8 25h26l-21 16 8 25-21-15-21 15 8-25-21-16h26z"/>\
+              <!-- tablet/phone -->\
+              <rect x="395" y="295" width="40" height="55" rx="5"/><rect x="400" y="305" width="30" height="32"/>\
+              <!-- skateboard -->\
+              <path d="M190 325h80" stroke-width="7" stroke-linecap="round"/><ellipse cx="205" cy="332" rx="8" ry="6"/><ellipse cx="255" cy="332" rx="8" ry="6"/>\
+              <!-- bicycle bottom -->\
+              <circle cx="135" cy="345" r="20"/><circle cx="185" cy="345" r="20"/>\
+              <path d="M135 345l16-32h20l9 32"/><path d="M151 313l9 32h20"/><path d="M158 326h23"/>\
+              <!-- dresser/furniture -->\
+              <rect x="60" y="300" width="55" height="45" rx="3"/><path d="M60 322h55"/><path d="M60 340h55"/>\
+              <circle cx="87" cy="331" r="3" fill="#8899aa"/><circle cx="87" cy="349" r="3" fill="#8899aa"/>\
+            </g>\
+          </svg>\
+          <!-- Large orange arrow (the Amazon smile) -->\
+          <svg class="amz-arrow" viewBox="0 0 320 90" fill="none" xmlns="http://www.w3.org/2000/svg">\
+            <path d="M10 70 Q90 10 200 45 Q250 60 300 25" stroke="#FF9900" stroke-width="16" stroke-linecap="round" fill="none"/>\
+            <path d="M275 15 L305 28 L278 46" stroke="#FF9900" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" fill="none"/>\
+          </svg>\
+          <!-- Content layer -->\
+          <div class="relative h-full flex flex-col justify-between p-5 sm:p-8 z-10">\
+            <div class="flex items-start justify-between">\
+              <img src="logos/amazon.svg" alt="amazon.de" class="h-7 sm:h-10 w-auto object-contain" style="filter:invert(1) brightness(2)">\
+              <span class="bg-white/15 backdrop-blur-sm text-white text-[10px] sm:text-xs font-black px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border border-white/20">-' + p.discount + '%</span>\
+            </div>\
+            <div class="bg-black/25 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-5 border border-white/10">\
+              <div class="flex items-center justify-between mb-1">\
+                <span class="text-white/50 text-[10px] sm:text-xs">Gutscheinwert</span>\
+                <span class="text-white/40 text-[10px] sm:text-sm line-through">' + val + '</span>\
+              </div>\
+              <div class="flex items-end justify-between">\
+                <span class="text-white text-3xl sm:text-5xl font-black leading-none">' + price + '</span>\
+                <span class="text-[#FF9900] text-xs sm:text-sm font-bold">' + savings + '&euro; gespart</span>\
+              </div>\
+            </div>\
+          </div>\
+        </div>';
+      }
+
+      // ── MediaMarkt: Authentic Geschenkkarte ──
+      if (s === 'mediamarkt') {
+        return '\
+        <div class="brand-visual bv-mediamarkt animate-float">\
+          <div class="mm-swirl"></div>\
+          <div class="mm-swirl-twist"></div>\
+          <div class="mm-vignette"></div>\
+          <div class="mm-shine"></div>\
+          <!-- Logo + GUTSCHEIN label like the real card -->\
+          <div class="relative h-full flex flex-col justify-between p-5 sm:p-8 z-10">\
+            <div class="flex items-start justify-between">\
+              <img src="' + logo + '" alt="' + p.brand + '" class="h-7 sm:h-10 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">\
+              <span class="bg-white text-[#df0000] text-[10px] sm:text-xs font-black px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full shadow-lg shadow-black/20">-' + p.discount + '%</span>\
+            </div>\
+            <div>\
+              <p class="text-white font-black text-lg sm:text-2xl tracking-wide uppercase mb-3 sm:mb-4 drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]" style="letter-spacing:0.15em">Gutschein</p>\
+              <div class="bg-black/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-5 border border-white/10">\
+                <div class="flex items-center justify-between mb-1">\
+                  <span class="text-white/50 text-[10px] sm:text-xs">Gutscheinwert</span>\
+                  <span class="text-white/40 text-[10px] sm:text-sm line-through">' + val + '</span>\
+                </div>\
+                <div class="flex items-end justify-between">\
+                  <span class="text-white text-3xl sm:text-5xl font-black leading-none drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)]">' + price + '</span>\
+                  <div class="text-right">\
+                    <span class="text-green-300 text-xs sm:text-sm font-bold">' + savings + '&euro; gespart</span>\
+                  </div>\
+                </div>\
+              </div>\
+            </div>\
+          </div>\
+        </div>';
+      }
+
+      // ── Rossmann: Classic Coupon ──
+      if (s === 'rossmann') {
+        return '\
+        <div class="brand-visual bv-rossmann animate-float">\
+          <div class="coupon-cut"></div>\
+          <div class="coupon-cut coupon-cut-left"></div>\
+          <div class="coupon-divider"></div>\
+          <div class="coupon-scissors">\
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">\
+              <circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/>\
+              <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"/>\
+            </svg>\
+          </div>\
+          <div class="relative h-full flex items-center px-6 sm:px-10 z-10">\
+            <div class="flex-1 pr-6 sm:pr-10 h-[70%] flex flex-col justify-center" style="max-width:58%">\
+              <img src="logos/rossmann.svg" alt="Rossmann" class="h-6 sm:h-10 w-auto object-contain object-left mb-2 sm:mb-3">\
+              <p class="text-gray-500 text-xs sm:text-sm mb-1">Pflege, Kosmetik & Haushalt</p>\
+              <p class="text-gray-400 text-[10px] sm:text-xs">In &uuml;ber 2.200 Filialen einl&ouml;sbar</p>\
+              <div class="flex items-center gap-2 mt-3 text-gray-400 text-[10px] sm:text-xs">\
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>\
+                <span>Sofort per E-Mail</span>\
+              </div>\
+            </div>\
+            <div class="text-center flex-shrink-0">\
+              <span class="text-[#e4003a] text-3xl sm:text-5xl font-black leading-none block">' + p.discount + '%</span>\
+              <span class="text-gray-500 text-[10px] sm:text-xs font-semibold uppercase tracking-wider block mt-1">Rabatt</span>\
+              <div class="w-12 h-0.5 bg-[#e4003a]/20 mx-auto my-2 sm:my-3"></div>\
+              <div class="bg-[#e4003a] text-white text-sm sm:text-lg font-bold px-4 sm:px-5 py-1.5 sm:py-2 rounded-lg">' + price + '</div>\
+              <span class="text-gray-400 text-xs sm:text-sm line-through mt-1 block">' + val + '</span>\
+            </div>\
+          </div>\
+        </div>';
+      }
+
+      // ── Kaufland: Fresh Market Receipt ──
+      if (s === 'kaufland') {
+        return '\
+        <div class="brand-visual bv-kaufland animate-float">\
+          <div class="receipt-stamp">\
+            <span class="text-[#e60a14] text-[8px] font-black uppercase tracking-wider">Gespart</span>\
+          </div>\
+          <div class="relative h-full flex flex-col p-6 sm:p-10 z-10">\
+            <div class="flex items-center justify-between mb-4 sm:mb-6">\
+              <img src="logos/kaufland.svg" alt="Kaufland" class="h-7 sm:h-10 w-auto object-contain">\
+              <span class="text-gray-400 text-[10px] sm:text-xs font-mono">' + new Date().toLocaleDateString("de-DE") + '</span>\
+            </div>\
+            <div class="flex-1 flex flex-col justify-center">\
+              <div class="receipt-line pb-3 mb-3">\
+                <div class="flex justify-between text-gray-500 text-xs sm:text-sm">\
+                  <span>Gutschein Nennwert</span>\
+                  <span class="line-through">' + val + '</span>\
+                </div>\
+              </div>\
+              <div class="receipt-line pb-3 mb-3">\
+                <div class="flex justify-between text-gray-500 text-xs sm:text-sm">\
+                  <span>Rabatt -' + p.discount + '%</span>\
+                  <span class="text-[#e60a14] font-bold">-' + savings + '&euro;</span>\
+                </div>\
+              </div>\
+              <div class="pt-1">\
+                <div class="flex justify-between items-end">\
+                  <span class="text-gray-900 text-sm sm:text-lg font-bold uppercase tracking-wider">Zu zahlen</span>\
+                  <span class="text-3xl sm:text-5xl font-black text-gray-900 leading-none">' + price + '</span>\
+                </div>\
+              </div>\
+            </div>\
+            <div class="mt-4 sm:mt-6 pt-3 border-t border-dashed border-gray-200 flex items-center justify-between">\
+              <span class="text-gray-400 text-[10px] sm:text-xs">Filial- & Online-Einkauf</span>\
+              <span class="text-[#e60a14] text-xs sm:text-sm font-bold">' + savings + '&euro; gespart &#10003;</span>\
+            </div>\
+          </div>\
+        </div>';
+      }
+
+      // ── OTTO: Real Gift Card ──
+      if (s === 'otto') {
+        return '\
+        <div class="brand-visual bv-otto animate-float">\
+          <div class="otto-stripe"></div>\
+          <!-- Red bow SVG top-left -->\
+          <svg class="otto-bow" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">\
+            <!-- Left bow loop -->\
+            <path d="M100 100 C60 70, 15 55, 20 85 C22 100, 55 105, 100 100Z" fill="#c8102e"/>\
+            <path d="M100 100 C60 70, 15 55, 20 85 C22 100, 55 105, 100 100Z" fill="url(#bowGrad1)" opacity="0.6"/>\
+            <!-- Right bow loop -->\
+            <path d="M100 100 C140 70, 185 55, 180 85 C178 100, 145 105, 100 100Z" fill="#c8102e"/>\
+            <path d="M100 100 C140 70, 185 55, 180 85 C178 100, 145 105, 100 100Z" fill="url(#bowGrad2)" opacity="0.6"/>\
+            <!-- Left ribbon tail -->\
+            <path d="M100 100 C75 120, 40 155, 55 175 C65 185, 85 170, 100 100Z" fill="#d4213d"/>\
+            <!-- Right ribbon tail -->\
+            <path d="M100 100 C125 120, 160 155, 145 175 C135 185, 115 170, 100 100Z" fill="#d4213d"/>\
+            <!-- Knot center -->\
+            <ellipse cx="100" cy="100" rx="14" ry="12" fill="#a00820"/>\
+            <!-- Highlight sheen on loops -->\
+            <path d="M100 100 C70 78, 30 65, 28 78 C26 85, 55 90, 100 100Z" fill="rgba(255,255,255,0.18)"/>\
+            <path d="M100 100 C130 78, 170 65, 172 78 C174 85, 145 90, 100 100Z" fill="rgba(255,255,255,0.18)"/>\
+            <defs>\
+              <linearGradient id="bowGrad1" x1="20" y1="70" x2="100" y2="100">\
+                <stop offset="0%" stop-color="#ff3355"/>\
+                <stop offset="100%" stop-color="#a00820"/>\
+              </linearGradient>\
+              <linearGradient id="bowGrad2" x1="180" y1="70" x2="100" y2="100">\
+                <stop offset="0%" stop-color="#ff3355"/>\
+                <stop offset="100%" stop-color="#a00820"/>\
+              </linearGradient>\
+            </defs>\
+          </svg>\
+          <!-- Content -->\
+          <div class="relative h-full flex flex-col justify-between p-5 sm:p-8 z-10">\
+            <div class="flex justify-end">\
+              <span class="bg-[#d4213d] text-white text-[10px] sm:text-xs font-black px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full">-' + p.discount + '%</span>\
+            </div>\
+            <div class="flex items-end justify-between">\
+              <div>\
+                <img src="logos/otto.svg" alt="OTTO" class="h-10 sm:h-16 w-auto object-contain mb-2 sm:mb-3">\
+                <div class="flex items-center gap-2 text-gray-400 text-[10px] sm:text-xs">\
+                  <svg class="w-3 h-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>\
+                  <span>Sofort per E-Mail</span>\
+                </div>\
+              </div>\
+              <div class="text-right">\
+                <span class="text-gray-400 text-xs sm:text-sm line-through block">' + val + '</span>\
+                <span class="text-4xl sm:text-6xl font-black text-gray-900 leading-none tracking-tight">' + price + '</span>\
+                <p class="text-[#d4213d] text-xs sm:text-sm font-bold mt-1">' + savings + '&euro; sparen</p>\
+              </div>\
+            </div>\
+          </div>\
+        </div>';
+      }
+
+      // ── IKEA: Hanging Price Tag ──
+      if (s === 'ikea') {
+        return '\
+        <div class="brand-visual bv-ikea animate-float" style="margin-top:28px">\
+          <div class="tag-stripe"></div>\
+          <div class="relative h-full flex flex-col items-center justify-between pt-14 sm:pt-16 pb-6 sm:pb-8 px-6 sm:px-10 z-10">\
+            <div class="text-center">\
+              <img src="logos/ikea-color.svg" alt="IKEA" class="h-8 sm:h-12 w-auto object-contain mx-auto mb-1 sm:mb-2">\
+              <p class="text-gray-400 text-[10px] sm:text-xs uppercase tracking-widest font-semibold">Einrichtungshaus Gutschein</p>\
+            </div>\
+            <div class="text-center">\
+              <span class="text-4xl sm:text-7xl font-black text-gray-800 leading-none block tracking-tighter">' + val + '</span>\
+              <div class="w-12 sm:w-16 h-0.5 bg-[#0051ba] mx-auto my-3 sm:my-4"></div>\
+              <div class="bg-[#0051ba] text-white text-base sm:text-xl font-black px-6 sm:px-8 py-2 sm:py-3 rounded-xl inline-block">Nur ' + price + '</div>\
+              <p class="text-green-600 text-xs sm:text-sm font-bold mt-2 sm:mt-3">' + savings + '&euro; sparen</p>\
+            </div>\
+            <div class="text-center">\
+              <p class="text-gray-400 text-[10px] sm:text-xs leading-relaxed">Online & in allen IKEA-Einrichtungsh&auml;usern einl&ouml;sbar</p>\
+            </div>\
+          </div>\
+        </div>';
+      }
+
+      // ── Airbnb: Travel Postcard ──
+      if (s === 'airbnb') {
+        return '\
+        <div class="brand-visual bv-airbnb animate-float">\
+          <div class="postcard-photo">\
+            <div class="absolute inset-0 bg-gradient-to-br from-[#FF385C] via-[#ff6b81] to-[#ffa07a]"></div>\
+            <svg class="absolute inset-0 w-full h-full opacity-15" viewBox="0 0 400 250" fill="none">\
+              <circle cx="320" cy="60" r="35" fill="white"/>\
+              <path d="M0 200 Q80 100 160 150 Q240 200 320 120 Q360 80 400 100 L400 250 L0 250 Z" fill="white" opacity="0.15"/>\
+              <path d="M0 220 Q100 160 200 190 Q300 220 400 180 L400 250 L0 250 Z" fill="white" opacity="0.1"/>\
+            </svg>\
+            <img src="' + logo + '" alt="' + p.brand + '" class="absolute top-4 left-4 h-6 sm:h-8 w-auto object-contain z-10">\
+            <div class="postcard-stamp">\
+              <svg class="w-5 h-5 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg>\
+            </div>\
+            <span class="absolute bottom-4 left-4 bg-white/25 backdrop-blur-sm text-white text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full z-10">Reisen &amp; Erlebnisse</span>\
+          </div>\
+          <div class="p-3 sm:p-5 flex items-end justify-between">\
+            <div>\
+              <p class="text-[#FF385C] text-[10px] sm:text-xs font-semibold mb-0.5">Dein Reise-Gutschein</p>\
+              <div class="flex items-end gap-2">\
+                <span class="text-2xl sm:text-4xl font-black text-gray-800 leading-none">' + price + '</span>\
+                <span class="text-gray-400 text-xs sm:text-sm line-through">' + val + '</span>\
+              </div>\
+            </div>\
+            <div class="text-right">\
+              <span class="text-[#FF385C] text-sm sm:text-lg font-bold">' + savings + '&euro;</span>\
+              <p class="text-gray-400 text-[10px] sm:text-xs">gespart</p>\
+            </div>\
+          </div>\
+          <div class="postcard-lines"><span></span><span></span><span></span></div>\
+        </div>';
+      }
+
+      // ── PlayStation: Real Store Card ──
+      if (s === 'playstation') {
+        return '\
+        <div class="brand-visual bv-playstation animate-float">\
+          <div class="ps-swoosh"></div>\
+          <!-- Floating controller symbols -->\
+          <svg class="ps-symbols" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">\
+            <!-- Triangle top-center -->\
+            <path d="M245 42l16 28h-32z" stroke="rgba(180,220,255,0.5)" stroke-width="3" fill="none"/>\
+            <!-- Cross top-right -->\
+            <path d="M388 52l18 18M406 52l-18 18" stroke="rgba(180,220,255,0.4)" stroke-width="5" stroke-linecap="round"/>\
+            <!-- Circle top-right far -->\
+            <circle cx="456" cy="75" r="14" stroke="rgba(180,220,255,0.35)" stroke-width="3" fill="none"/>\
+            <!-- Square far right -->\
+            <rect x="435" y="140" width="24" height="24" rx="2" stroke="rgba(180,220,255,0.3)" stroke-width="3" fill="none" transform="rotate(-15 447 152)"/>\
+            <!-- Cross small -->\
+            <path d="M55 75l10 10M65 75l-10 10" stroke="rgba(180,220,255,0.25)" stroke-width="4" stroke-linecap="round"/>\
+            <!-- Triangle small upper left -->\
+            <path d="M80 120l10 18H70z" stroke="rgba(180,220,255,0.25)" stroke-width="2.5" fill="none"/>\
+            <!-- Circle lower left -->\
+            <circle cx="70" cy="310" r="20" stroke="rgba(180,220,255,0.2)" stroke-width="3" fill="none"/>\
+            <!-- Square lower center -->\
+            <rect x="210" y="330" width="18" height="18" rx="2" stroke="rgba(180,220,255,0.2)" stroke-width="2.5" fill="none" transform="rotate(12 219 339)"/>\
+          </svg>\
+          <!-- Centered PS logo -->\
+          <div class="ps-logo-wrap">\
+            <img src="logos/playstation-white.svg" alt="PlayStation" class="w-full drop-shadow-[0_4px_24px_rgba(0,0,0,0.4)]">\
+          </div>\
+          <!-- Bottom bar: PlayStation Store label + price -->\
+          <div class="ps-bottom z-10">\
+            <div class="flex items-center gap-2">\
+              <svg viewBox="0 0 40 44" class="w-7 sm:w-9 h-auto flex-shrink-0" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                <rect width="40" height="44" rx="6" fill="white" fill-opacity="0.15"/>\
+                <path d="M12 32V16l10-4v4l-6 2v10l6-2v4z" fill="white"/>\
+                <path d="M22 28V20l10-4v8l-4 1.5V22l-2 .8v3.7z" fill="white"/>\
+              </svg>\
+              <div>\
+                <p class="text-white font-black text-xs sm:text-sm leading-tight">PlayStation</p>\
+                <p class="text-white/70 text-[9px] sm:text-[10px] leading-tight">Store Gutschein</p>\
+              </div>\
+            </div>\
+            <div class="text-right">\
+              <span class="text-white/50 text-[10px] sm:text-xs line-through block">' + val + '</span>\
+              <span class="text-white text-3xl sm:text-5xl font-black leading-none" style="text-shadow:0 0 20px rgba(255,255,255,0.3)">' + price + '</span>\
+              <p class="text-[#90caf9] text-[10px] sm:text-xs font-bold mt-0.5">' + savings + '&euro; gespart</p>\
+            </div>\
+          </div>\
+        </div>';
+      }
+
+      // ── DOUGLAS: Luxury Beauty ──
+      if (s === 'douglas') {
+        return '\
+        <div class="brand-visual bv-douglas animate-float">\
+          <div class="gold-frame"></div>\
+          <div class="gold-corner gold-corner-tl"></div>\
+          <div class="gold-corner gold-corner-tr"></div>\
+          <div class="gold-corner gold-corner-bl"></div>\
+          <div class="gold-corner gold-corner-br"></div>\
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50%] opacity-[0.03]"><img src="' + logo + '" alt="" class="w-full"></div>\
+          <div class="relative h-full flex flex-col items-center justify-between p-8 sm:p-12 z-10">\
+            <div class="text-center">\
+              <img src="logos/douglas-white.svg" alt="DOUGLAS" class="h-5 sm:h-7 w-auto object-contain mx-auto mb-2">\
+              <p class="text-[#d4af37] text-[9px] sm:text-[10px] uppercase tracking-[0.3em] font-medium">Exklusiver Gutschein</p>\
+            </div>\
+            <div class="text-center">\
+              <span class="text-4xl sm:text-7xl font-black text-white leading-none block tracking-tight">' + val + '</span>\
+              <div class="w-16 h-px bg-gradient-to-r from-transparent via-[#d4af37]/60 to-transparent mx-auto my-4"></div>\
+              <span class="text-[#d4af37] text-base sm:text-xl font-bold">Nur ' + price + '</span>\
+              <p class="text-white/40 text-xs line-through mt-1">' + val + '</p>\
+            </div>\
+            <div class="flex items-center gap-4 text-white/30 text-[10px] sm:text-xs">\
+              <span>Beauty</span>\
+              <span class="w-1 h-1 rounded-full bg-[#d4af37]/40"></span>\
+              <span>Parf&uuml;m</span>\
+              <span class="w-1 h-1 rounded-full bg-[#d4af37]/40"></span>\
+              <span>Pflege</span>\
+            </div>\
+          </div>\
+        </div>';
+      }
+
+      // ── Fallback: gradient card ──
+      var detailBrandLogo = renderBrandLogo(p, 'detail');
+      return '\
+        <div class="brand-visual animate-float bg-gradient-to-br ' + p.color + ' flex flex-col justify-between p-6 sm:p-10">\
+          <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>\
+          <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2"></div>\
+          <div class="flex items-start justify-between relative z-10">\
+            ' + detailBrandLogo + '\
+            <span class="bg-white text-gray-900 text-sm font-extrabold px-4 py-1.5 rounded-full badge-pulse">-' + p.discount + '%</span>\
+          </div>\
+          <div class="relative z-10">\
+            <div class="text-white/60 text-sm mb-1">Gutscheinwert</div>\
+            <span class="text-white text-5xl sm:text-6xl font-bold">' + val + '</span>\
+          </div>\
+        </div>';
+    }
+
+    function renderProductDetail(p) {
+      var savings = getSavings(p);
+      var inlineBrandLogo = BRAND_LOGOS[p.brandSlug]
+        ? '<img src="' + BRAND_LOGOS[p.brandSlug] + '" alt="" class="h-4 w-auto max-w-[72px] object-contain" aria-hidden="true">'
+        : '';
+
+      // Page title
+      document.title = p.name + ' | Gutschein.Express';
+      document.getElementById('breadcrumb-current').textContent = p.name;
 
       // Sticky CTA
       document.getElementById('sticky-price').textContent = formatPrice(p.price);
       document.getElementById('sticky-original').textContent = formatPrice(p.value);
 
-      // Product Visual
-	      document.getElementById('product-visual').innerHTML = '\
-	        <div class="relative">\
-	          <div class="bg-gradient-to-br ' + p.color + ' rounded-3xl p-8 sm:p-12 aspect-[4/3] flex flex-col justify-between relative overflow-hidden animate-float">\
-	            <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>\
-	            <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2"></div>\
-	            <div class="flex items-start justify-between relative z-10">\
-	              ' + detailBrandLogo + '\
-	              <span class="bg-white text-gray-900 text-sm font-extrabold px-4 py-1.5 rounded-full badge-pulse">-' + p.discount + '%</span>\
-	            </div>\
-	            <div class="relative z-10">\
-	              <div class="text-white/60 text-sm mb-1">Gutscheinwert</div>\
-              <div class="flex items-baseline gap-3">\
-                <span class="text-white text-5xl sm:text-6xl font-bold">' + formatPrice(p.value) + '</span>\
-              </div>\
-            </div>\
-          </div>\
-          <div class="absolute -bottom-4 -right-4 bg-brand-500 text-white rounded-2xl px-5 py-3 shadow-xl shadow-brand-500/30">\
-            <div class="text-xs font-medium opacity-80">Du sparst</div>\
-            <div class="text-2xl font-bold">' + savings + '&euro;</div>\
-          </div>\
-        </div>';
+      // Product Visual — brand-specific
+      document.getElementById('product-visual').innerHTML = renderBrandVisual(p);
 
       // Product Info
       var featuresHtml = '';
