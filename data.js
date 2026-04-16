@@ -728,72 +728,65 @@ function renderProductCard(product) {
 
   if (!product.available) {
     return `
-      <a href="${getProductUrl(product.slug)}" class="product-card block relative rounded-[1.5rem] overflow-hidden opacity-50 cursor-not-allowed" style="aspect-ratio:3/4;">
-        <div class="absolute inset-0 bg-gradient-to-br ${product.color}"></div>
-        ${logo ? `<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] opacity-[0.08] pointer-events-none"><img src="${logo}" alt="" class="w-full"></div>` : ''}
-        <div class="absolute inset-0 flex flex-col justify-between p-3 sm:p-6 z-10">
-          <div class="flex items-start gap-2">
-            <div class="flex-1 min-w-0 overflow-hidden">${logoImg}</div>
-            <span class="flex-shrink-0 bg-white/15 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Soon</span>
-          </div>
-          <div class="bg-black/20 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-4 text-center">
-            <p class="text-white/70 text-xs sm:text-sm font-medium">Bald verf\u00fcgbar</p>
+      <div class="product-card block bg-white rounded-2xl overflow-hidden shadow opacity-60 cursor-not-allowed">
+        <!-- Visual -->
+        <div class="relative bg-gradient-to-br ${product.color} overflow-hidden" style="aspect-ratio:4/3;">
+          ${logo ? `<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[55%] opacity-[0.08] pointer-events-none"><img src="${logo}" alt="" class="w-full"></div>` : ''}
+          <div class="absolute inset-0 flex flex-col justify-between p-3 sm:p-5">
+            <div class="flex items-start justify-between gap-2">
+              <div class="flex-1 min-w-0 overflow-hidden">${logoImg}</div>
+              <span class="flex-shrink-0 bg-white/15 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Soon</span>
+            </div>
           </div>
         </div>
-      </a>`;
+        <!-- Info -->
+        <div class="p-3 sm:p-4">
+          <p class="font-semibold text-gray-400 text-sm sm:text-base mb-3">${product.name}</p>
+          <div class="text-center text-gray-400 text-sm py-1">Bald verf\u00fcgbar</div>
+        </div>
+      </div>`;
   }
 
   const savings = getSavings(product);
   return `
-    <a href="${getProductUrl(product.slug)}" class="product-card group block relative rounded-[1.5rem] overflow-hidden cursor-pointer" style="aspect-ratio:3/4;">
-      <div class="absolute inset-0 bg-gradient-to-br ${product.color} transition-transform duration-700 group-hover:scale-110"></div>
-      ${logo ? `<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] opacity-[0.08] group-hover:opacity-[0.12] transition-opacity duration-700 pointer-events-none"><img src="${logo}" alt="" class="w-full"></div>` : ''}
-      <div class="absolute -top-12 -right-12 w-40 h-40 bg-white/5 rounded-full"></div>
-      <div class="absolute -bottom-8 -left-8 w-32 h-32 bg-white/5 rounded-full"></div>
-      <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-tr from-transparent via-white/10 to-transparent"></div>
-
-      <div class="absolute inset-0 flex flex-col justify-between p-3 sm:p-6 z-10">
-        <!-- Top: Logo + discount badge -->
-        <!-- flex-1/min-w-0 on logo lets it shrink; flex-shrink-0 on badge keeps it fully visible -->
-        <div class="flex items-start gap-2">
-          <div class="flex-1 min-w-0 overflow-hidden">${logoImg}</div>
-          <span class="flex-shrink-0 bg-white text-gray-900 text-[10px] sm:text-xs font-black px-2 sm:px-3 py-1 sm:py-1.5 rounded-full shadow-lg shadow-black/10 group-hover:scale-110 transition-transform">-${product.discount}%</span>
+    <a href="${getProductUrl(product.slug)}" class="product-card group block bg-white rounded-2xl overflow-hidden shadow hover:shadow-xl transition-shadow duration-300 cursor-pointer">
+      <!-- Product visual (acts as image) -->
+      <div class="relative bg-gradient-to-br ${product.color} overflow-hidden" style="aspect-ratio:4/3;">
+        <div class="absolute inset-0 transition-transform duration-700 group-hover:scale-110 bg-gradient-to-br ${product.color}"></div>
+        ${logo ? `<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[55%] opacity-[0.08] group-hover:opacity-[0.13] transition-opacity duration-700 pointer-events-none"><img src="${logo}" alt="" class="w-full"></div>` : ''}
+        <div class="absolute -top-10 -right-10 w-32 h-32 bg-white/5 rounded-full"></div>
+        <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-white/5 rounded-full"></div>
+        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-tr from-transparent via-white/10 to-transparent"></div>
+        <!-- Logo + discount badge -->
+        <div class="absolute inset-0 flex flex-col justify-between p-3 sm:p-5 z-10">
+          <div class="flex items-start justify-between gap-2">
+            <div class="flex-1 min-w-0 overflow-hidden">${logoImg}</div>
+            <span class="flex-shrink-0 bg-white text-gray-900 text-[10px] sm:text-xs font-black px-2 sm:px-3 py-1 rounded-full shadow-lg shadow-black/10 group-hover:scale-110 transition-transform">-${product.discount}%</span>
+          </div>
+          <!-- Gutscheinwert centered in visual -->
+          <div class="text-center pb-1">
+            <div class="text-white/60 text-[10px] sm:text-xs font-medium mb-0.5">Gutscheinwert</div>
+            <div class="text-white text-3xl sm:text-5xl font-black leading-none drop-shadow-lg">${formatPrice(product.value)}</div>
+          </div>
         </div>
+      </div>
 
-        <!-- Bottom: Price + meta -->
-        <div>
-          <div class="bg-black/20 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-white/10 group-hover:bg-black/30 transition-colors">
-            <!-- Gutscheinwert prominent -->
-            <div class="flex items-start justify-between gap-1 mb-2 sm:mb-3">
-              <div>
-                <div class="text-white/50 text-[10px] sm:text-xs font-medium mb-0.5">Gutscheinwert</div>
-                <div class="text-white text-2xl sm:text-4xl font-black leading-none">${formatPrice(product.value)}</div>
-              </div>
-              <div class="text-green-300 text-[10px] sm:text-sm font-bold flex-shrink-0 text-right mt-0.5">${savings}\u20ac<br class="hidden sm:block"> sparen</div>
-            </div>
-            <!-- Purchase price -->
-            <div class="flex items-center justify-between pt-2 border-t border-white/10 mb-2 sm:mb-3">
-              <div class="text-white/60 text-[10px] sm:text-sm">Dein Preis: <span class="text-white font-bold">${formatPrice(product.price)}</span></div>
-              <div class="text-white/40 text-[10px] sm:text-xs line-through">${formatPrice(product.value)}</div>
-            </div>
-            <!-- Meta row: truncated text prevents wrapping -->
-            <div class="flex items-center gap-2 pt-2 border-t border-white/10">
-              <div class="flex items-center gap-1 text-white/50 text-[10px] sm:text-xs min-w-0 flex-1">
-                <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                <span class="truncate">Per E-Mail</span>
-              </div>
-              <div class="flex items-center gap-1 text-white/50 text-[10px] sm:text-xs min-w-0 flex-1">
-                <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-                <span class="truncate">${product.validityYears}</span>
-              </div>
-            </div>
+      <!-- Shop-style info below -->
+      <div class="p-3 sm:p-4">
+        <!-- Product name -->
+        <p class="font-semibold text-gray-800 text-sm sm:text-base leading-snug mb-2 line-clamp-2">${product.name}</p>
+        <!-- Price row: strikethrough original, then purchase price -->
+        <div class="mb-3">
+          <div class="text-gray-400 text-xs line-through">${formatPrice(product.value)}</div>
+          <div class="flex items-baseline gap-2">
+            <span class="text-gray-900 text-xl sm:text-2xl font-black">${formatPrice(product.price)}</span>
+            <span class="text-green-600 text-xs sm:text-sm font-semibold">${savings}\u20ac gespart</span>
           </div>
-          <!-- CTA hint on hover -->
-          <div class="mt-2 sm:mt-3 overflow-hidden h-0 group-hover:h-10 transition-all duration-300">
-            <div class="bg-white text-gray-900 text-sm font-bold py-2.5 rounded-xl text-center shadow-lg">
-              Jetzt kaufen &rarr;
-            </div>
-          </div>
+        </div>
+        <!-- Buy button -->
+        <div class="w-full bg-green-500 group-hover:bg-green-600 transition-colors text-white font-bold py-2.5 rounded-xl text-sm text-center flex items-center justify-center gap-2">
+          <svg class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.4 5.6a1 1 0 001 1.4H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          In den Warenkorb
         </div>
       </div>
     </a>`;
