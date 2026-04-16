@@ -15,13 +15,8 @@ function renderNavbar(activePage) {
   <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 navbar-scrolled">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16 sm:h-20">
-        <a href="index.html" class="flex items-center gap-2 group">
-          <div class="w-9 h-9 bg-brand-500 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110">
-            <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-          </div>
-          <span class="text-lg font-bold tracking-tight">Gutschein<span class="text-brand-500">.Express</span></span>
+        <a href="index.html" class="flex items-center group">
+          <img src="logos/gutschein-express.svg" alt="Gutschein Express" class="h-8 sm:h-9 w-auto site-logo transition-transform group-hover:scale-105">
         </a>
         <div class="hidden md:flex items-center gap-8">
           <a href="katalog.html" class="text-sm font-medium ${activePage === 'katalog' ? 'text-brand-600' : 'text-gray-600 hover:text-gray-900'} transition-colors">Alle Gutscheine</a>
@@ -75,11 +70,8 @@ function renderFooter() {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
         <div class="lg:col-span-1">
-          <a href="index.html" class="flex items-center gap-2 mb-4">
-            <div class="w-9 h-9 bg-brand-500 rounded-xl flex items-center justify-center">
-              <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-            </div>
-            <span class="text-lg font-bold text-white">Gutschein<span class="text-brand-400">.Express</span></span>
+          <a href="index.html" class="flex items-center mb-4">
+            <img src="logos/gutschein-express.svg" alt="Gutschein Express" class="h-8 w-auto site-logo-footer">
           </a>
           <p class="text-sm leading-relaxed mb-4">Digitale Gutscheine zu Top-Preisen. Sofort per E-Mail &mdash; 100% sicher.</p>
           <div class="flex gap-0.5">

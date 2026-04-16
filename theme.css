@@ -179,6 +179,11 @@ html.dark ::-webkit-scrollbar-thumb:hover {
   background: #4b5563;
 }
 
+/* ── Site logo — dark mode ────────────────────────── */
+html.dark .site-logo {
+  color: #f0f0f0 !important;
+}
+
 /* ── Carousel nav buttons ────────────────────────── */
 html.dark .carousel-nav-btn {
   border-color: #2f2f2f !important;
